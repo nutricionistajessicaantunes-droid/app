@@ -24,11 +24,13 @@ export function Component() {
 
   if (!profile || plan === undefined || !stored || !records) return null;
 
+  // Na semana em andamento, os dias que ainda não chegaram não contam.
+  const inProgress = week.end > today;
   const s = summarizeWeek({
     records,
     habits: allHabits(plan ?? undefined, stored),
     start: week.start,
-    end: week.end,
+    end: inProgress ? today : week.end,
   });
   const modes = s.bristol.modes;
 
@@ -64,7 +66,8 @@ export function Component() {
 
         <p className="secundario">
           {s.registeredDays === 1 ? '1 dia registrado' : `${s.registeredDays} dias registrados`} de{' '}
-          {s.totalDays}.
+          {s.totalDays}
+          {inProgress ? ' até hoje' : ''}.
         </p>
 
         <dl className={styles.dados}>

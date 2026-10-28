@@ -1,0 +1,175 @@
+# Textos novos da interface
+
+Textos que eu escrevi (não estão na especificação), organizados por tela, para você revisar. Os textos do curso (seção 9) e os textos que já vinham na especificação não entram aqui. Para trocar qualquer um, me peça numa sessão nova ou procure o texto no código.
+
+## Geral
+
+| Onde | Texto |
+|---|---|
+| Atalho de teclado (invisível) | Pular para o conteúdo |
+| Faixa do modo demonstração | Modo demonstração · Sair da demonstração |
+| Faixa de atualização | Nova versão disponível · Atualizar |
+| Tela de erro | Algo não saiu como esperado |
+| Tela de erro | Teus registros continuam guardados neste aparelho. Antes de qualquer coisa, salve uma cópia de emergência. |
+| Tela de erro | Preparando a cópia... · Cópia salva. Guarde o arquivo em lugar seguro e envie só para você. |
+| Tela de erro | Não foi possível salvar a cópia agora. Teus registros continuam guardados neste aparelho. |
+| Tela de erro | Abrir o app de novo |
+| Endereço inexistente | Página não encontrada · Esse endereço não existe no app. · Ir para Hoje |
+| Sem JavaScript | Para usar o app, ative o JavaScript no navegador. |
+| Botão voltar | Voltar |
+| Links para fora (leitor de tela) | (abre fora do app) |
+| Link sem internet | Você está sem internet. O link abre quando a conexão voltar. |
+| Convite para consulta | WhatsApp (54) 99192-9487 · Ficha para a consulta |
+
+## Primeira vez
+
+| Onde | Texto |
+|---|---|
+| Código de acesso, título | Boas-vindas ao app do curso |
+| Código de acesso, erros | Esse código não confere. Confira na área de membros e tente de novo. · Digite o código para entrar. |
+| Abra no navegador | Você abriu o app por dentro do Instagram (ou de outro aplicativo). Aqui os teus registros se perdem com facilidade. Abra no Safari (ou Chrome) para guardar tudo com segurança. |
+| Abra no navegador, passos | Toque nos três pontinhos · Ficam no canto da tela, em cima ou embaixo. · Toque em Abrir no Safari · O nome pode ser Abrir no navegador. |
+| Abra no navegador | Se não encontrar essa opção, copie o link e cole no Safari. · Link do app |
+| Abra no navegador, depois de copiar | Link copiado. Agora abra o Safari e cole na barra de endereço. · Toque no link acima, segure e escolha Copiar. |
+| Instalar no iPhone, título | Instale o app no teu iPhone |
+| Instalar no iPhone | Instalado, o app abre pelo ícone na tela de início e guarda os teus registros com mais segurança. Leva menos de um minuto. |
+| Instalar no iPhone, passo 1 | Toque em Compartilhar · É o quadrado com a seta para cima, na barra do Safari. Se não aparecer, toque nos três pontinhos ao lado do endereço e depois em Compartilhar. (No Chrome: no canto de cima, ao lado do endereço.) |
+| Instalar no iPhone, passo 2 | Toque em Adicionar à Tela de Início · Se não aparecer de cara, role a lista para baixo. |
+| Instalar no iPhone, passo 3 | Toque em Adicionar · Fica no canto de cima, à direita. |
+| Instalar no iPhone, passo 4 | Abra o app pelo ícone novo · Ele aparece na tela de início com o nome Modulação. Use sempre por ele. |
+| Instalar no iPhone, com dados no navegador | Antes de instalar, salve uma cópia · No iPhone, o app instalado começa vazio, porque ele guarda os dados separado do navegador. Salve uma cópia aqui e, no app instalado, toque em "Já usei o app no navegador" para trazer os teus registros. |
+| Instalar no iPhone, outro navegador | Para instalar, abra este endereço no Safari e siga os passos abaixo. |
+| Usar no navegador, confirmação | No navegador do iPhone, os registros podem se perder. O iPhone pode apagar os dados de sites que ficam sete dias sem ser abertos. · Se for usar assim, salve uma cópia dos teus registros de vez em quando. O app vai lembrar você. · Voltar e instalar · Continuar no navegador |
+| Android | Instale o app no teu celular · Instalado, o app abre pelo ícone na tela inicial, como os outros aplicativos, e funciona sem internet. |
+| Android, passos (Chrome) | Toque nos três pontinhos · Ficam no canto de cima, à direita. · Toque em Instalar app · Em alguns celulares o nome é Adicionar à tela inicial. · Confirme em Instalar · Ele aparece na tela inicial com o nome Modulação. |
+| Android, passos (Samsung) | Toque no menu · São as três linhas, no canto de baixo, à direita. · Toque em Adicionar página a · Depois escolha Tela inicial. · Confirme em Adicionar |
+| Computador | Quer instalar o app? · O app funciona aqui no navegador. Se quiser, dá para instalar e abrir pelo ícone, sem precisar do endereço. · Continuar |
+| Depois de instalar | App instalado · Pronto. Daqui para frente, abra pelo ícone Modulação. Você também pode continuar por aqui agora. |
+| Modo privado | Neste modo, os registros não ficam salvos · Parece que você abriu o app numa aba privada ou anônima. Nesse modo, o navegador apaga tudo quando a aba fecha, e o app não consegue guardar os teus registros. · Feche esta aba e abra o link de novo numa aba normal do Safari ou do Chrome. No Safari, toque no botão das abas e saia do modo Privado. No Chrome, abra uma aba que não seja anônima. |
+| Onboarding, título da primeira tela | Boas-vindas |
+| Onboarding, nome | Teu nome ou apelido (opcional) · Continuar · Pular |
+| Onboarding, sinais | Antes de começar (título) · (opcional) |
+| Onboarding, sinal marcado | Esse sinal pede avaliação médica · Você pode continuar usando o app enquanto marca essa avaliação. |
+| Onboarding, aulas | Qual foi a última aula que você assistiu? · Escolha a aula · As aulas anteriores ficam marcadas como assistidas. |
+| Onboarding, plano | Qual foi o dia 1 do teu plano? · Pode ser até 20 dias atrás. |
+| Onboarding, quando registrar | Horário do registro · Dia da leitura da semana · Lembretes na agenda (opcional) · Registro do dia, todos os dias · Leitura da semana |
+| Onboarding, fim | O registro leva um minuto. Toque em "Registrar meu dia" na tela Hoje. · Ir para Hoje |
+| Onboarding, restaurar | Trazer meus registros · Escolha o arquivo da cópia que você salvou. Ele tem um nome como modulacao-copia, com a data. |
+
+## Hoje
+
+| Onde | Texto |
+|---|---|
+| Selo de contexto | O plano começa em 9/11 · Plano · reavaliação |
+| Confirmação | Dia registrado. (da especificação) seguido de uma frase do curso |
+| Registro de hoje, resumo | Evacuei · Não evacuei · Sem sintomas · Estufamento 5 · Energia 7 · Hábitos 2 de 2 · Editar |
+| Teus hábitos de hoje | 1 de 2 hoje. A meta é cinco dias de sete. |
+| Água | 5 de 8 copos (com os botões "Tirar um" e "Mais um" para leitores de tela) |
+| Teu próximo passo | Hoje no plano · dia 5 · Semana 1, base: (resumo da semana) |
+| Teu próximo passo | O plano começa em 9/11 · Até lá, siga com a semana zero e o registro do dia. |
+| Teu próximo passo | Próxima aula: 3, (título) · Ver a aula · Preparar a semana zero · Ver o caminho |
+| Cópia de segurança | Teus registros ficam só neste celular. Salve uma cópia e mande para você, para não perder nada se trocar de celular. |
+| Cópia de segurança | Faz mais de uma semana desde a última cópia dos teus registros. |
+| Cópia de segurança | Salvar uma cópia · Lembrar daqui a 7 dias · Cópia salva. Guarde o arquivo em lugar seguro. · Não foi possível salvar a cópia. Tente de novo. |
+| Mais cartões | Ver mais · Ver menos |
+| Cartão de alerta | Sinal que pede avaliação médica · Você marcou em 3 de novembro: (sinais). · Entendi · Ver os sinais de alerta |
+| Cartão de acompanhamento | Vale buscar acompanhamento · Teus registros mostram (o que foi detectado). |
+
+## Registro do dia
+
+| Onde | Texto |
+|---|---|
+| Topo | Hoje (voltar) · Dia anterior · Dia seguinte (leitores de tela) |
+| Rótulos dos blocos | Intestino · Como foi (leitores de tela) |
+| Sem responder "Você evacuou?" | Para o dia contar como registrado, responda se você evacuou. Se preferir, toque de novo para sair assim mesmo. |
+| Água | Copo de cerca de 280 ml. |
+| Folha dos sinais | Marque o que está acontecendo. A data fica guardada para a ficha da consulta. · Fechar |
+| Folha do registro simples | Registro simples (título) · No registro simples ficam só "Você evacuou?", o tipo de Bristol e o dia em uma linha. · Usar o registro simples · Continuar como está |
+| Modo simples ligado | Usar o registro completo |
+
+## Caminho e aula
+
+| Onde | Texto |
+|---|---|
+| Progresso | 3 de 17 aulas assistidas |
+| Situação do plano | Plano de 21 dias ainda não começou. · Preparando a semana zero. · Plano de 21 dias em andamento. · Plano de 21 dias pronto para a reavaliação. · Plano de 21 dias concluído. |
+| Comece por aqui | Assista à aula na Kiwify e volte aqui para fazer a tarefa. · Registre o teu dia uma vez por dia, de preferência à noite. · No dia escolhido, faça a leitura da semana. · Siga o próximo passo que aparece na tela Hoje. |
+| Comece por aqui | Se você gosta de papel, o caderno continua valendo. O app faz as contas por você. |
+| Estados da aula | Não assistida · Assistida · Tarefa em andamento · Tarefa concluída |
+| Abaixo dos módulos | Ferramentas do curso · Recomendado para o teu caso |
+| Tela da aula | Assistida · Toque de novo para desmarcar. · Tarefa · 3 dias / Sem prazo / No fim do plano · No fim: |
+
+## Resultados
+
+| Onde | Texto |
+|---|---|
+| Tua semana | Esta semana · 26 de outubro a 1 de novembro · Semana anterior · Semana seguinte |
+| Tua semana | 5 dias registrados de 7 (até hoje) |
+| Tua semana | Tipo de Bristol mais frequente · Os tipos 2 e 4 apareceram o mesmo número de vezes. · Nenhum tipo registrado nesta semana. |
+| Tua semana | Evacuações · 6 vezes, em 5 dias. · Nenhuma registrada. |
+| Tua semana | Média de sintomas · 4,0 de 10 · Sem sintomas registrados. |
+| Tua semana | Média de energia · Sem registro de energia. · Hábitos · meta atingida (leitores de tela) |
+
+## Guia
+
+| Onde | Texto |
+|---|---|
+| Topo | Consulta rápida do conteúdo do curso. Funciona sem internet. |
+| Índice | Para o teu caso · (caminho) · Para começar · Outros temas |
+| Descrição das seções | Os sete tipos e o que cada um indica · Mapa, regras, caminhos, semana zero e reavaliação · As quatro perguntas e os padrões que costumam aparecer · Calculadora e plano de água · Tabela, dia modelo e Meu dia de fibras · Fontes, simbióticos e combinações prontas · Montagem do prato, lista base e restaurante · Roteiro da refeição, respiração, sono e hábitos com gatilho · Alto e baixo teor por grupo, e o que usar sem contar · Os quatro casos, gatilhos e substituições · Primeiro a água, kit de crise e a volta depois da crise · Quando procurar avaliação e acompanhamento · O que este app é e o que ele não substitui · Atendimento on-line e presencial |
+| Seção nova do Guia | Registro e leitura da semana (junta as seções 9.4 e 9.5, que são o material das aulas 3 e 16) |
+| Sinais de alerta | Marcar um sinal no registro de hoje |
+| Diarreia | Ver o cardápio da crise |
+| Sobre a Jéssica | Atuação em nutrição comportamental e esportiva. |
+
+## Alertas
+
+| Onde | Texto |
+|---|---|
+| Notou algo preocupante? | Marque o que está acontecendo. O app guarda a data para a ficha da consulta. · Voltar para Hoje |
+
+## Ajustes
+
+| Onde | Texto |
+|---|---|
+| Blocos | Teu perfil · Registro do dia · Meta de água · Lembretes · Aparência · Cópia de segurança · Ajuda |
+| Perfil | Queixa principal |
+| Registro do dia | Sintomas que você acompanha · Marcadores do ciclo menstrual · Mostra os chips Pré-menstrual e Menstruada no registro. · Registro simples · Só o tipo de Bristol e uma linha sobre o dia. · Ligado · Desligado |
+| Meta de água | Tua meta: 2.275 ml por dia, em 8 copos. · Você ainda não calculou a tua meta de água. · Calcular de novo · Calcular minha meta de água |
+| Lembretes | Horário do registro · Dia da leitura · Registro do dia, todos os dias · Dia da revisão do mês · Ainda não escolhi · Dia 1 a Dia 28 |
+| Aparência | Tema · Automático · Claro · Escuro · No automático, o app segue o tema do celular. |
+| Cópia de segurança | Última cópia: 3 de novembro. · Você ainda não salvou nenhuma cópia. |
+| Armazenamento | Armazenamento protegido: verificando · sim, o navegador não apaga sozinho · não confirmado pelo navegador. Salve uma cópia de vez em quando. |
+| Lista | Restaurar uma cópia · Trocar de celular · Circunferência abdominal · Opcional · Como instalar · Privacidade · Sobre o app · Versão 0.1.0 |
+| Restaurar | Escolha o arquivo da cópia que você salvou. O nome começa com modulacao-copia, seguido da data. · Escolher o arquivo da cópia |
+| Restaurar, prévia | Cópia encontrada · Cópia salva em 3 de novembro, com 23 dias registrados, de 12 de outubro a 3 de novembro. · Restaurar esta cópia · Escolher outro arquivo |
+| Restaurar, confirmação | Substituir tudo? · Os registros que estão neste aparelho agora serão trocados pelos da cópia. Isso não pode ser desfeito. · Sim, substituir tudo |
+| Restaurar, confirmação | Juntar os registros? · Os registros da cópia entram junto com os deste aparelho. Quando o mesmo dia existe nos dois, fica a versão mais recente. · Sim, juntar |
+| Restaurar, confirmação | Restaurar a cópia? · Os registros da cópia vão para este aparelho. · Sim, restaurar · Cancelar |
+| Restaurar, resultado | Cópia restaurada · Teus registros estão de volta. |
+| Restaurar, erros | Este arquivo não é uma cópia do app. Escolha o arquivo que começa com "modulacao-copia". · Esta cópia foi feita numa versão mais nova do app. Atualize o app e tente de novo. · A cópia está incompleta ou foi alterada. Tente outro arquivo de cópia. · Não foi possível restaurar. Teus registros atuais continuam como estavam. Tente de novo. |
+| Trocar de celular | Os registros ficam neste aparelho. Para levar tudo para o celular novo, são quatro passos. |
+| Trocar de celular, passos | Salve uma cópia aqui · Use o botão abaixo. · Mande o arquivo para você · Pelo WhatsApp (para você mesma), por e-mail, no Arquivos ou no Drive. · Abra o app no celular novo · Pelo link que está na área de membros do curso, na Kiwify. No iPhone, instale pela tela de início. · Restaure a cópia · Na primeira tela, toque em "Já usei o app em outro celular ou no navegador" e escolha o arquivo. |
+| Circunferência | É opcional. Se quiser, meça no começo do plano e de novo no dia 21, no mesmo horário e do mesmo jeito. · Medida, em cm · Data · Guardar medida · Apagar a medida de 3 de novembro |
+| Como instalar | No iPhone · No Android, com o Chrome · No Android, com o Samsung Internet · No computador · Você já está usando o app instalado. · O app funciona no navegador. Instalar é opcional: no Chrome, use o ícone de instalar na barra de endereço. |
+| Privacidade | O que o app guarda · Teus registros do dia, hábitos, tarefas das aulas, leituras da semana e o que você escreve no app. · O peso, só se você calcular a meta de água. Ele não aparece em nenhuma outra tela. |
+| Privacidade | Onde guarda · Só neste aparelho, dentro do navegador ou do app instalado. Não existe conta nem servidor. · A Jéssica não tem acesso aos teus registros. Ninguém tem, além de você. |
+| Privacidade | Rastreamento · O app não usa rastreamento, anúncio nem estatística de uso. Ele não envia nada para a internet. · Os únicos acessos para fora são os links que você toca: Kiwify, WhatsApp, Instagram e Google Agenda. |
+| Privacidade | A cópia de segurança · Como apagar tudo · Em Ajustes, toque em "Apagar todos os meus dados". O app pede confirmação duas vezes antes de apagar. |
+| Sobre o app | App do curso Modulação Intestinal na Prática. Versão 0.1.0. · O que mudou · Dúvidas |
+| Apagar | Isso apaga deste aparelho todos os teus registros, hábitos, tarefas, leituras e ajustes. Não tem como desfazer. · Se quiser guardar alguma coisa, salve uma cópia antes. · Salvar uma cópia antes · Quero apagar meus dados · Tem certeza? · Depois de apagar, o app volta para a primeira tela, como se fosse a primeira vez. · Sim, apagar tudo · Cancelar |
+| Meta de água | Teu peso atual, em quilos · O peso entra só nesta conta. Ele não aparece em nenhuma outra tela do app. · Digite um peso entre 30 e 300 kg, só com números. Exemplo: 65 ou 65,5. |
+| Meta de água, resultado | 2.275 ml por dia · São 8 copos de cerca de 280 ml: 3 pela manhã, 3 pela tarde e 2 antes de dormir. · Salvar minha meta de água · Meta salva. Os copos aparecem na tela Hoje e no registro. |
+
+## Lembretes de agenda
+
+| Onde | Texto |
+|---|---|
+| Depois do botão | Você está sem internet. Tente de novo quando a conexão voltar. · Arquivo de agenda salvo. Abra o arquivo para colocar na tua agenda. |
+| Evento | Registro do dia · Abra o app Modulação e registre o teu dia. Leva um minuto. |
+| Evento | Leitura da semana · Cinco minutos para ler a tua semana no app Modulação. |
+| Evento | Dia 1 do plano de 21 dias · Hoje começa o teu plano de 21 dias. Abra o app Modulação. |
+| Evento | Dia 21 do plano de 21 dias · Último dia do plano. Amanhã, abra o app Modulação para a reavaliação. |
+| Evento | Avaliação da fase 1 do protocolo · Abra o app Modulação para avaliar a fase 1. |
+| Evento | Testar de novo os gatilhos · A tolerância muda. Abra o app Modulação para lembrar o que testar. |
+| Evento | Revisão do mês · Cinco minutos olhando o teu registro no app Modulação. |

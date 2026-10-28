@@ -5,15 +5,25 @@ import './styles/base.css';
 import { AppErrorBoundary } from './app/ErrorBoundary';
 import { router } from './app/router';
 import { applyInitialTheme } from './app/theme';
-import { openDb, resolveDemoFlag } from './db/index';
+import { openDb, resolveDemo } from './db/index';
 import { initInstallPrompt } from './features/instalacao/installPrompt';
 
 applyInitialTheme();
 initInstallPrompt();
-openDb(resolveDemoFlag(window.location.search));
+const scenario = resolveDemo(window.location.search);
+const db = openDb(scenario !== null);
 
-const root = document.getElementById('root');
-if (root) {
+async function start() {
+  if (scenario) {
+    try {
+      const { seedDemoIfEmpty } = await import('./db/demo');
+      await seedDemoIfEmpty(db, scenario);
+    } catch {
+      /* sem dados de demonstração, o app abre vazio */
+    }
+  }
+  const root = document.getElementById('root');
+  if (!root) return;
   createRoot(root).render(
     <StrictMode>
       <AppErrorBoundary>
@@ -22,3 +32,5 @@ if (root) {
     </StrictMode>,
   );
 }
+
+void start();

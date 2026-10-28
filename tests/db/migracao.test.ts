@@ -16,15 +16,13 @@ describe('migrações do banco', () => {
       }
       await old.open();
       const stamp = '2026-11-03T12:00:00.000Z';
-      await old
-        .table('days')
-        .put({
-          date: '2026-11-03',
-          evacuated: true,
-          bristol: 4,
-          createdAt: stamp,
-          updatedAt: stamp,
-        });
+      await old.table('days').put({
+        date: '2026-11-03',
+        evacuated: true,
+        bristol: 4,
+        createdAt: stamp,
+        updatedAt: stamp,
+      });
       await old
         .table('profile')
         .put({ id: 'me', path: 'preso', name: 'Ana', createdAt: stamp, updatedAt: stamp });

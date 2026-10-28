@@ -51,7 +51,7 @@ export function Gate({ children }: { children: ReactNode }) {
         await updateMeta({ unlocked: true });
       }
       // No navegador de outro app o link completo precisa ficar para o "Copiar link".
-      if (!platform.inApp) stripParams(['acesso', 'origem']);
+      if (!platform.inApp) stripParams(['acesso', 'origem', 'demo']);
       setCodeChecked(true);
     })();
   }, [dbOk, platform.inApp]);

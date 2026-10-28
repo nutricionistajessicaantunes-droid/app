@@ -17,30 +17,38 @@ function safeSession(): Storage | null {
   }
 }
 
-/** Decide se a sessão está em modo demonstração, a partir do endereço. */
-export function resolveDemoFlag(search: string): boolean {
+export type DemoScenario = 'completo' | 'plano';
+
+/**
+ * Decide se a sessão está em modo demonstração, a partir do endereço:
+ * ?demo=1 (cenário completo), ?demo=plano (plano em andamento), ?demo=0 (sai).
+ */
+export function resolveDemo(search: string): DemoScenario | null {
   const params = new URLSearchParams(search);
   const ss = safeSession();
-  if (params.get('demo') === '1') {
+  const value = params.get('demo');
+  if (value === '1' || value === 'plano') {
+    const scenario: DemoScenario = value === 'plano' ? 'plano' : 'completo';
     try {
-      ss?.setItem(DEMO_KEY, '1');
+      ss?.setItem(DEMO_KEY, scenario);
     } catch {
       /* sem sessionStorage, vale só para esta página */
     }
-    return true;
+    return scenario;
   }
-  if (params.get('demo') === '0') {
+  if (value === '0') {
     try {
       ss?.removeItem(DEMO_KEY);
     } catch {
       /* ignora */
     }
-    return false;
+    return null;
   }
   try {
-    return ss?.getItem(DEMO_KEY) === '1';
+    const saved = ss?.getItem(DEMO_KEY);
+    return saved === 'completo' || saved === 'plano' ? saved : null;
   } catch {
-    return false;
+    return null;
   }
 }
 

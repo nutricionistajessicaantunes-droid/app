@@ -26,6 +26,11 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 - **Data da avaliação da fase 1:** a aula 12 diz "entre a semana 2 e a 4"; a seção 6.13 da especificação diz "padrão: fim da semana 4; permitido entre a semana 2 e a semana 6". O app usa o padrão de 4 semanas e permite escolher entre a semana 2 e a semana 6, e mostra o texto da aula como está.
 - **Dia modelo de fibras:** calculando pela tabela por 100 g, a couve dá 1,55 g (o app mostra 1,6 g na ferramenta "Meu dia de fibras"), enquanto a tabela do caderno mostra 1,5 g. O total continua "27 g". No Guia, a tabela aparece exatamente como no caderno.
 
+## Testes que dependem de um aparelho de verdade
+
+- **"Agenda do iPhone":** não consigo testar o iPhone daqui. No Safari, o app gera o arquivo do lembrete no próprio aparelho. No app instalado no iPhone, ele usa a função da Netlify (`netlify/functions/agenda.mjs`), que recebe só o título, o horário e a repetição. Teste os dois casos (roteiro em `docs/teste-no-celular.md`). Se o arquivo gerado no aparelho também funcionar no app instalado, dá para desligar a função trocando `ICS_MODO` para `'local'` em `src/config.ts`. Se o Safari não abrir o lembrete, troque para `'funcao'`.
+- **Lighthouse:** vou medir na Fase 4.
+
 ## Decisões que tomei sozinho
 
 ### Visual
@@ -45,4 +50,13 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 - **Frases depois do registro:** uso em rodízio as frases da seção 8.3 que combinam com o momento de registrar. Deixei de fora as que só fazem sentido em outro contexto ("Em diarreia, primeiro a água, depois a comida.", "Sede já é atraso.", "Meta sem distribuição não se cumpre.", "Saber a hora de pedir ajuda faz parte do autocuidado.", "Registro que ninguém lê não serve para nada."). Elas aparecem nas telas certas (modo crise, água, leitura da semana, acompanhamento).
 - **A volta depois da crise, etapa "Por último":** a especificação não diz quando começa. Como as outras etapas têm dois dias, a etapa "Por último" começa no dia 9 depois da melhora. O modo crise termina quando a aluna toca "Terminei a volta" nessa etapa, ou "Encerrar o modo crise" a qualquer momento.
 - **Medidas da aula 8:** as sugestões são os três exemplos da aula (refeições menores, jantar 3 horas antes de deitar, cabeceira da cama elevada) e mais três frases curtas tiradas das regras do refluxo (água entre as refeições, comer devagar e mastigar bem, não deitar nas duas horas seguintes).
+- **Meta proporcional nos hábitos que começam no meio da semana:** a meta é cinco dias de sete. Quando um hábito ficou ativo só parte da semana (por exemplo, uma tarefa que começou na quinta), a meta é proporcional aos dias em que ele esteve ativo (3 dias pedem 3). Nos blocos do plano, os hábitos ficam ativos os 7 dias, então a meta é sempre 5.
+- **"Tua semana" em Resultados:** a semana em andamento conta só os dias até hoje, para não mostrar "2 de 7" quando só passaram 3 dias.
+- **Restaurar na primeira vez:** quando o app ainda não tem nenhum registro, a restauração mostra um botão só ("Restaurar esta cópia"), porque substituir e juntar dão no mesmo. Com registros no aparelho, aparecem as duas opções.
+- **"Não" depois de "Sim" no registro:** se a aluna marca "Sim", escolhe o Bristol e depois troca para "Não", o tipo fica guardado mas não conta em nenhuma conta (só vale quando "Você evacuou?" é "Sim"). Assim, se o toque foi sem querer, nada se perde.
+- **"Pronto" sem responder "Você evacuou?":** o app avisa que o dia só conta como registrado com essa resposta e leva até a pergunta. Um segundo toque em "Pronto" sai assim mesmo, sem cobrança.
+- **Horário dos lembretes:** o registro do dia e a leitura da semana usam o horário do registro escolhido pela aluna. Dia 1, dia 21 e as datas do protocolo low FODMAP usam 8h.
+- **Seção nova no Guia:** "Registro e leitura da semana", que junta as seções 9.4 e 9.5 (material das aulas 3 e 16). A especificação não listava essa seção no Guia, mas as aulas apontam para esse material.
+- **Segurança da página:** a política de conteúdo (`Content-Security-Policy`) ficou só com `'self'`, inclusive para estilos. Testei o app inteiro com essa política e não houve erro.
+- **Modo demonstração:** além de `?demo=1` (24 dias, plano concluído, leituras, tarefa concluída e reavaliação), criei `?demo=plano`, com o plano em andamento na semana 3, para as capturas e para você ver o app no meio do processo.
 - **Busca da lista de FODMAPs:** acrescentei termos de busca que levam à mesma entrada do caderno (por exemplo, "pão francês" e "pão de forma" levam a "pão francês e de forma"; "amêndoa" leva a "amêndoa em quantidade"). A classificação mostrada é sempre o nome da entrada como está no caderno. Não criei nenhuma classificação nova.

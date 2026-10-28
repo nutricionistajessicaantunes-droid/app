@@ -15,7 +15,7 @@ export function ErrorScreen() {
     try {
       const demo = (() => {
         try {
-          return sessionStorage.getItem('modulacao:demo') === '1';
+          return Boolean(sessionStorage.getItem('modulacao:demo'));
         } catch {
           return false;
         }
