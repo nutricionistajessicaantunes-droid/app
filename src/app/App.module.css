@@ -1,0 +1,57 @@
+.splash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--fundo);
+}
+
+.erroTela {
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: calc(var(--e7) + env(safe-area-inset-top)) var(--e5) var(--e7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--e4);
+}
+
+.erroTela h1 {
+  font-family: var(--serif);
+}
+
+.erroBotao {
+  min-height: var(--botao-principal);
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--raio);
+  background: var(--acento);
+  color: var(--acento-texto);
+  font-weight: 600;
+  font-size: 1.0625rem;
+}
+
+.erroLink {
+  min-height: var(--toque);
+  border: none;
+  background: none;
+  color: var(--acento);
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.pular {
+  position: absolute;
+  left: var(--e3);
+  top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: var(--raio-pequeno);
+  background: var(--acento);
+  color: var(--acento-texto);
+  font-weight: 600;
+}
+
+.pular:focus {
+  top: calc(var(--e2) + env(safe-area-inset-top));
+}

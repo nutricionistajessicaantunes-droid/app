@@ -1,0 +1,237 @@
+/* Escolha única em segmentos (Sim / Não, 1 / 2 / 3 ou mais) */
+.grupo {
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.legenda {
+  display: block;
+  margin-bottom: var(--e2);
+  padding: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ajuda {
+  margin: calc(-1 * var(--e1)) 0 var(--e3);
+  color: var(--texto-secundario);
+  font-size: 0.9375rem;
+}
+
+.segmentos {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  gap: var(--e2);
+}
+
+.segmentosVertical {
+  grid-auto-flow: row;
+}
+
+.opcao {
+  position: relative;
+  display: flex;
+}
+
+.opcao input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.opcao label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e2);
+  min-height: var(--botao-principal);
+  padding: 10px 14px;
+  border: 1px solid var(--trilho);
+  border-radius: var(--raio);
+  background: var(--superficie);
+  color: var(--texto);
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.segmentosVertical .opcao label {
+  justify-content: flex-start;
+  text-align: left;
+  font-weight: 500;
+}
+
+.opcao input:checked + label {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: var(--acento-texto);
+}
+
+.opcao input:focus-visible + label {
+  outline: 3px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.marca {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* Chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--toque);
+  padding: 8px 16px;
+  border: 1px solid var(--trilho);
+  border-radius: var(--raio-chip);
+  background: var(--superficie);
+  color: var(--texto);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.2;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: var(--acento-texto);
+}
+
+/* Linhas de marcar (listas) */
+.linhas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linha {
+  position: relative;
+  display: flex;
+}
+
+.linha input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.linha label {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e3);
+  min-height: 52px;
+  padding: 13px 14px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: var(--superficie);
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.caixa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 0;
+  border: 2px solid var(--trilho);
+  border-radius: 6px;
+  background: var(--superficie);
+  color: var(--acento-texto);
+}
+
+.redonda {
+  border-radius: 50%;
+}
+
+.linha input:checked + label {
+  border-color: var(--acento);
+  background: var(--banda);
+}
+
+.linha input:checked + label .caixa {
+  border-color: var(--acento);
+  background: var(--acento);
+}
+
+.linha input:focus-visible + label {
+  outline: 3px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.linhaTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.linhaDetalhe {
+  color: var(--texto-secundario);
+  font-size: 0.9375rem;
+}
+
+/* Contador (copos de água) */
+.contador {
+  display: flex;
+  align-items: center;
+  gap: var(--e3);
+}
+
+.contadorBotao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border: 1px solid var(--acento);
+  border-radius: 50%;
+  background: var(--superficie);
+  color: var(--acento);
+}
+
+.contadorBotao:disabled {
+  opacity: 0.4;
+}
+
+.contadorValor {
+  flex: 1;
+  text-align: center;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.contadorNumero {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1;
+}

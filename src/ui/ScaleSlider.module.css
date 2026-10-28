@@ -1,0 +1,113 @@
+.linha {
+  padding: var(--e2) 0;
+}
+
+.topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e3);
+  margin-bottom: 2px;
+}
+
+.rotulo {
+  font-weight: 600;
+  font-size: 1.0625rem;
+}
+
+.valor {
+  min-width: 2.2em;
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  line-height: 1;
+  text-align: right;
+  color: var(--acento);
+  font-variant-numeric: tabular-nums;
+}
+
+.semValor {
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  color: var(--texto-secundario);
+}
+
+.area {
+  position: relative;
+  height: 48px;
+  margin: 0 14px;
+  touch-action: pan-y;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.area:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.trilho {
+  position: absolute;
+  left: -14px;
+  right: -14px;
+  top: 50%;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 4px;
+  background: var(--borda);
+  box-shadow: inset 0 0 0 1px var(--trilho);
+}
+
+.vazio .trilho {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--borda) 0,
+    var(--borda) 8px,
+    transparent 8px,
+    transparent 14px
+  );
+  box-shadow: none;
+}
+
+.preenchido {
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 4px;
+  background: var(--acento);
+}
+
+.polegar {
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border-radius: 50%;
+  background: var(--acento);
+  border: 3px solid var(--superficie);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
+}
+
+.marcas {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 6px;
+  color: var(--texto-secundario);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.dica {
+  margin: 0;
+  color: var(--texto-secundario);
+  font-size: 0.875rem;
+}
+
+.valor,
+.semValor {
+  margin-left: auto;
+}

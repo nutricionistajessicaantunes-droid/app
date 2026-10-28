@@ -1,0 +1,91 @@
+.veu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: var(--veu);
+  animation: aparecer 0.18s ease-out;
+}
+
+.folha {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--largura-max);
+  max-height: min(88vh, 88dvh);
+  border-radius: 18px 18px 0 0;
+  background: var(--superficie);
+  box-shadow: var(--sombra-folha);
+  animation: subir 0.22s ease-out;
+}
+
+.cabeca {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e3);
+  padding: var(--e4) var(--e4) var(--e2) var(--e5);
+}
+
+.alca {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 40px;
+  height: 4px;
+  margin-left: -20px;
+  border-radius: 2px;
+  background: var(--borda);
+}
+
+.titulo {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+}
+
+.fechar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--toque);
+  height: var(--toque);
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--banda);
+  color: var(--texto);
+}
+
+.corpo {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--e2) var(--e5) calc(var(--e5) + env(safe-area-inset-bottom));
+}
+
+.corpo > * + * {
+  margin-top: var(--e4);
+}
+
+@keyframes subir {
+  from {
+    transform: translateY(24px);
+    opacity: 0.6;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

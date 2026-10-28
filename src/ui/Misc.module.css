@@ -1,0 +1,83 @@
+.salvo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+  color: var(--sucesso);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.faixaTopo {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--e2) var(--e3);
+  padding: calc(var(--e2) + env(safe-area-inset-top)) var(--e4) var(--e2);
+  background: var(--acento);
+  color: var(--acento-texto);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.faixaTopo + .faixaTopo {
+  padding-top: var(--e2);
+}
+
+.faixaAviso {
+  background: var(--alerta-fundo);
+  color: var(--texto);
+  border-bottom: 1px solid var(--alerta);
+}
+
+.faixaBotao {
+  min-height: 40px;
+  padding: 6px 14px;
+  border: 1px solid currentColor;
+  border-radius: var(--raio-pequeno);
+  background: transparent;
+  color: inherit;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.semInternet {
+  margin: var(--e2) 0 0;
+  color: var(--texto-secundario);
+  font-size: 0.9375rem;
+}
+
+.linkExterno {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lista {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.lista li + li {
+  margin-top: var(--e2);
+}
+
+.nota {
+  margin: 0;
+  color: var(--texto-secundario);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.citacao {
+  margin: 0;
+  padding: var(--e1) 0 var(--e1) var(--e4);
+  border-left: 2px solid var(--acento);
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.35;
+}

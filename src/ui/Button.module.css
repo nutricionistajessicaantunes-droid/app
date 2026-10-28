@@ -1,0 +1,100 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e2);
+  min-height: var(--toque);
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.button:disabled,
+.button[aria-disabled='true'] {
+  opacity: 0.55;
+}
+
+.primary {
+  min-height: var(--botao-principal);
+  padding-inline: 24px;
+  background: var(--acento);
+  color: var(--acento-texto);
+  font-size: 1.0625rem;
+}
+
+.primary:not(:disabled):active {
+  background: var(--acento-forte);
+}
+
+@media (hover: hover) {
+  .primary:not(:disabled):hover {
+    background: var(--acento-forte);
+  }
+  .secondary:not(:disabled):hover,
+  .ghost:not(:disabled):hover {
+    background: var(--banda);
+  }
+}
+
+.secondary {
+  background: transparent;
+  border-color: var(--acento);
+  color: var(--acento);
+}
+
+.secondary:not(:disabled):active,
+.ghost:not(:disabled):active {
+  background: var(--banda);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--acento);
+}
+
+.danger {
+  background: transparent;
+  border-color: var(--alerta);
+  color: var(--alerta);
+}
+
+.dangerSolid {
+  background: var(--alerta);
+  border-color: var(--alerta);
+  color: var(--superficie);
+}
+
+.link {
+  min-height: var(--toque);
+  padding: 8px 2px;
+  background: none;
+  border: none;
+  color: var(--acento);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.block {
+  display: flex;
+  width: 100%;
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}

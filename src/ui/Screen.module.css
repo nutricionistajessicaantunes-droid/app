@@ -1,0 +1,66 @@
+.screen {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: calc(var(--e4) + env(safe-area-inset-top)) var(--e4)
+    calc(var(--altura-abas) + var(--e7) + env(safe-area-inset-bottom));
+  padding-left: max(var(--e4), env(safe-area-inset-left));
+  padding-right: max(var(--e4), env(safe-area-inset-right));
+}
+
+.semAbas {
+  padding-bottom: calc(var(--e7) + env(safe-area-inset-bottom));
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e2);
+  min-height: var(--toque);
+  margin: 0 -8px var(--e2);
+}
+
+.voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: var(--toque);
+  min-width: var(--toque);
+  padding: 0 10px 0 4px;
+  border: none;
+  border-radius: var(--raio-pequeno);
+  background: none;
+  color: var(--acento);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.voltar:active {
+  background: var(--banda);
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: var(--e1);
+  margin-left: auto;
+}
+
+.cabecalho {
+  margin-bottom: var(--e5);
+}
+
+.titulo {
+  margin: 0;
+}
+
+.subtitulo {
+  margin: var(--e2) 0 0;
+  color: var(--texto-secundario);
+}
+
+.conteudo > * + * {
+  margin-top: var(--e4);
+}

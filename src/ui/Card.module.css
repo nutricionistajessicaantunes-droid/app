@@ -1,0 +1,48 @@
+.card {
+  background: var(--superficie);
+  border: 1px solid var(--borda-fina);
+  border-radius: var(--raio);
+  padding: 20px;
+}
+
+.card + .card {
+  margin-top: var(--e4);
+}
+
+.banda {
+  background: var(--banda);
+  border-color: var(--banda);
+}
+
+.alerta {
+  background: var(--alerta-fundo);
+  border-color: var(--alerta);
+}
+
+.sucesso {
+  background: var(--sucesso-fundo);
+  border-color: var(--sucesso-fundo);
+}
+
+.destaque {
+  border-color: var(--acento);
+}
+
+.title {
+  margin: 0 0 var(--e3);
+  font-family: var(--sans);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.body > :last-child {
+  margin-bottom: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e2) var(--e3);
+  margin-top: var(--e4);
+}
