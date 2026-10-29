@@ -1,0 +1,65 @@
+.caixa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--e3);
+  padding: var(--e3) 0;
+}
+
+.palco {
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circulo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--blush);
+  border: 3px solid var(--acento);
+  transform: scale(1);
+}
+
+.cresce {
+  animation: cresce 4s ease-in-out forwards;
+}
+
+.diminui {
+  transform: scale(2.4);
+  animation: diminui 6s ease-in-out forwards;
+}
+
+@keyframes cresce {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(2.4);
+  }
+}
+
+@keyframes diminui {
+  from {
+    transform: scale(2.4);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.texto {
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  min-height: 3em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .palco {
+    display: none;
+  }
+}

@@ -1,0 +1,7 @@
+dist
+coverage
+node_modules
+docs/especificacao.md
+package-lock.json
+playwright-report
+test-results

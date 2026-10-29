@@ -1,0 +1,17 @@
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--e3);
+}
+
+.marca {
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+.nome {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.15;
+  color: var(--texto);
+}

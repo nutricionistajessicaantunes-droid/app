@@ -1,0 +1,120 @@
+/*
+ * Tokens da identidade visual (seção 4.1 da especificação).
+ * Ajuste de contraste: os tons de significado do tema claro foram escurecidos
+ * para passar no AA (4,5:1) também sobre o fundo blush. Ver docs/PERGUNTAS.md.
+ */
+:root {
+  --vinho: #6e2b3d;
+  --vinho-forte: #521e2c;
+  --vinho-fundo: #3b1420;
+  --blush: #e8d6d3;
+  --blush-claro: #f1e4e1;
+  --areia: #faf5f3;
+  --papel: #ffffff;
+  --tinta: #2b1a20;
+  --tinta-media: #6b565b;
+  --linha: #dcc9c6;
+  --linha-fina: #eadcd9;
+  --sobre-vinho: #f7ece9;
+  --sucesso: #476e54;
+
+  --texto: var(--tinta);
+  --texto-secundario: var(--tinta-media);
+  --fundo: var(--areia);
+  --superficie: var(--papel);
+  --borda: var(--linha);
+  --borda-fina: var(--linha-fina);
+  --acento: var(--vinho);
+  --acento-forte: var(--vinho-forte);
+  --acento-texto: var(--sobre-vinho);
+  --banda: var(--blush-claro);
+
+  /* cores de significado, separadas do acento */
+  --faixa-lenta: #885d10; /* Bristol 1 e 2 */
+  --faixa-saudavel: #476e54; /* Bristol 3, 4 e 5 */
+  --faixa-rapida: #3d6b88; /* Bristol 6 e 7 */
+  --alerta: #a12c2c; /* sinais de alerta */
+  --alerta-fundo: #fbe9e7;
+  --sucesso-fundo: #eaf2ec;
+
+  /* elementos de controle */
+  --trilho: #9c868b;
+  --desenho-bristol: #9b7360;
+  --desenho-bristol-claro: #c9a592;
+  --sombra-folha: 0 -8px 32px rgb(43 26 32 / 0.16);
+  --veu: rgb(43 26 32 / 0.42);
+
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Figtree', ui-sans-serif, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --raio: 10px;
+  --raio-pequeno: 8px;
+  --raio-chip: 999px;
+  --e1: 4px;
+  --e2: 8px;
+  --e3: 12px;
+  --e4: 16px;
+  --e5: 24px;
+  --e6: 32px;
+  --e7: 48px;
+  --largura-max: 560px;
+  --altura-abas: 64px;
+  --toque: 44px;
+  --botao-principal: 52px;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --texto: #f2e5e2;
+    --texto-secundario: #bfa5a8;
+    --fundo: #1c0f14;
+    --superficie: #27151c;
+    --borda: #4a2b36;
+    --borda-fina: #35202a;
+    --acento: #d08b9b;
+    --acento-forte: #e0a3b1;
+    --acento-texto: #221218;
+    --banda: #24131a;
+    --sucesso: #7fb292;
+    --faixa-lenta: #e0b25c;
+    --faixa-saudavel: #7fb292;
+    --faixa-rapida: #8db6d1;
+    --alerta: #f08a8a;
+    --alerta-fundo: #3a1618;
+    --sucesso-fundo: #1b2a20;
+    --trilho: #86636f;
+    --desenho-bristol: #c49a82;
+    --desenho-bristol-claro: #8a6a5a;
+    --sombra-folha: 0 -8px 32px rgb(0 0 0 / 0.5);
+    --veu: rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --texto: #f2e5e2;
+  --texto-secundario: #bfa5a8;
+  --fundo: #1c0f14;
+  --superficie: #27151c;
+  --borda: #4a2b36;
+  --borda-fina: #35202a;
+  --acento: #d08b9b;
+  --acento-forte: #e0a3b1;
+  --acento-texto: #221218;
+  --banda: #24131a;
+  --sucesso: #7fb292;
+  --faixa-lenta: #e0b25c;
+  --faixa-saudavel: #7fb292;
+  --faixa-rapida: #8db6d1;
+  --alerta: #f08a8a;
+  --alerta-fundo: #3a1618;
+  --sucesso-fundo: #1b2a20;
+  --trilho: #86636f;
+  --desenho-bristol: #c49a82;
+  --desenho-bristol-claro: #8a6a5a;
+  --sombra-folha: 0 -8px 32px rgb(0 0 0 / 0.5);
+  --veu: rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}

@@ -1,0 +1,152 @@
+.tela {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: calc(var(--e5) + env(safe-area-inset-top)) var(--e5)
+    calc(var(--e5) + env(safe-area-inset-bottom));
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e3);
+  min-height: var(--toque);
+  margin-bottom: var(--e6);
+}
+
+.corpo {
+  flex: 1;
+}
+
+.corpo > * + * {
+  margin-top: var(--e4);
+}
+
+.titulo {
+  font-family: var(--serif);
+  font-size: 2.125rem;
+  line-height: 1.12;
+  margin: 0 0 var(--e4);
+}
+
+.texto {
+  font-size: 1.0625rem;
+}
+
+.rodape {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e3);
+  margin-top: var(--e6);
+}
+
+.progresso {
+  display: flex;
+  align-items: center;
+  gap: var(--e3);
+  flex: 1;
+  color: var(--texto-secundario);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.barra {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--borda-fina);
+  overflow: hidden;
+}
+
+.barraCheia {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--acento);
+  transition: width 0.25s ease;
+}
+
+.passos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: passo;
+}
+
+.passo {
+  display: flex;
+  gap: var(--e4);
+  align-items: flex-start;
+  padding: var(--e4);
+  border: 1px solid var(--borda-fina);
+  border-radius: var(--raio);
+  background: var(--superficie);
+}
+
+.passoNumero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--banda);
+  color: var(--acento);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.passoTexto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e1);
+  flex: 1;
+  min-width: 0;
+}
+
+.passoTitulo {
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.passoDetalhe {
+  color: var(--texto-secundario);
+  font-size: 0.9375rem;
+}
+
+.passoIcone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--raio-pequeno);
+  border: 1px solid var(--borda);
+  color: #0a84ff;
+  background: var(--superficie);
+}
+
+.erro {
+  margin: var(--e2) 0 0;
+  color: var(--alerta);
+  font-weight: 500;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e2);
+}
+
+.rotulo {
+  font-weight: 600;
+}
