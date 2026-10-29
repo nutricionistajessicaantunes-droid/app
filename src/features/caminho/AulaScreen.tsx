@@ -8,7 +8,8 @@ import { useLessons, useProfile } from '../../app/data';
 import { Button } from '../../ui/Button';
 import { Card } from '../../ui/Card';
 import { Filete } from '../../ui/Filete';
-import { BulletList, ExternalLink, Note, SEM_INTERNET_AULA } from '../../ui/Misc';
+import { ExternalLink, Note, SEM_INTERNET_AULA } from '../../ui/Misc';
+import { TaskPanel } from '../tarefas/TaskPanel';
 import { Screen } from '../../ui/Screen';
 import { LessonSeal } from './CaminhoScreen';
 import styles from './Caminho.module.css';
@@ -25,12 +26,6 @@ export function Component() {
   const watched = Boolean(progress?.watched);
   const module = getModule(lesson.module);
   const url = lessonUrl(id, KIWIFY_AULA_URLS, KIWIFY_AREA_URL);
-  const durationText =
-    lesson.task.durationDays === null
-      ? 'Sem prazo'
-      : lesson.task.durationDays === 'fim_do_plano'
-        ? 'No fim do plano'
-        : `${lesson.task.durationDays} dias`;
 
   return (
     <Screen
@@ -84,19 +79,7 @@ export function Component() {
         </Card>
       ) : null}
 
-      <Card label={`Tarefa · ${durationText}`} title={lesson.task.name}>
-        {lesson.task.instruction ? <p>{lesson.task.instruction}</p> : null}
-        {lesson.task.fields ? <p className="secundario">{lesson.task.fields}</p> : null}
-        {lesson.task.endQuestion ? (
-          <p>
-            <strong>No fim:</strong> {lesson.task.endQuestion}
-            {lesson.task.endQuestion.endsWith('?') ? '' : '.'}
-          </p>
-        ) : null}
-        {lesson.task.notes && lesson.task.notes.length > 0 ? (
-          <BulletList items={lesson.task.notes} />
-        ) : null}
-      </Card>
+      <TaskPanel lesson={lesson} />
     </Screen>
   );
 }

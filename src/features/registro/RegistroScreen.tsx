@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router';
 import { COPOS_POR_DIA, REGISTRO_DIAS_PARA_TRAS } from '../../config';
 import { BRISTOL_TEXTOS } from '../../content/bristol';
+import { NOTA_BRISTOL_ANTES_AULA3 } from '../../content/curso';
 import { FRASES_DEPOIS_DO_REGISTRO } from '../../content/frases';
 import { REGISTRO_TEXTOS, SYMPTOM_LABEL, TAGS } from '../../content/registro';
 import { saveProfile } from '../../db/repo';
@@ -11,7 +12,10 @@ import { habitDone } from '../../logic/habits';
 import { formatInt } from '../../logic/format';
 import { reachedCupGoal, waterGoal } from '../../logic/water';
 import type { Bristol, DayRecord, RedFlagId, SymptomId, TagId } from '../../types';
-import { useActiveHabits, useDay, useProfile } from '../../app/data';
+import { useActiveHabits, useDay, useLessons, useProfile } from '../../app/data';
+import { dailyTaskIds } from '../../logic/tasks';
+import { TaskDailyFields } from '../tarefas/TaskDailyFields';
+import { runAutomaticChecks } from '../processo/actions';
 import { useToday } from '../../app/useToday';
 import { BottomSheet } from '../../ui/BottomSheet';
 import { BristolPicker, BristolScale } from '../../ui/BristolPicker';
@@ -50,6 +54,7 @@ function Registro({ date, today }: { date: string; today: string }) {
   const navigate = useNavigate();
   const profile = useProfile();
   const habits = useActiveHabits(date);
+  const lessons = useLessons();
   const stored = useDay(date);
   const { draft, update, flush, savedAt } = useDayDraft(date, stored);
   const saved = useSavedFlash(savedAt);
@@ -59,7 +64,15 @@ function Registro({ date, today }: { date: string; today: string }) {
   const [missing, setMissing] = useState(false);
   const questionRef = useRef<HTMLDivElement>(null);
 
-  if (!profile || !draft || !habits) return null;
+  if (!profile || !draft || !habits || !lessons) return null;
+
+  const taskIds = dailyTaskIds(lessons, date);
+  const taskSources = new Set(taskIds.map((id) => `aula${id}`));
+  const generalHabits = habits.filter((h) => !taskSources.has(h.source));
+  const bristolNote =
+    (taskIds.includes(1) || taskIds.includes(2)) && !lessons.find((l) => l.lessonId === 3)?.watched
+      ? NOTA_BRISTOL_ANTES_AULA3
+      : undefined;
 
   const simple = profile.simpleMode;
   const minDate = addDays(today, -REGISTRO_DIAS_PARA_TRAS);
@@ -89,6 +102,7 @@ function Registro({ date, today }: { date: string; today: string }) {
       return;
     }
     await flush();
+    void runAutomaticChecks(today);
     const registered = draft.evacuated !== undefined;
     const idx = Math.abs(diffDays(date, '2026-01-01')) % FRASES_DEPOIS_DO_REGISTRO.length;
     navigate('/', { state: registered ? { registrado: FRASES_DEPOIS_DO_REGISTRO[idx] } : null });
@@ -166,6 +180,7 @@ function Registro({ date, today }: { date: string; today: string }) {
               <BristolPicker
                 legend={REGISTRO_TEXTOS.comoEstavam}
                 help={REGISTRO_TEXTOS.ajudaBristol}
+                note={bristolNote}
                 value={draft.bristol}
                 onChange={(t: Bristol) => update({ bristol: t })}
               />
@@ -229,10 +244,10 @@ function Registro({ date, today }: { date: string; today: string }) {
           </Card>
         ) : null}
 
-        {!simple && habits.length > 0 ? (
+        {!simple && generalHabits.length > 0 ? (
           <Card label={REGISTRO_TEXTOS.habitos}>
             <ul className={styles.habitos}>
-              {habits.map((h) => {
+              {generalHabits.map((h) => {
                 const done = habitDone(draft as DayRecord, h.id);
                 return (
                   <li key={h.id}>
@@ -270,6 +285,18 @@ function Registro({ date, today }: { date: string; today: string }) {
             ) : null}
           </Card>
         ) : null}
+
+        <TaskDailyFields
+          date={date}
+          draft={draft}
+          update={update}
+          lessons={lessons}
+          ids={taskIds}
+          profile={profile}
+          habits={habits}
+          symptomsShown={simple ? [] : profile.trackedSymptoms}
+          waterShown={!simple && hasWaterGoal}
+        />
 
         <Card label={REGISTRO_TEXTOS.diaEmUmaLinha}>
           <ChipGroup label={REGISTRO_TEXTOS.diaEmUmaLinha}>

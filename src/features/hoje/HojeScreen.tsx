@@ -3,25 +3,26 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { ASSINATURA, LEMBRETE_COPIA_DIAS, LEMBRETE_COPIA_MIN_DIAS } from '../../config';
 import { getBristol } from '../../content/bristol';
-import { getLesson } from '../../content/curso';
-import { CAMINHOS, PLAN_THEMES } from '../../content/plano';
 import { SYMPTOM_LABEL } from '../../content/registro';
 import { setDismissed } from '../../db/repo';
 import { addDays, diffDays, formatDayCompact, formatDayLong, toDayKey } from '../../logic/dates';
 import { habitsDoneCount, type ActiveHabit } from '../../logic/habits';
-import {
-  blockIndexOn,
-  effectiveStatus,
-  hasStarted,
-  planBadge,
-  planDayNumber,
-} from '../../logic/plan';
+import { noEvacuationRun } from '../../logic/checks';
+import { shouldSuggestCrisis } from '../../logic/crisis';
+import { nextSteps } from '../../logic/nextStep';
+import { effectiveStatus, hasStarted, planBadge } from '../../logic/plan';
+import { planAbsence, planNotesFor } from '../../logic/planNotes';
+import { pendingReading } from '../../logic/readings';
+import { isTaskActiveOn, taskProgress } from '../../logic/tasks';
 import { dayScore, isRegistered } from '../../logic/records';
-import type { DayRecord, Profile, PlanState, SymptomId } from '../../types';
+import type { DayRecord, LessonProgress, Profile, PlanState, SymptomId } from '../../types';
 import {
   useActiveHabits,
+  useCrisis,
   useDays,
+  useFodmap,
   useLessons,
+  useReadings,
   useMeta,
   useNotices,
   usePlan,
@@ -33,7 +34,16 @@ import { Button, ButtonLink } from '../../ui/Button';
 import { Card } from '../../ui/Card';
 import { TEXTO_APOIO_COPIA, useSaveBackup } from '../copia/useSaveBackup';
 import { AlertCards } from '../alertas/AlertCards';
+import { runAutomaticChecks } from '../processo/actions';
 import { HabitsCard } from './HabitsCard';
+import {
+  AbsenceCard,
+  CrisisCard,
+  CrisisSuggestionCard,
+  NextStepCard,
+  NoEvacuationCard,
+  ReadingCard,
+} from './ProcessCards';
 import styles from './Hoje.module.css';
 
 const MAX_CARTOES = 4;
@@ -54,13 +64,21 @@ export function HojeScreen() {
   const notices = useNotices();
   const registeredCount = useRegisteredCount();
   const habits = useActiveHabits(today);
-  const recent = useDays(addDays(today, -7), today);
+  const recent = useDays(addDays(today, -14), today);
+  const readings = useReadings();
+  const crisis = useCrisis();
+  const fodmap = useFodmap();
   const [showMore, setShowMore] = useState(false);
   const [justSaved, setJustSaved] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = 'Hoje · Modulação';
   }, []);
+
+  // Verificações automáticas ao abrir o app (seção 7.13).
+  useEffect(() => {
+    void runAutomaticChecks(today);
+  }, [today]);
 
   // "Dia registrado." vem do Registro do dia pelo estado da navegação.
   useEffect(() => {
@@ -74,14 +92,44 @@ export function HojeScreen() {
   const todayRec = recent?.find((r) => r.date === today);
   const yesterday = addDays(today, -1);
   const yesterdayRec = recent?.find((r) => r.date === yesterday);
-  const registeredLast7 = (recent ?? []).some((r) => r.date !== today && isRegistered(r));
+  const registeredLast7 = (recent ?? []).some(
+    (r) => r.date !== today && r.date >= addDays(today, -7) && isRegistered(r),
+  );
 
   const cards: CardEntry[] = useMemo(() => {
-    if (!profile || !meta || plan === undefined || !habits || !recent || notices === undefined)
+    if (
+      !profile ||
+      !meta ||
+      plan === undefined ||
+      !habits ||
+      !recent ||
+      notices === undefined ||
+      !lessons ||
+      !readings ||
+      crisis === undefined ||
+      fodmap === undefined
+    )
       return [];
+    const p = plan ?? undefined;
+    const dismissed = meta.dismissed ?? {};
     const list: CardEntry[] = [];
-    const alerts = <AlertCards notices={notices} key="alertas" />;
-    if (notices.some((n) => !n.dismissedAt)) list.push({ key: 'alertas', node: alerts });
+    if (notices.some((n) => !n.dismissedAt))
+      list.push({ key: 'alertas', node: <AlertCards notices={notices} key="alertas" /> });
+    if (shouldSuggestCrisis(recent, today, Boolean(crisis?.active), dismissed.crise_sugestao))
+      list.push({ key: 'crise-sugestao', node: <CrisisSuggestionCard today={today} /> });
+    const semEvacuar = noEvacuationRun(recent, today);
+    const semKey = semEvacuar ? `sem_evacuar:${semEvacuar.start}` : '';
+    if (semEvacuar && !dismissed[semKey])
+      list.push({ key: 'sem-evacuar', node: <NoEvacuationCard dismissKey={semKey} /> });
+    const absence = planAbsence(p, recent, today);
+    const absKey = absence ? `ausencia:${absence.since}` : '';
+    if (absence && !dismissed[absKey])
+      list.push({ key: 'ausencia', node: <AbsenceCard today={today} dismissKey={absKey} /> });
+    if (crisis?.active)
+      list.push({
+        key: 'crise',
+        node: <CrisisCard crisis={crisis} today={today} record={todayRec} />,
+      });
     list.push({
       key: 'registro',
       node: (
@@ -100,16 +148,35 @@ export function HojeScreen() {
         node: <HabitsCard day={today} habits={habits} record={todayRec} profile={profile} />,
       });
     }
-    const next = (
-      <NextStepCard
-        plan={plan ?? undefined}
-        profile={profile}
-        today={today}
-        watched={(lessons ?? []).filter((l) => l.watched).map((l) => l.lessonId)}
-      />
-    );
-    list.push({ key: 'proximo', node: next });
-    const snoozed = meta.dismissed?.copia && meta.dismissed.copia > today;
+    // O cartão do modo crise faz o papel do próximo passo quando a crise está ativa.
+    const steps = nextSteps({
+      today,
+      profile,
+      plan: p,
+      lessons,
+      readings,
+      crisis,
+      fodmap,
+      meta,
+    }).filter((st) => st.kind !== 'crise');
+    const first = steps[0];
+    if (first && !crisis?.active)
+      list.push({
+        key: 'proximo',
+        node: (
+          <NextStepCard
+            step={first}
+            plan={p}
+            profile={profile}
+            habits={habits}
+            notes={planNotesFor(p, today)}
+          />
+        ),
+      });
+    const reading = pendingReading(profile, lessons, p, readings, today);
+    if (reading && (first?.kind !== 'leitura' || crisis?.active))
+      list.push({ key: 'leitura', node: <ReadingCard period={reading} /> });
+    const snoozed = dismissed.copia && dismissed.copia > today;
     const lastBackupDay = meta.lastBackupAt ? toDayKey(new Date(meta.lastBackupAt)) : undefined;
     const backupDue =
       (registeredCount ?? 0) >= LEMBRETE_COPIA_MIN_DIAS &&
@@ -131,6 +198,9 @@ export function HojeScreen() {
     yesterday,
     today,
     lessons,
+    readings,
+    crisis,
+    fodmap,
     registeredCount,
   ]);
 
@@ -138,7 +208,7 @@ export function HojeScreen() {
 
   const visible = cards.slice(0, MAX_CARTOES);
   const hidden = cards.slice(MAX_CARTOES);
-  const badge = contextBadge(plan ?? undefined, today);
+  const badge = contextBadge(plan ?? undefined, today, lessons ?? []);
 
   return (
     <main className={styles.tela} id="conteudo">
@@ -194,15 +264,22 @@ export function HojeScreen() {
   );
 }
 
-function contextBadge(plan: PlanState | undefined, today: string): string | undefined {
+function contextBadge(
+  plan: PlanState | undefined,
+  today: string,
+  lessons: LessonProgress[],
+): string | undefined {
   const status = effectiveStatus(plan, today);
-  if (plan && status === 'ativo') {
-    if (!hasStarted(plan, today) && plan.blocks[0])
-      return `O plano começa em ${formatDayCompact(plan.blocks[0].start)}`;
-    return planBadge(plan, today);
-  }
+  if (plan && status === 'ativo' && hasStarted(plan, today)) return planBadge(plan, today);
   if (status === 'reavaliacao') return 'Plano · reavaliação';
   if (status === 'concluido') return 'Manutenção';
+  const running = [...lessons]
+    .sort((a, b) => a.lessonId - b.lessonId)
+    .find((l) => isTaskActiveOn(l, today));
+  const prog = running ? taskProgress(running, today) : undefined;
+  if (running && prog) return `Aula ${running.lessonId} · tarefa, dia ${prog.day} de ${prog.total}`;
+  if (plan && status === 'ativo' && plan.blocks[0])
+    return `O plano começa em ${formatDayCompact(plan.blocks[0].start)}`;
   return undefined;
 }
 
@@ -272,67 +349,6 @@ function RegistroCard({
         <ButtonLink to="/registro">Editar</ButtonLink>
         {showYesterday ? <Link to={`/registro/${yesterday}`}>Registrar ontem</Link> : null}
       </div>
-    </Card>
-  );
-}
-
-function NextStepCard({
-  plan,
-  profile,
-  today,
-  watched,
-}: {
-  plan: PlanState | undefined;
-  profile: Profile;
-  today: string;
-  watched: number[];
-}) {
-  const status = effectiveStatus(plan, today);
-  if (plan && status === 'ativo' && hasStarted(plan, today)) {
-    const idx = blockIndexOn(plan.blocks, today);
-    const block = idx >= 0 ? plan.blocks[idx] : undefined;
-    const n = planDayNumber(plan.blocks, today);
-    if (block && n) {
-      const theme = PLAN_THEMES[block.theme];
-      const caminho = profile.path !== 'indefinido' ? CAMINHOS[profile.path] : undefined;
-      return (
-        <Card label="Teu próximo passo" title={`Hoje no plano · dia ${n}`}>
-          <div className={styles.contexto}>
-            <p>
-              Semana {idx + 1}, {theme.name}: {theme.summary}
-            </p>
-            {caminho ? (
-              <p className="secundario">
-                <strong>{caminho.titulo}.</strong> {caminho.textos[0]}
-              </p>
-            ) : null}
-          </div>
-        </Card>
-      );
-    }
-  }
-  if (plan && status === 'ativo' && plan.blocks[0]) {
-    return (
-      <Card
-        label="Teu próximo passo"
-        title={`O plano começa em ${formatDayCompact(plan.blocks[0].start)}`}
-      >
-        <p>Até lá, siga com a semana zero e o registro do dia.</p>
-      </Card>
-    );
-  }
-  const nextLesson = [...Array(17).keys()].map((i) => i + 1).find((n) => !watched.includes(n));
-  if (nextLesson) {
-    const lesson = getLesson(nextLesson);
-    return (
-      <Card label="Teu próximo passo" title={`Próxima aula: ${nextLesson}, ${lesson?.title ?? ''}`}>
-        <ButtonLink to={`/aula/${nextLesson}`}>Ver a aula</ButtonLink>
-      </Card>
-    );
-  }
-  return (
-    <Card label="Teu próximo passo" title="Preparar a semana zero">
-      <ButtonLink to="/caminho">Ver o caminho</ButtonLink>
     </Card>
   );
 }

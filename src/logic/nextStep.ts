@@ -92,7 +92,8 @@ export function nextSteps(input: NextStepInput): NextStep[] {
       ready: isTaskResultReady(p, today),
     });
   }
-  if (plan?.status === 'semana_zero') steps.push({ kind: 'semana_zero', missing: semanaZeroMissing(plan) });
+  if (plan?.status === 'semana_zero')
+    steps.push({ kind: 'semana_zero', missing: semanaZeroMissing(plan) });
   const lesson = nextLesson(lessons);
   if (lesson) steps.push({ kind: 'aula', ...lesson });
   const allWatched = LESSONS.every((l) => lessons.find((p) => p.lessonId === l.id)?.watched);
@@ -100,7 +101,9 @@ export function nextSteps(input: NextStepInput): NextStep[] {
     steps.push({ kind: 'preparar_semana_zero' });
   if (status === 'concluido')
     steps.push(
-      monthlyReviewDue(profile, plan, today, meta) ? { kind: 'revisao_mes' } : { kind: 'plano_minimo' },
+      monthlyReviewDue(profile, plan, today, meta)
+        ? { kind: 'revisao_mes' }
+        : { kind: 'plano_minimo' },
     );
   return steps;
 }

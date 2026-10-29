@@ -46,7 +46,8 @@ describe('lembretes de agenda', () => {
     const longa = 'DESCRIPTION:' + 'ç'.repeat(80);
     const dobrada = foldLine(longa);
     expect(dobrada).toContain('\r\n ');
-    for (const parte of dobrada.split('\r\n')) expect(new TextEncoder().encode(parte).length).toBeLessThanOrEqual(75);
+    for (const parte of dobrada.split('\r\n'))
+      expect(new TextEncoder().encode(parte).length).toBeLessThanOrEqual(75);
     expect(dobrada.replace(/\r\n /g, '')).toBe(longa);
   });
 
@@ -61,7 +62,9 @@ describe('lembretes de agenda', () => {
     expect(ics).toContain('TRIGGER:PT0M');
     expect(ics).toContain('DTSTAMP:20261103T120000Z');
     expect(ics.endsWith('END:VCALENDAR\r\n')).toBe(true);
-    const semRepeticao = buildIcs([{ ...registro, recurrence: undefined, description: undefined, durationMin: undefined }]);
+    const semRepeticao = buildIcs([
+      { ...registro, recurrence: undefined, description: undefined, durationMin: undefined },
+    ]);
     expect(semRepeticao).not.toContain('RRULE');
     expect(semRepeticao).not.toContain('DESCRIPTION:Abra');
     expect(semRepeticao).toContain('DTEND:20261103T214500');
@@ -75,7 +78,9 @@ describe('lembretes de agenda', () => {
     expect(url.searchParams.get('dates')).toBe('20261103T213000/20261103T214000');
     expect(url.searchParams.get('recur')).toBe('RRULE:FREQ=DAILY;COUNT=60');
     expect(url.searchParams.get('ctz')).toBe('America/Sao_Paulo');
-    const simples = new URL(googleCalendarUrl({ ...registro, recurrence: undefined, description: undefined }));
+    const simples = new URL(
+      googleCalendarUrl({ ...registro, recurrence: undefined, description: undefined }),
+    );
     expect(simples.searchParams.has('recur')).toBe(false);
     expect(simples.searchParams.has('details')).toBe(false);
     expect(simples.searchParams.has('ctz')).toBe(false);
@@ -87,7 +92,11 @@ describe('lembretes de agenda', () => {
     expect(q.get('inicio')).toBe('20261103T2130');
     expect(q.get('repetir')).toBe('FREQ=DAILY;COUNT=60');
     expect(q.has('descricao')).toBe(false);
-    expect(new URLSearchParams(functionQuery({ ...registro, recurrence: undefined, durationMin: undefined })).get('duracao')).toBe('15');
+    expect(
+      new URLSearchParams(
+        functionQuery({ ...registro, recurrence: undefined, durationMin: undefined }),
+      ).get('duracao'),
+    ).toBe('15');
     expect(icsFileName('Plano dia 1')).toBe('lembrete-plano-dia-1.ics');
   });
 

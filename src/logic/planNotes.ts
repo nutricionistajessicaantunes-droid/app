@@ -42,7 +42,8 @@ export function planAbsence(
   records: DayRecord[],
   today: DayKey,
 ): { since: DayKey } | undefined {
-  if (!plan || effectiveStatus(plan, today) !== 'ativo' || !hasStarted(plan, today)) return undefined;
+  if (!plan || effectiveStatus(plan, today) !== 'ativo' || !hasStarted(plan, today))
+    return undefined;
   const start = planStart(plan.blocks);
   const from = addDays(today, -PLANO_DIAS_SEM_REGISTRO_RETOMAR);
   if (!start || from < start) return undefined;

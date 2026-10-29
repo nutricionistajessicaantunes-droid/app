@@ -2,7 +2,12 @@ import { describe, expect, it } from 'vitest';
 import { activeHabitsOn, allHabits, waterHabitOn } from '../../src/logic/activeHabits';
 import { lessonBadge, lessonState, lessonUrl } from '../../src/logic/lessons';
 import { createBlocks } from '../../src/logic/plan';
-import { currentFreeWeek, freeWeekEndingOn, lastCompleteWeek, shiftWeek } from '../../src/logic/weeks';
+import {
+  currentFreeWeek,
+  freeWeekEndingOn,
+  lastCompleteWeek,
+  shiftWeek,
+} from '../../src/logic/weeks';
 import type { Habit, LessonProgress, PlanState } from '../../src/types';
 
 describe('aulas', () => {
@@ -29,7 +34,9 @@ describe('aulas', () => {
     expect(lessonState(undefined)).toBe('nao_assistida');
     expect(lessonState(p({}))).toBe('nao_assistida');
     expect(lessonState(p({ watched: true }))).toBe('assistida');
-    expect(lessonState(p({ task: { status: 'em_andamento', data: {} } }))).toBe('tarefa_em_andamento');
+    expect(lessonState(p({ task: { status: 'em_andamento', data: {} } }))).toBe(
+      'tarefa_em_andamento',
+    );
     expect(lessonState(p({ task: { status: 'concluida', data: {} } }))).toBe('tarefa_concluida');
   });
 
@@ -46,7 +53,10 @@ describe('semanas', () => {
     expect(currentFreeWeek('2026-11-04', 0)).toEqual({ start: '2026-11-02', end: '2026-11-08' });
     expect(currentFreeWeek('2026-11-08', 0)).toEqual({ start: '2026-11-02', end: '2026-11-08' });
     expect(currentFreeWeek('2026-11-04', 3)).toEqual({ start: '2026-10-29', end: '2026-11-04' });
-    expect(shiftWeek({ start: '2026-11-02', end: '2026-11-08' }, -1)).toEqual({ start: '2026-10-26', end: '2026-11-01' });
+    expect(shiftWeek({ start: '2026-11-02', end: '2026-11-08' }, -1)).toEqual({
+      start: '2026-10-26',
+      end: '2026-11-01',
+    });
     expect(lastCompleteWeek('2026-11-04')).toEqual({ start: '2026-10-28', end: '2026-11-03' });
   });
 });
@@ -62,14 +72,32 @@ describe('hábitos ativos', () => {
   };
   const stored: Habit[] = [
     { id: 'c1', label: 'Ciclo', source: 'ciclo', activeFrom: '2026-11-03' },
-    { id: 'a5', label: 'Linhaça', source: 'aula5', activeFrom: '2026-11-03', activeTo: '2026-11-09', isWater: false },
+    {
+      id: 'a5',
+      label: 'Linhaça',
+      source: 'aula5',
+      activeFrom: '2026-11-03',
+      activeTo: '2026-11-09',
+      isWater: false,
+    },
     { id: 'm1', label: 'Água', source: 'plano_minimo', activeFrom: '2026-12-01', isWater: true },
   ];
 
   it('junta plano e hábitos guardados, na ordem certa', () => {
     expect(allHabits(plan, stored)).toHaveLength(9);
-    expect(activeHabitsOn('2026-11-04', plan, stored).map((h) => h.id)).toEqual(['p1', 'p2', 'a5', 'c1']);
-    expect(activeHabitsOn('2026-11-10', plan, stored).map((h) => h.id)).toEqual(['p1', 'p2', 'p3', 'p4', 'c1']);
+    expect(activeHabitsOn('2026-11-04', plan, stored).map((h) => h.id)).toEqual([
+      'p1',
+      'p2',
+      'a5',
+      'c1',
+    ]);
+    expect(activeHabitsOn('2026-11-10', plan, stored).map((h) => h.id)).toEqual([
+      'p1',
+      'p2',
+      'p3',
+      'p4',
+      'c1',
+    ]);
     expect(activeHabitsOn('2026-11-04', undefined, []).length).toBe(0);
   });
 

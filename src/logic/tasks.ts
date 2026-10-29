@@ -147,9 +147,13 @@ export function aula1Highlights(days: Aula1Day[]): string[] {
   for (const d of days) if (d.bristol) tipos.set(d.bristol, (tipos.get(d.bristol) ?? 0) + 1);
   const [tipo, vezes] = [...tipos.entries()].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0] ?? [];
   if (tipo && vezes && vezes >= 2) out.push(`Fezes do tipo ${tipo} em ${vezes} dias.`);
-  const comidas = foodsBeforeSymptoms(days.map((d) => ({ date: d.date, symptom: true, text: d.food })));
+  const comidas = foodsBeforeSymptoms(
+    days.map((d) => ({ date: d.date, symptom: true, text: d.food })),
+  );
   if (comidas.length > 0)
-    out.push(`No que você comeu, apareceu em mais de um dia: ${joinPt(comidas.map((c) => c.label))}.`);
+    out.push(
+      `No que você comeu, apareceu em mais de um dia: ${joinPt(comidas.map((c) => c.label))}.`,
+    );
   return out;
 }
 
@@ -213,7 +217,11 @@ export function habitsTaskResult(
     .filter((t): t is Bristol => t !== undefined);
   const stats = habits.map((h) => habitStat(records, h, w.start, w.end));
   const easiest = [...stats].sort((a, b) => b.done - a.done)[0];
-  return { modes: bristolModes(types), stats, easiest: easiest && easiest.done > 0 ? easiest : undefined };
+  return {
+    modes: bristolModes(types),
+    stats,
+    easiest: easiest && easiest.done > 0 ? easiest : undefined,
+  };
 }
 
 /** Aula 8: "O que comi antes" nos dias com sintoma. */

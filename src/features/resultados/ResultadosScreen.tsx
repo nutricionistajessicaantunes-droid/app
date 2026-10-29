@@ -8,6 +8,7 @@ import { formatDecimal, joinPt } from '../../logic/format';
 import { currentFreeWeek, shiftWeek } from '../../logic/weeks';
 import { summarizeWeek } from '../../logic/week';
 import { BristolBadge } from '../../ui/BristolPicker';
+import { ButtonLink } from '../../ui/Button';
 import { Card } from '../../ui/Card';
 import { Screen } from '../../ui/Screen';
 import styles from './Resultados.module.css';
@@ -136,6 +137,9 @@ export function Component() {
           </p>
         ) : null}
       </Card>
+      <ButtonLink to={`/leitura?inicio=${week.start}&fim=${inProgress ? today : week.end}`} block>
+        Fazer a leitura desta semana
+      </ButtonLink>
     </Screen>
   );
 }

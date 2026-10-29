@@ -91,5 +91,7 @@ export function suggestFoods(typed: string, limit = 6): string[] {
 export function searchFodmap(query: string): FodmapEntry[] {
   const q = normalizeFood(query);
   if (q.length < 2) return [];
-  return fodmapEntries().filter((e) => e.keys.some((k) => k.startsWith(q) || containsWords(k, q) || k.includes(q)));
+  return fodmapEntries().filter((e) =>
+    e.keys.some((k) => k.startsWith(q) || containsWords(k, q) || k.includes(q)),
+  );
 }

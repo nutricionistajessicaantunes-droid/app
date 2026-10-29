@@ -26,8 +26,10 @@ export const JANELA_PADROES_DIAS = 56;
 const lento = (r: DayRecord) =>
   r.evacuated === false || (r.evacuated === true && r.bristol !== undefined && r.bristol <= 2);
 const foraDaFaixa = (r: DayRecord) =>
-  r.evacuated === false || (r.evacuated === true && r.bristol !== undefined && (r.bristol < 3 || r.bristol > 5));
-const acelerado = (r: DayRecord) => r.evacuated === true && r.bristol !== undefined && r.bristol >= 6;
+  r.evacuated === false ||
+  (r.evacuated === true && r.bristol !== undefined && (r.bristol < 3 || r.bristol > 5));
+const acelerado = (r: DayRecord) =>
+  r.evacuated === true && r.bristol !== undefined && r.bristol >= 6;
 const temTag = (r: DayRecord, t: TagId) => (r.tags ?? []).includes(t);
 
 /** "1 de cada 5", "2 de 3" ou "nenhuma vez". */
@@ -64,7 +66,12 @@ function lagged(regs: DayRecord[], tag: TagId, outcome: (r: DayRecord) => boolea
     if (hit) hits++;
   }
   const base = regs.filter((r) => !inWindow.has(r.date));
-  return { triggers: triggers.length, hits, baseHits: base.filter(outcome).length, baseTotal: base.length };
+  return {
+    triggers: triggers.length,
+    hits,
+    baseHits: base.filter(outcome).length,
+    baseTotal: base.length,
+  };
 }
 
 function simple(trig: DayRecord[], base: DayRecord[], outcome: (r: DayRecord) => boolean) {
@@ -76,7 +83,12 @@ function simple(trig: DayRecord[], base: DayRecord[], outcome: (r: DayRecord) =>
   };
 }
 
-function aparece(c: { triggers: number; hits: number; baseHits: number; baseTotal: number }): boolean {
+function aparece(c: {
+  triggers: number;
+  hits: number;
+  baseHits: number;
+  baseTotal: number;
+}): boolean {
   if (c.triggers < PADRAO_MIN_OCORRENCIAS || c.baseTotal === 0) return false;
   return c.hits / c.triggers - c.baseHits / c.baseTotal >= PADRAO_DIFERENCA_PROPORCAO - 1e-9;
 }
@@ -85,7 +97,11 @@ function aparece(c: { triggers: number; hits: number; baseHits: number; baseTota
  * Padrões que costumam aparecer (seção 7.6). Só com pelo menos 14 dias registrados;
  * cada padrão precisa de pelo menos 3 ocorrências e é comparado com os outros dias.
  */
-export function findPatterns(records: DayRecord[], end: DayKey, windowDays = JANELA_PADROES_DIAS): PatternResult[] {
+export function findPatterns(
+  records: DayRecord[],
+  end: DayKey,
+  windowDays = JANELA_PADROES_DIAS,
+): PatternResult[] {
   const start = addDays(end, -(windowDays - 1));
   const regs = records.filter((r) => r.date >= start && r.date <= end && isRegistered(r));
   if (regs.length < PADRAO_MIN_DIAS_REGISTRADOS) return [];
@@ -129,7 +145,11 @@ export function findPatterns(records: DayRecord[], end: DayKey, windowDays = JAN
   }
 
   const semCiclo = regs.filter((r) => !temTag(r, 'pre_menstrual') && !temTag(r, 'menstruada'));
-  const pre = simple(regs.filter((r) => temTag(r, 'pre_menstrual')), semCiclo, lento);
+  const pre = simple(
+    regs.filter((r) => temTag(r, 'pre_menstrual')),
+    semCiclo,
+    lento,
+  );
   if (aparece(pre)) {
     out.push({
       id: 'ciclo_pre',
@@ -137,7 +157,11 @@ export function findPatterns(records: DayRecord[], end: DayKey, windowDays = JAN
       text: `${PADRAO_TEXTO.ciclo_pre} Nos teus registros, em ${pre.hits} dos ${pre.triggers} dias pré-menstruais o intestino ficou mais preso. ${outrosDias(pre.baseHits, pre.baseTotal)}`,
     });
   }
-  const menstr = simple(regs.filter((r) => temTag(r, 'menstruada')), semCiclo, acelerado);
+  const menstr = simple(
+    regs.filter((r) => temTag(r, 'menstruada')),
+    semCiclo,
+    acelerado,
+  );
   if (aparece(menstr)) {
     out.push({
       id: 'ciclo_menstruada',
@@ -180,7 +204,14 @@ export function findPatterns(records: DayRecord[], end: DayKey, windowDays = JAN
 }
 
 /** Tem dias suficientes para procurar padrões? */
-export function enoughForPatterns(records: DayRecord[], end: DayKey, windowDays = JANELA_PADROES_DIAS): boolean {
+export function enoughForPatterns(
+  records: DayRecord[],
+  end: DayKey,
+  windowDays = JANELA_PADROES_DIAS,
+): boolean {
   const start = addDays(end, -(windowDays - 1));
-  return records.filter((r) => r.date >= start && r.date <= end && isRegistered(r)).length >= PADRAO_MIN_DIAS_REGISTRADOS;
+  return (
+    records.filter((r) => r.date >= start && r.date <= end && isRegistered(r)).length >=
+    PADRAO_MIN_DIAS_REGISTRADOS
+  );
 }

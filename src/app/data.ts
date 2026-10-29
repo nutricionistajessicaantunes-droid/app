@@ -6,12 +6,15 @@ import type {
   CrisisState,
   DayKey,
   DayRecord,
+  DiaryEntry,
+  FodmapProtocol,
   Habit,
   LessonProgress,
   Meta,
   Notice,
   PlanState,
   Profile,
+  WeeklyReading,
 } from '../types';
 
 /**
@@ -81,4 +84,19 @@ export function useActiveHabits(day: DayKey): ActiveHabit[] | undefined {
   const stored = useStoredHabits();
   if (plan === undefined || stored === undefined) return undefined;
   return activeHabitsOn(day, plan ?? undefined, stored);
+}
+
+export function useReadings(): WeeklyReading[] | undefined {
+  return useLiveQuery(() => getDb().readings.toArray(), []);
+}
+
+export function useDiary(start: DayKey, end: DayKey): DiaryEntry[] | undefined {
+  return useLiveQuery(
+    () => getDb().diary.where('date').between(start, end, true, true).toArray(),
+    [start, end],
+  );
+}
+
+export function useFodmap(): FodmapProtocol | null | undefined {
+  return useLiveQuery(async () => (await getDb().fodmap.get('fodmap')) ?? null, []);
 }

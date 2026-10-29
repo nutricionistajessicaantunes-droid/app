@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { ButtonLink } from '../../ui/Button';
 import { Link } from 'react-router';
 import {
   ATENDIMENTO,
@@ -689,6 +690,9 @@ export function DiarreiaGuia() {
   return (
     <>
       <Quote>{DIARREIA.primeiroAgua}</Quote>
+      <ButtonLink to="/crise" variant="primary" block>
+        Estou com diarreia agora
+      </ButtonLink>
       <Secao label="Sintomas que merecem atenção">
         <BulletList items={DIARREIA.sintomasAtencao} />
         <p>{DIARREIA.sinaisPerda}</p>

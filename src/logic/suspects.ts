@@ -39,7 +39,10 @@ export function findSuspects(entries: DiaryEntry[], start?: DayKey, end?: DayKey
     (e) => e.kind === 'sintoma' && (e.symptom?.intensity ?? 0) >= SINTOMA_SUSPEITO_MIN,
   );
   const janela = JANELA_SUSPEITOS_HORAS * 60;
-  const stats = new Map<string, { label: string; days: Set<DayKey>; before: number; eaten: number }>();
+  const stats = new Map<
+    string,
+    { label: string; days: Set<DayKey>; before: number; eaten: number }
+  >();
 
   for (const meal of meals) {
     const mt = timeToMinutes(meal.time);
@@ -51,7 +54,12 @@ export function findSuspects(entries: DiaryEntry[], start?: DayKey, end?: DayKey
         return st !== undefined && st >= mt && st - mt <= janela;
       });
     for (const f of mealFoods(meal)) {
-      const cur = stats.get(f.key) ?? { label: f.label, days: new Set<DayKey>(), before: 0, eaten: 0 };
+      const cur = stats.get(f.key) ?? {
+        label: f.label,
+        days: new Set<DayKey>(),
+        before: 0,
+        eaten: 0,
+      };
       cur.eaten++;
       if (followed) {
         cur.before++;
@@ -73,7 +81,10 @@ export function findSuspects(entries: DiaryEntry[], start?: DayKey, end?: DayKey
       fodmap: classifyFood(s.label),
     });
   }
-  out.sort((a, b) => b.days - a.days || b.timesBefore - a.timesBefore || a.label.localeCompare(b.label, 'pt-BR'));
+  out.sort(
+    (a, b) =>
+      b.days - a.days || b.timesBefore - a.timesBefore || a.label.localeCompare(b.label, 'pt-BR'),
+  );
   return out;
 }
 

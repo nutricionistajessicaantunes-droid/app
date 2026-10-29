@@ -7,7 +7,16 @@ import { openGoogle, openIcs } from './reminders';
 import styles from './CalendarButtons.module.css';
 
 /** Sempre dois botões: "Agenda do iPhone" e "Google Agenda" (seção 3.6). */
-export function CalendarButtons({ event, label }: { event: CalendarEvent; label?: string }) {
+export function CalendarButtons({
+  event,
+  label,
+  onAdded,
+}: {
+  event: CalendarEvent;
+  label?: string;
+  /** Chamado depois de tocar em um dos botões (por exemplo, para marcar um item da semana zero). */
+  onAdded?: () => void;
+}) {
   const [msg, setMsg] = useState('');
   return (
     <div className={styles.caixa}>
@@ -17,6 +26,7 @@ export function CalendarButtons({ event, label }: { event: CalendarEvent; label?
           icon={<CalendarPlus size={18} />}
           onClick={() => {
             const r = openIcs(event, getPlatform());
+            if (r !== 'sem_internet') onAdded?.();
             setMsg(
               r === 'sem_internet'
                 ? 'Você está sem internet. Tente de novo quando a conexão voltar.'
@@ -32,6 +42,7 @@ export function CalendarButtons({ event, label }: { event: CalendarEvent; label?
           icon={<CalendarPlus size={18} />}
           onClick={() => {
             const ok = openGoogle(event);
+            if (ok) onAdded?.();
             setMsg(ok ? '' : 'Você está sem internet. Tente de novo quando a conexão voltar.');
           }}
         >

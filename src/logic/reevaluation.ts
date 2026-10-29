@@ -33,7 +33,11 @@ export interface ReevalWeek {
   habitAverage?: number;
 }
 
-export function reevalWeek(records: DayRecord[], habits: ActiveHabit[], block: PlanBlock): ReevalWeek {
+export function reevalWeek(
+  records: DayRecord[],
+  habits: ActiveHabit[],
+  block: PlanBlock,
+): ReevalWeek {
   const start = block.start;
   const end = blockEnd(block);
   const s = summarizeWeek({ records, habits, start, end });
