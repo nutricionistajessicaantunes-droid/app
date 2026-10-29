@@ -183,7 +183,7 @@ export function Component() {
             </Link>
           </li>
           <li>
-            <Link to="/guia/fodmap" className={styles.aula}>
+            <Link to="/fodmap" className={styles.aula}>
               <span className={styles.texto}>
                 <span className={styles.titulo}>Protocolo low FODMAP</span>
                 {profile.path === 'gases_sii' ? (
@@ -225,7 +225,7 @@ function stepLink(st: NextStep): { to: string; label: string } {
     case 'plano_comeca':
       return { to: '/plano/semana-zero', label: `O plano começa em ${formatDayCompact(st.start)}` };
     case 'fodmap':
-      return { to: '/guia/fodmap', label: 'Protocolo low FODMAP' };
+      return { to: '/fodmap', label: 'Protocolo low FODMAP' };
     case 'tarefa':
       return {
         to: `/aula/${st.lessonId}`,

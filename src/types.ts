@@ -201,6 +201,8 @@ export interface FodmapTest {
   food: string;
   start?: DayKey;
   pauseDays: 2 | 3;
+  /** Depois de um teste inconclusivo, só recomeça depois da pausa. */
+  notBefore?: DayKey;
   days: { portion: string; score?: number; atypical?: boolean }[];
   baseline?: number;
   suggested?: FodmapSuggestion;

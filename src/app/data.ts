@@ -3,6 +3,7 @@ import { getDb } from '../db/index';
 import { activeHabitsOn } from '../logic/activeHabits';
 import type { ActiveHabit } from '../logic/habits';
 import type {
+  ConsultForm,
   CrisisState,
   DayKey,
   DayRecord,
@@ -99,4 +100,8 @@ export function useDiary(start: DayKey, end: DayKey): DiaryEntry[] | undefined {
 
 export function useFodmap(): FodmapProtocol | null | undefined {
   return useLiveQuery(async () => (await getDb().fodmap.get('fodmap')) ?? null, []);
+}
+
+export function useConsult(): ConsultForm | null | undefined {
+  return useLiveQuery(async () => (await getDb().consult.get('consult')) ?? null, []);
 }

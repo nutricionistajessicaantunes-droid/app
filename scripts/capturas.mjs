@@ -53,6 +53,16 @@ const TELAS_COMPLETO = [
   ['20-hoje-manutencao', '/'],
 ];
 const SO_NOVAS = process.env.SO_NOVAS === '1';
+const SO_FASE3 = process.env.SO_FASE3 === '1';
+// Telas da Fase 3 (cenário completo). Cada item: nome, rota e o texto até onde rolar.
+const TELAS_FASE3 = [
+  ['23-resultados-graficos', '/resultados', 'Tipo de Bristol por dia'],
+  ['24-resultados-historico', '/resultados', 'Histórico'],
+  ['25-ficha-para-a-consulta', '/ficha', null],
+  ['26-protocolo-low-fodmap', '/fodmap', 'Fase 2'],
+  ['27-meu-dia-de-fibras', '/guia/fibras', 'Meu dia de fibras'],
+  ['28-respiracao', '/guia/rotina', 'Respiração antes de comer'],
+];
 const erros = [];
 const vigiar = (page) => {
   page.on('pageerror', (e) => erros.push(`${page.url()}: ${e.message}`));
@@ -75,7 +85,7 @@ try {
 
     let ctx;
     let page;
-    if (!SO_NOVAS) {
+    if (!SO_NOVAS && !SO_FASE3) {
     // Primeira vez: código de acesso e guia de instalação no iPhone.
     ctx = await browser.newContext({ ...base, userAgent: UA_IPHONE });
     page = await ctx.newPage();
@@ -108,6 +118,31 @@ try {
       await page.screenshot({ path: `${PASTA}/${nome}-${tema}.png` });
     }
     await ctx.close();
+    }
+
+    if (SO_FASE3) {
+      ctx = await browser.newContext({ ...base, userAgent: UA_ANDROID });
+      page = await ctx.newPage();
+      vigiar(page);
+      await page.goto(`${BASE}/?demo=1`);
+      await page.waitForTimeout(1200);
+      for (const [nome, rota, rolar] of TELAS_FASE3) {
+        await page.goto(`${BASE}${rota}`);
+        await page.waitForTimeout(800);
+        if (rolar) {
+          await page.getByText(rolar, { exact: false }).first().scrollIntoViewIfNeeded();
+          await page.evaluate(() => window.scrollBy(0, -90));
+          await page.waitForTimeout(300);
+        }
+        await page.screenshot({ path: `${PASTA}/${nome}-${tema}.png` });
+      }
+      await page.goto(`${BASE}/guia`);
+      await page.waitForTimeout(600);
+      await page.getByLabel('Procurar no Guia').fill('maçã');
+      await page.waitForTimeout(800);
+      await page.screenshot({ path: `${PASTA}/29-busca-no-guia-${tema}.png` });
+      await ctx.close();
+      continue;
     }
 
     // Fase 2: plano em andamento.

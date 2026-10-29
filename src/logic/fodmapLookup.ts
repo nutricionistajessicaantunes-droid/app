@@ -87,11 +87,25 @@ export function suggestFoods(typed: string, limit = 6): string[] {
   return [...starts, ...contains].slice(0, limit);
 }
 
-/** Busca da lista (seção 6.11): o grupo, o alto teor e as trocas de baixo teor. */
+/**
+ * Busca da lista (seção 6.11): o grupo, o alto teor e as trocas de baixo teor.
+ * Palavra inteira ganha de começo de palavra, que ganha de trecho ("maçã" não traz macarrão).
+ */
 export function searchFodmap(query: string): FodmapEntry[] {
   const q = normalizeFood(query);
   if (q.length < 2) return [];
-  return fodmapEntries().filter((e) =>
-    e.keys.some((k) => k.startsWith(q) || containsWords(k, q) || k.includes(q)),
-  );
+  const all = fodmapEntries();
+  const whole = all.filter((e) => e.keys.some((k) => k === q || containsWords(k, q)));
+  if (whole.length > 0) return whole;
+  const prefix = all.filter((e) => e.keys.some((k) => k.split(' ').some((w) => w.startsWith(q))));
+  if (prefix.length > 0) return prefix;
+  return all.filter((e) => e.keys.some((k) => k.includes(q)));
+}
+
+/** Trocas de baixo teor do mesmo grupo. */
+export function swapsFor(e: FodmapEntry): string[] {
+  if (e.level !== 'alto') return [];
+  return fodmapEntries()
+    .filter((x) => x.categoryId === e.categoryId && x.level === 'baixo')
+    .map((x) => x.name);
 }

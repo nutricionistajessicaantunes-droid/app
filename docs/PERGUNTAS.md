@@ -63,7 +63,6 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 
 ### Fase 2
 
-- **Tarefas que dependem da Fase 3:** a ficha para a consulta (aula 9), "Meu dia de fibras" (aula 10) e o planejamento do protocolo (aula 12) chegam na Fase 3. Até lá, a tarefa mostra "Esta ferramenta chega na próxima versão do app. Por enquanto, use o caderno."
 - **Pausar e retomar uma tarefa:** retomar recomeça a contagem no dia, com a mesma configuração.
 - **Hábitos das tarefas 5, 8 e 13:** ficam ativos só no prazo da tarefa. "Escolher mais dois" (aula 13) começa uma semana nova com os dois anteriores e mais dois.
 - **Sair da sugestão de uma tarefa:** a especificação não diz como seguir quando a aluna não quer fazer uma tarefa. No cartão "Teu próximo passo", acrescentei "Ir para a próxima aula". A tarefa continua disponível na tela da aula.
@@ -80,3 +79,16 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 - **Destaques da aula 1:** o que se repetiu em pelo menos 2 dos 3 dias (sono abaixo de 6 horas, estresse 7 ou mais, dias sem evacuar, o mesmo tipo de Bristol, um alimento).
 - **Aula 11:** os controles de gases e estufamento aparecem no cartão da tarefa só quando não estão no bloco de sintomas (modo simples ou sintoma não acompanhado).
 - **Capturas da Fase 2:** para economizar, gerei só as telas novas (12 a 22 em `docs/telas/`).
+
+### Fase 3
+
+- **Fonte do PDF:** a Figtree foi convertida para o formato que o gerador de PDF aceita (`src/assets/pdf`). Ela só é carregada quando a aluna toca em "Gerar PDF".
+- **Nota de cada dia de teste do protocolo:** é o maior sintoma registrado no dia, como no resto do app. A linha de base de cada teste são os dias de pausa antes dele (para o primeiro grupo, os 3 últimos dias da fase 1).
+- **Pausa entre os testes:** começa com 3 dias, e a aluna pode trocar para 2. O próximo grupo só libera depois da pausa. "Repetir depois da pausa" volta o mesmo grupo para o começo.
+- **Avaliação da fase 1:** aparece na data escolhida. Respondendo "Não ficou claro" antes de 4 semanas, a avaliação passa para o fim da semana 4.
+- **Alho e cebola no teste de frutanos:** as porções dos dias 2 e 3 aparecem como `[TEXTO A DEFINIR]` no protocolo, até você definir.
+- **Diário com horário na fase 1:** durante a fase 1 do protocolo, o registro do dia mostra o diário de refeições e sintomas com horário, o mesmo da aula 7.
+- **Ficha para a consulta:** quando o tipo de Bristol varia sem alternar entre preso e solto, o campo do padrão vem como "Varia, sem alternar entre preso e solto". A aluna pode trocar.
+- **Meu dia de fibras:** fica salvo junto da tarefa da aula 10. A tarefa conclui quando a meta de água e o dia de fibras estão salvos.
+- **Gráficos de Resultados:** as semanas seguem o dia da leitura escolhido pela aluna (domingo, por padrão), como "Tua semana".
+- **Busca do Guia:** quando a palavra digitada existe inteira na lista de FODMAPs, só ela aparece (procurar "maçã" não traz macarrão). Com parte da palavra, aparecem todos os alimentos que começam com ela.

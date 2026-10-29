@@ -1,4 +1,8 @@
 import { ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { searchFodmap } from '../../logic/fodmapLookup';
+import { FodmapResult } from './FodmapSearch';
+import type { GuideHit } from './searchIndex';
 import { Link } from 'react-router';
 import { useProfile } from '../../app/data';
 import { PATH_LABEL } from '../../content/onboarding';
@@ -30,9 +34,19 @@ function Index({ items, menu }: { items: GuideSection[]; menu?: string }) {
   );
 }
 
+type Search = (q: string) => GuideHit[];
+
 export function Component() {
   const profile = useProfile();
+  const [q, setQ] = useState('');
+  const [search, setSearch] = useState<{ fn: Search } | null>(null);
   if (profile === undefined) return null;
+  const loadIndex = () => {
+    if (!search) void import('./searchIndex').then((m) => setSearch({ fn: m.searchGuide }));
+  };
+  const typing = q.trim().length >= 2;
+  const fodmapHits = typing ? searchFodmap(q).slice(0, 5) : [];
+  const guideHits = typing && search ? search.fn(q) : [];
   const path = profile?.path ?? 'indefinido';
   const firstIds = PATH_PRIORITY[path];
   const first = firstIds
@@ -42,26 +56,85 @@ export function Component() {
 
   return (
     <Screen title="Guia" subtitle="Consulta rápida do conteúdo do curso. Funciona sem internet.">
-      <Filete level={2}>
-        {path === 'indefinido' ? 'Para começar' : `Para o teu caso · ${PATH_LABEL[path]}`}
-      </Filete>
-      <Index items={first} menu={PATH_MENU[path]} />
-      <details>
-        <summary
-          style={{
-            minHeight: 44,
-            display: 'flex',
-            alignItems: 'center',
-            cursor: 'pointer',
-            fontWeight: 600,
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginBottom: 16 }}>
+        <label htmlFor="guia-busca" style={{ fontWeight: 600 }}>
+          Procurar no Guia
+        </label>
+        <input
+          id="guia-busca"
+          type="search"
+          value={q}
+          placeholder="Ex.: maçã, sono, kit de crise"
+          onFocus={loadIndex}
+          onChange={(e) => {
+            loadIndex();
+            setQ(e.target.value);
           }}
-        >
-          Outros temas
-        </summary>
-        <div style={{ marginTop: 12 }}>
-          <Index items={rest} />
+        />
+      </div>
+      {typing ? (
+        <div aria-live="polite">
+          {fodmapHits.length > 0 ? (
+            <>
+              <Filete level={2}>Na lista de FODMAPs</Filete>
+              <ul className={styles.resultados}>
+                {fodmapHits.map((e) => (
+                  <FodmapResult key={`${e.categoryId}-${e.name}`} e={e} />
+                ))}
+              </ul>
+            </>
+          ) : null}
+          <Filete level={2}>No Guia</Filete>
+          {guideHits.length === 0 ? (
+            <p className="secundario">{search ? 'Nada encontrado no Guia.' : 'Procurando...'}</p>
+          ) : (
+            <ul className={styles.indice}>
+              {guideHits.map((h) => {
+                const s = GUIDE_SECTIONS.find((x) => x.id === h.section);
+                if (!s) return null;
+                return (
+                  <li key={h.section}>
+                    <Link to={hrefFor(s)} className={styles.indiceLink}>
+                      <span className={styles.indiceTexto}>
+                        <span>{s.title}</span>
+                        {h.snippets.map((sn) => (
+                          <span key={sn} className={styles.indiceDetalhe}>
+                            {sn}
+                          </span>
+                        ))}
+                      </span>
+                      <ChevronRight size={20} aria-hidden="true" className="secundario" />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
-      </details>
+      ) : (
+        <>
+          <Filete level={2}>
+            {path === 'indefinido' ? 'Para começar' : `Para o teu caso · ${PATH_LABEL[path]}`}
+          </Filete>
+          <Index items={first} menu={PATH_MENU[path]} />
+          <details>
+            <summary
+              style={{
+                minHeight: 44,
+                display: 'flex',
+                alignItems: 'center',
+                cursor: 'pointer',
+                fontWeight: 600,
+              }}
+            >
+              Outros temas
+            </summary>
+            <div style={{ marginTop: 12 }}>
+              <Index items={rest} />
+            </div>
+          </details>
+        </>
+      )}
     </Screen>
   );
 }

@@ -2,6 +2,25 @@
 
 Tudo que muda no app fica anotado aqui, por fase.
 
+## Fase 3 · Conhecimento e resultados (29/10/2026)
+
+### O que ficou pronto
+
+- **Busca no Guia**: procura em todo o conteúdo e na lista de FODMAPs, sem acento e sem diferença de maiúsculas. "maçã" mostra o grupo, o teor e as trocas de baixo teor do mesmo grupo.
+- **Lista de FODMAPs** com busca própria e atalho para o protocolo.
+- **Protocolo low FODMAP completo**: aviso de cuidado com "Vou fazer com acompanhamento profissional", planejamento (datas, alimento-teste de cada grupo, preparativos, agenda), fase 1 com contador e avaliação automática, fase 2 com um grupo por vez, porções do dia, "Foi um dia atípico?", conclusão sugerida e pausa, e fase 3 com a lista pessoal e o lembrete para testar de novo. Os cinco erros ficam visíveis em todas as fases.
+- **Meu dia de fibras** no Guia: alimentos da tabela, medida caseira do dia modelo, atalhos de 50, 100 e 150 g, total do dia e faixa da meta.
+- **Respiração guiada** antes de comer: círculo que cresce em 4 segundos e diminui em 6, por 6 ciclos, com versão sem animação para quem prefere menos movimento.
+- **Ficha para a consulta** preenchida a partir dos registros e editável, com PDF (A4, com a fonte do app), texto para copiar e impressão.
+- **Resultados** com os quatro gráficos (Bristol por dia, sintomas e energia, hábitos com a linha da meta, evacuações), padrões encontrados, histórico (leituras, tarefas, reavaliação, protocolo e sinais de acompanhamento) e "Compartilhar resumo".
+- **Tarefas das aulas 9, 10 e 12** ligadas às ferramentas novas.
+- **Modo demonstração completo**: diário de sintomas, protocolo em andamento e tarefa em andamento.
+- **Testes**: 195 testes, incluindo os exemplos do protocolo da especificação.
+
+### Próxima fase
+
+Fase 4 · Acabamento e publicação: acessibilidade, desempenho, testes ponta a ponta, Lighthouse, README final, `docs/kiwify.md`, `docs/teste-no-celular.md` e publicação.
+
 ## Fase 2 · Processo (29/10/2026)
 
 ### O que ficou pronto
@@ -17,10 +36,6 @@ Tudo que muda no app fica anotado aqui, por fase.
 - **Teu próximo passo** completo na tela Hoje e a lista inteira no Caminho.
 - **Verificações automáticas**: sugestão do modo crise, três dias sem evacuar, diarreia por mais de duas semanas e os sinais que pedem acompanhamento (estufamento diário, alternância, intestino preso que não responde, sintomas que persistem).
 - **Testes**: 182 testes, incluindo os exemplos de cálculo da especificação (cenários, repetir a semana, padrões, suspeitos).
-
-### O que ainda depende da Fase 3
-
-- A ficha para a consulta (tarefa da aula 9), "Meu dia de fibras" (parte da tarefa da aula 10) e o planejamento do protocolo low FODMAP (tarefa da aula 12). Por enquanto, essas tarefas mostram que a ferramenta chega na próxima versão.
 
 ### Próxima fase
 

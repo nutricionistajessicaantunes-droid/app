@@ -1,0 +1,123 @@
+.figura {
+  margin: 0;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.eixo {
+  font-size: 10px;
+  fill: var(--texto-secundario);
+  font-family: var(--sans);
+}
+
+.grade {
+  stroke: var(--borda);
+  stroke-width: 1;
+}
+
+.faixaLenta {
+  fill: var(--faixa-lenta);
+  opacity: 0.14;
+}
+
+.faixaSaudavel {
+  fill: var(--faixa-saudavel);
+  opacity: 0.14;
+}
+
+.faixaRapida {
+  fill: var(--faixa-rapida);
+  opacity: 0.14;
+}
+
+.ponto {
+  fill: var(--acento);
+}
+
+.linhaSintomas,
+.linhaEnergia {
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.linhaSintomas {
+  stroke: var(--acento);
+}
+
+.linhaEnergia {
+  stroke: var(--faixa-saudavel);
+  stroke-dasharray: 5 4;
+}
+
+.pontoSintomas {
+  fill: var(--acento);
+}
+
+.pontoEnergia {
+  fill: var(--faixa-saudavel);
+}
+
+.barra {
+  fill: var(--acento);
+  opacity: 0.85;
+}
+
+.meta {
+  stroke: var(--faixa-saudavel);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+}
+
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 6px;
+  font-size: 0.875rem;
+  color: var(--texto-secundario);
+}
+
+.legenda i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+.chaveLenta {
+  background: var(--faixa-lenta);
+}
+
+.chaveSaudavel {
+  background: var(--faixa-saudavel);
+}
+
+.chaveRapida {
+  background: var(--faixa-rapida);
+}
+
+.chaveSintomas {
+  background: var(--acento);
+  border-radius: 50% !important;
+}
+
+.chaveEnergia {
+  background: var(--faixa-saudavel);
+}
+
+.pequenos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e4);
+}
+
+.rotulo {
+  font-weight: 600;
+  margin-bottom: 4px;
+}

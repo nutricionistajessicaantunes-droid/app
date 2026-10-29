@@ -215,3 +215,16 @@ select:focus-visible {
     scroll-behavior: auto !important;
   }
 }
+
+/* Impressão da ficha para a consulta: só o conteúdo. */
+@media print {
+  nav,
+  .nao-imprimir {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+}

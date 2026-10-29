@@ -1,5 +1,8 @@
 import type { ReactNode } from 'react';
 import { ButtonLink } from '../../ui/Button';
+import { BreathingGuide } from './BreathingGuide';
+import { FiberDayTool } from './FiberDayTool';
+import { FodmapSearch } from './FodmapSearch';
 import { Link } from 'react-router';
 import {
   ATENDIMENTO,
@@ -334,6 +337,9 @@ export function FibrasGuia() {
       <p>{FIBRA_TEXTOS.frutaSozinha}</p>
       <p>{FIBRA_TEXTOS.feijao}</p>
       <p>{FIBRA_TEXTOS.aosPoucos}</p>
+      <Secao id="meu-dia" label="Meu dia de fibras">
+        <FiberDayTool />
+      </Secao>
       <Card tone="banda">
         <p>{FIBRA_TEXTOS.avisoValores}</p>
         <p>{FIBRA_TEXTOS.avisoDiagnostico}</p>
@@ -439,6 +445,7 @@ export function RotinaGuia() {
       </Secao>
       <Secao id="respiracao" label="Respiração antes de comer">
         <p>{RESPIRACAO}</p>
+        <BreathingGuide />
       </Secao>
       <Secao label="Horários">
         <BulletList items={HORARIOS.itens} />
@@ -509,6 +516,12 @@ export function FodmapGuia() {
           <p>{FODMAP_COMO_USAR.temporaria}</p>
         </Card>
         <Note>{FODMAP_COMO_USAR.colunas}</Note>
+      </Secao>
+      <ButtonLink to="/fodmap" variant="primary" block>
+        Abrir o protocolo low FODMAP
+      </ButtonLink>
+      <Secao label="Procurar na lista">
+        <FodmapSearch />
       </Secao>
       <Secao label="Lista por grupo">
         {FODMAP_CATEGORIAS.map((c) => (

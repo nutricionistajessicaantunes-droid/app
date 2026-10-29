@@ -177,9 +177,7 @@ export function Component() {
         <div className={styles.pilha}>
           <p>{c.texto}</p>
           {c.detalhe ? <p className="secundario">{c.detalhe}</p> : null}
-          {scenario === 'em_parte' ? (
-            <Link to="/guia/fodmap">Ver o protocolo low FODMAP</Link>
-          ) : null}
+          {scenario === 'em_parte' ? <Link to="/fodmap">Ver o protocolo low FODMAP</Link> : null}
           {r.notTested ? <p>{REAVALIACAO_TEXTOS.planoNaoTestado}</p> : null}
           {scenario !== 'bastante' ? (
             <>

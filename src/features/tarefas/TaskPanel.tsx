@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { FIBRAS } from '../../content/agua-fibras';
 import { MEDIDAS_REFLUXO } from '../../content/cardapios';
 import { AULA14, AULA5_SUGESTOES, KIT_CRISE_ITENS, type Lesson } from '../../content/curso';
@@ -39,8 +39,6 @@ import styles from '../processo/Processo.module.css';
 import { TaskResult } from './TaskResults';
 import { suggestionFor } from './taskSuggestion';
 
-const EM_BREVE = 'Esta ferramenta chega na próxima versão do app. Por enquanto, use o caderno.';
-
 /** A tarefa da aula: configurar, começar, acompanhar e ver o resultado (seção 6.6). */
 export function TaskPanel({ lesson }: { lesson: Lesson }) {
   const today = useToday();
@@ -77,8 +75,24 @@ export function TaskPanel({ lesson }: { lesson: Lesson }) {
       );
   } else if (lesson.id === 15) {
     body = <SemanaZeroLink done={status === 'concluida'} />;
-  } else if (lesson.id === 9 || lesson.id === 12) {
-    body = <Note>{EM_BREVE}</Note>;
+  } else if (lesson.id === 9) {
+    body = (
+      <div className={styles.pilha}>
+        {status === 'concluida' ? <p>Ficha salva.</p> : null}
+        <ButtonLink to="/ficha" variant="primary">
+          Abrir a ficha para a consulta
+        </ButtonLink>
+      </div>
+    );
+  } else if (lesson.id === 12) {
+    body = (
+      <div className={styles.pilha}>
+        {status === 'concluida' ? <p>Planejamento salvo.</p> : null}
+        <ButtonLink to="/fodmap" variant="primary">
+          Abrir o planejamento do protocolo
+        </ButtonLink>
+      </div>
+    );
   } else if (lesson.id === 10) {
     body = <Aula10 p={p} profile={profile} />;
   } else if (lesson.id === 6) {
@@ -500,13 +514,17 @@ function Aula10({ p, profile }: { p?: LessonProgress; profile: Profile }) {
           profile={profile}
           onSaved={() => {
             setOpen(false);
-            void setTaskData(10, { agua: true });
+            void setTaskData(10, { agua: true }).then(() => {
+              if (p?.task.data.fibrasSalvas) void concludeTask(10);
+            });
           }}
         />
       ) : null}
       <p className={styles.rotulo}>Meu dia de fibras</p>
-      <Note>{EM_BREVE}</Note>
-      <Link to="/guia/fibras">Ver a tabela de fibras</Link>
+      <p>
+        {p?.task.data.fibrasSalvas ? 'Dia de fibras salvo.' : 'Monte o teu dia de fibras no Guia.'}
+      </p>
+      <ButtonLink to="/guia/fibras#meu-dia">Abrir Meu dia de fibras</ButtonLink>
     </div>
   );
 }

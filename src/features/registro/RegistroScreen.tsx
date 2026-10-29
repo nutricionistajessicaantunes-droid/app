@@ -12,7 +12,8 @@ import { habitDone } from '../../logic/habits';
 import { formatInt } from '../../logic/format';
 import { reachedCupGoal, waterGoal } from '../../logic/water';
 import type { Bristol, DayRecord, RedFlagId, SymptomId, TagId } from '../../types';
-import { useActiveHabits, useDay, useLessons, useProfile } from '../../app/data';
+import { useActiveHabits, useDay, useFodmap, useLessons, useProfile } from '../../app/data';
+import { DiaryBlock } from '../tarefas/DiaryBlock';
 import { dailyTaskIds } from '../../logic/tasks';
 import { TaskDailyFields } from '../tarefas/TaskDailyFields';
 import { runAutomaticChecks } from '../processo/actions';
@@ -55,6 +56,7 @@ function Registro({ date, today }: { date: string; today: string }) {
   const profile = useProfile();
   const habits = useActiveHabits(date);
   const lessons = useLessons();
+  const fodmap = useFodmap();
   const stored = useDay(date);
   const { draft, update, flush, savedAt } = useDayDraft(date, stored);
   const saved = useSavedFlash(savedAt);
@@ -64,7 +66,7 @@ function Registro({ date, today }: { date: string; today: string }) {
   const [missing, setMissing] = useState(false);
   const questionRef = useRef<HTMLDivElement>(null);
 
-  if (!profile || !draft || !habits || !lessons) return null;
+  if (!profile || !draft || !habits || !lessons || fodmap === undefined) return null;
 
   const taskIds = dailyTaskIds(lessons, date);
   const taskSources = new Set(taskIds.map((id) => `aula${id}`));
@@ -297,6 +299,12 @@ function Registro({ date, today }: { date: string; today: string }) {
           symptomsShown={simple ? [] : profile.trackedSymptoms}
           waterShown={!simple && hasWaterGoal}
         />
+
+        {fodmap?.phase === 'fase1' && !taskIds.includes(7) ? (
+          <Card label="Protocolo low FODMAP · fase 1" title="O que comeu e o que sentiu">
+            <DiaryBlock date={date} />
+          </Card>
+        ) : null}
 
         <Card label={REGISTRO_TEXTOS.diaEmUmaLinha}>
           <ChipGroup label={REGISTRO_TEXTOS.diaEmUmaLinha}>

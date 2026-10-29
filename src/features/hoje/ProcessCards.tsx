@@ -213,7 +213,7 @@ export function NextStepCard({
     case 'fodmap':
       return (
         <Card label={label} title="Protocolo low FODMAP">
-          <ButtonLink to="/guia/fodmap">Ver o protocolo</ButtonLink>
+          <ButtonLink to="/fodmap">Ver o protocolo</ButtonLink>
         </Card>
       );
     case 'tarefa':

@@ -3,12 +3,16 @@ import { allHabits } from '../logic/activeHabits';
 import { addDays, diffDays, toDayKey } from '../logic/dates';
 import { createBlocks, blockEnd } from '../logic/plan';
 import { readingId } from '../logic/readings';
+import { planTests } from '../logic/fodmap';
+import { TASK_FIELD } from '../logic/tasks';
 import { summarizeWeek } from '../logic/week';
 import { waterGoal } from '../logic/water';
 import type {
   Bristol,
   DayKey,
   DayRecord,
+  DiaryEntry,
+  FodmapProtocol,
   Habit,
   LessonProgress,
   PlanState,
@@ -257,7 +261,7 @@ export async function seedDemo(
     });
 
   // Aulas: quase todas as tarefas feitas; no cenário do plano, a da aula 11 em andamento.
-  const feitas = new Set([1, 2, 3, 4, 5, 6, 13, 14, 15, 16, ...(completo ? [17] : [])]);
+  const feitas = new Set([1, 2, 3, 4, 5, 6, 13, 14, 15, 16, ...(completo ? [7, 17] : [])]);
   const lessons: LessonProgress[] = Array.from({ length: completo ? 17 : 16 }, (_, k) => {
     const id = k + 1;
     const running = !completo && id === 11;
@@ -268,7 +272,7 @@ export async function seedDemo(
       task: feitas.has(id)
         ? {
             status: 'concluida' as const,
-            startDate: addDays(day1, -14),
+            startDate: id === 7 ? addDays(today, -22) : addDays(day1, -14),
             data: id === 3 ? { resposta: 'Dias com sono ruim.' } : {},
             completedAt: STAMP(addDays(day1, -7)),
           }
@@ -278,6 +282,78 @@ export async function seedDemo(
       updatedAt: now,
     };
   });
+
+  // Diário de sintomas da aula 7 (cenário completo): o pão aparece antes do sintoma.
+  const diary: DiaryEntry[] = [];
+  if (completo) {
+    const meals = [
+      ['pão francês', 'café com leite'],
+      ['arroz', 'feijão', 'frango'],
+      ['pão francês', 'maçã'],
+      ['arroz', 'salada'],
+      ['pão francês', 'queijo'],
+    ];
+    meals.forEach((foods, k) => {
+      const date = addDays(today, -22 + k);
+      diary.push({
+        id: `demo-r-${k}`,
+        date,
+        time: '08:00',
+        kind: 'refeicao',
+        foods,
+        createdAt: now,
+        updatedAt: now,
+      });
+      if (k !== 1 && k !== 3)
+        diary.push({
+          id: `demo-s-${k}`,
+          date,
+          time: '10:30',
+          kind: 'sintoma',
+          symptom: { type: 'estufamento', intensity: 5 + (k % 2) },
+          createdAt: now,
+          updatedAt: now,
+        });
+    });
+  } else {
+    // Tarefa da aula 11 em andamento: prebiótico e fermentado nos dois últimos dias.
+    for (const r of records.filter((x) => x.date >= addDays(today, -2))) {
+      r.taskFields = { [TASK_FIELD.prebiotico]: 'Aveia', [TASK_FIELD.fermentado]: 'Kefir' };
+    }
+  }
+
+  // Protocolo low FODMAP em andamento no cenário completo (dois grupos testados).
+  const fodmap: FodmapProtocol | undefined = completo
+    ? {
+        id: 'fodmap',
+        phase: 'fase2',
+        acknowledgedCare: true,
+        phase1Start: addDays(today, -70),
+        evaluationDate: addDays(today, -43),
+        responded: true,
+        baseline: 5.8,
+        tests: planTests({}).map((t, k) =>
+          k === 0
+            ? {
+                ...t,
+                start: addDays(today, -40),
+                baseline: 2,
+                suggested: 'liberado' as const,
+                result: 'liberado' as const,
+              }
+            : k === 1
+              ? {
+                  ...t,
+                  start: addDays(today, -34),
+                  baseline: 2.3,
+                  suggested: 'quantidade' as const,
+                  result: 'quantidade' as const,
+                }
+              : t,
+        ),
+        updatedAt: now,
+      }
+    : undefined;
 
   await db.transaction('rw', db.tables, async () => {
     for (const t of db.tables) await t.clear();
@@ -298,6 +374,8 @@ export async function seedDemo(
     if (stored.length > 0)
       await db.habits.bulkPut(stored.map((h) => ({ ...h, createdAt: now, updatedAt: now })));
     if (readings.length > 0) await db.readings.bulkPut(readings);
+    if (diary.length > 0) await db.diary.bulkPut(diary);
+    if (fodmap) await db.fodmap.put(fodmap);
   });
 }
 

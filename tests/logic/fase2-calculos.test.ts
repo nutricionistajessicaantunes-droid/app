@@ -245,6 +245,8 @@ describe('lista de FODMAPs e suspeitos (seções 7.10 e 7.11)', () => {
     expect(suggestFoods('ma')).toContain('maçã');
     expect(suggestFoods('m')).toEqual([]);
     expect(searchFodmap('kiwi').map((e) => e.name)).toContain('kiwi');
+    expect(searchFodmap('maçã').map((e) => e.name)).toEqual(['maçã']);
+    expect(searchFodmap('mac').map((e) => e.name)).toEqual(expect.arrayContaining(['maçã', 'macadâmia']));
   });
 
   it('alimentos que aparecem antes de sintoma em 2 dias diferentes', () => {
