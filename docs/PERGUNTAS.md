@@ -29,7 +29,7 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 ## Testes que dependem de um aparelho de verdade
 
 - **"Agenda do iPhone":** não consigo testar o iPhone daqui. No Safari, o app gera o arquivo do lembrete no próprio aparelho. No app instalado no iPhone, ele usa a função da Netlify (`netlify/functions/agenda.mjs`), que recebe só o título, o horário e a repetição. Teste os dois casos (roteiro em `docs/teste-no-celular.md`). Se o arquivo gerado no aparelho também funcionar no app instalado, dá para desligar a função trocando `ICS_MODO` para `'local'` em `src/config.ts`. Se o Safari não abrir o lembrete, troque para `'funcao'`.
-- **Lighthouse:** vou medir na Fase 4.
+- **Lighthouse:** medido na Fase 4, no modo celular: desempenho 97, acessibilidade 100 e boas práticas 100. O Lighthouse atual não tem mais a categoria "PWA"; a instalação foi conferida pelo manifesto, pelo service worker e pelo teste de uso sem internet. Vale repetir a medição no endereço definitivo da Netlify.
 
 ## Decisões que tomei sozinho
 
@@ -92,3 +92,20 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 - **Meu dia de fibras:** fica salvo junto da tarefa da aula 10. A tarefa conclui quando a meta de água e o dia de fibras estão salvos.
 - **Gráficos de Resultados:** as semanas seguem o dia da leitura escolhido pela aluna (domingo, por padrão), como "Tua semana".
 - **Busca do Guia:** quando a palavra digitada existe inteira na lista de FODMAPs, só ela aparece (procurar "maçã" não traz macarrão). Com parte da palavra, aparecem todos os alimentos que começam com ela.
+
+### Fase 4
+
+- **Testes ponta a ponta:** rodam com o Chromium simulando o iPhone 13 e o Pixel 7. O Safari de verdade não roda neste ambiente, por isso o roteiro `docs/teste-no-celular.md` inclui o teste no iPhone.
+- **Dados dos testes:** os cenários de vários dias (leitura da semana, plano, aula 7) escrevem os registros direto no banco do app e avançam o relógio, em vez de tocar dia por dia. O registro do dia em 12 toques, a primeira vez, o uso sem internet e a cópia de segurança são feitos tocando na tela.
+- **Medição de desempenho:** o servidor local de teste passou a comprimir os arquivos, como a Netlify faz. Sem isso, a medição contava o app com três vezes o tamanho real.
+- **Publicação:** não tenho acesso à tua conta da Netlify. O passo a passo para publicar está no README.
+
+## O que depende de você
+
+1. **Publicar na Netlify** seguindo o README e **decidir o endereço definitivo** antes de entregar o link às alunas.
+2. **Links da Kiwify** em `src/config.ts` (ou peça numa sessão nova, mandando os 17 links).
+3. **Trocar `ENDERECO`** pelo endereço definitivo nos textos de `docs/kiwify.md`, colar na Kiwify e gravar o vídeo de instalação.
+4. **Porções de alho e cebola** nos dias 2 e 3 do teste de frutanos.
+5. **Confirmar os pontos da seção 9.17** listados no começo deste arquivo.
+6. **Testar no celular** com o roteiro `docs/teste-no-celular.md`, principalmente os lembretes na "Agenda do iPhone".
+7. **Fazer o merge** do pull request.

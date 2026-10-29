@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import { ACOMPANHAMENTO_TEXTO } from '../../content/alertas';
 import { BAND_LABEL, getBristol } from '../../content/bristol';
@@ -62,19 +62,25 @@ export function Component() {
     );
   }, [profile, plan, lessons, readings, params, today]);
 
-  const records = useDays(
-    addDays(period?.end ?? today, -(JANELA_PADROES_DIAS + 6)),
-    period?.end ?? today,
-  );
-  const diary = useDiary(period?.start ?? today, period?.end ?? today);
+  // O período fica fixo depois de aberto: salvar a leitura muda o que está pendente,
+  // e a tela não pode trocar de semana no meio (a confirmação "Leitura salva" sumiria).
+  const fixed = useRef<ReadingPeriod | undefined>(undefined);
+  if (period && !fixed.current) fixed.current = period;
+  const current = fixed.current ?? period;
 
-  if (!period || !profile || plan === undefined || !stored || !records || !diary || !readings)
+  const records = useDays(
+    addDays(current?.end ?? today, -(JANELA_PADROES_DIAS + 6)),
+    current?.end ?? today,
+  );
+  const diary = useDiary(current?.start ?? today, current?.end ?? today);
+
+  if (!current || !profile || plan === undefined || !stored || !records || !diary || !readings)
     return null;
-  const existing = readings.find((r) => r.id === readingId(period));
+  const existing = readings.find((r) => r.id === readingId(current));
   return (
     <Leitura
-      key={readingId(period)}
-      period={period}
+      key={readingId(current)}
+      period={current}
       existing={existing}
       habits={allHabits(plan ?? undefined, stored)}
       records={records}

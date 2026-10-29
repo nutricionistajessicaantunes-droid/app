@@ -2,6 +2,22 @@
 
 Tudo que muda no app fica anotado aqui, por fase.
 
+## Fase 4 · Acabamento e publicação (29/10/2026)
+
+### O que ficou pronto
+
+- **Testes ponta a ponta** no iPhone 13 e no Pixel 7 simulados, com o relógio fixo: primeira vez completa pelo link com o código, registro do dia típico em até 12 toques, sete dias e a leitura da semana, plano com semana zero, repetição da semana e reavaliação, tarefa da aula 7 com os suspeitos, sugestão do modo crise, uso sem internet e cópia de segurança com restauração. Os 18 testes passam.
+- **Acessibilidade**: verificação automática (axe) em 13 telas, nos dois aparelhos, sem nenhuma violação grave.
+- **Lighthouse no celular**: desempenho 97, acessibilidade 100 e boas práticas 100 na primeira tela; 96, 100 e 100 na tela Hoje com dados.
+- **Correção**: depois de salvar a leitura da semana com "Repetir a semana", a tela abria uma leitura nova em vez de confirmar. Agora mostra "Leitura da semana salva." e o convite para a cópia.
+- **Documentos**: `docs/kiwify.md` (apresentação do app, uma frase por aula com o link da tarefa e o roteiro do vídeo de instalação), `docs/teste-no-celular.md` (roteiro de teste no iPhone e no Android) e o README final.
+- **Servidor de teste** com compressão, igual à Netlify, para as medições ficarem fiéis.
+- **Testes**: 193 testes de unidade e componentes, 18 de ponta a ponta. Cobertura dos cálculos (`src/logic`): 95,9%.
+
+### Para publicar
+
+O passo a passo está no README, em "Como publicar na Netlify". Leva poucos minutos e é feito uma vez só.
+
 ## Fase 3 · Conhecimento e resultados (29/10/2026)
 
 ### O que ficou pronto

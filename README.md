@@ -90,7 +90,8 @@ Os registros ficam só no celular da aluna. Para não perder nada:
 
 - Abra o endereço de prévia do pull request no celular.
 - Para ver o app com dados de exemplo, acrescente `?demo=1` no fim do endereço (plano concluído) ou `?demo=plano` (plano em andamento). O modo demonstração usa outro banco e nunca mistura com os teus dados. Para sair, toque em "Sair da demonstração".
-- O roteiro completo de teste fica em `docs/teste-no-celular.md` (Fase 4).
+- O roteiro completo de teste fica em [`docs/teste-no-celular.md`](docs/teste-no-celular.md).
+- Os textos para colocar na Kiwify (apresentação do app, uma frase por aula e o roteiro do vídeo de instalação) ficam em [`docs/kiwify.md`](docs/kiwify.md).
 
 ---
 
@@ -114,6 +115,7 @@ npm run build
 
 - `npm run lint`: padrão de código. `npm run coverage`: cobertura dos cálculos (`src/logic`, mínimo de 90%).
 - `npm run capturas`: gera as capturas de tela em `docs/telas` (rode `npm run build` antes).
+- `npm run e2e`: testes ponta a ponta no iPhone 13 e no Pixel 7 simulados (rode `npm run build` antes).
 - `npm run gerar-icones`: gera os ícones a partir de `scripts/icone.svg`.
 - Estrutura: `src/content` (conteúdo), `src/logic` (cálculos, sem tela), `src/db` (banco e cópia), `src/features` (telas), `src/ui` (componentes), `src/styles` (cores e fontes).
 

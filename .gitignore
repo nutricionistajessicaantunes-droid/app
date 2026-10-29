@@ -7,3 +7,5 @@ test-results
 *.local
 .DS_Store
 .netlify
+test-results/
+playwright-report/
