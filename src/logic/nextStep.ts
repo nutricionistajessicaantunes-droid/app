@@ -10,6 +10,7 @@ import type {
   Profile,
   WeeklyReading,
 } from '../types';
+import { lessonBadge } from './lessons';
 import { monthlyReviewDue } from './monthly';
 import { blockIndexOn, effectiveStatus, hasStarted, planDayNumber } from './plan';
 import { pendingReading, type ReadingPeriod } from './readings';
@@ -33,7 +34,7 @@ export type NextStep =
 
 export interface NextStepInput {
   today: DayKey;
-  profile: Pick<Profile, 'readingWeekday' | 'monthlyReviewDay'>;
+  profile: Pick<Profile, 'readingWeekday' | 'monthlyReviewDay'> & Partial<Pick<Profile, 'path'>>;
   plan?: PlanState;
   lessons: LessonProgress[];
   readings: WeeklyReading[];
@@ -47,18 +48,24 @@ export function semanaZeroMissing(plan: PlanState | undefined): number {
 }
 
 /**
- * A próxima aula a cuidar: a primeira não assistida ou, se já assistida, com a tarefa
- * por começar ("Começar a tarefa"). "Ir para a próxima aula" dispensa a tarefa daqui.
- * A aula 17 depende do fim do plano e não entra.
+ * A próxima aula a cuidar, pela tarefa: a primeira cuja tarefa ainda não começou.
+ * Assistir à aula não é exigido (o app explica cada tarefa). Ficam de fora a aula 17,
+ * que depende do fim do plano, as aulas opcionais para o caminho da aluna e as que ela
+ * pulou ("Pular esta aula"). As opcionais continuam no Caminho.
  */
 export function nextLesson(
   lessons: LessonProgress[],
+  path?: Profile['path'],
+  plan?: PlanState,
 ): { lessonId: number; watched: boolean } | undefined {
   for (const l of LESSONS) {
+    if (l.id === 17) continue;
+    if (path && lessonBadge(l.id, path) === 'opcional') continue;
     const p = lessons.find((x) => x.lessonId === l.id);
-    if (!p?.watched) return { lessonId: l.id, watched: false };
-    if (l.id !== 17 && p.task.status === 'nao_iniciada' && !p.task.data?.dispensada)
-      return { lessonId: l.id, watched: true };
+    if (p?.task.data?.dispensada) continue;
+    if (p && p.task.status !== 'nao_iniciada') continue;
+    if (l.id === 15 && plan && plan.status !== 'nao_iniciado') continue;
+    return { lessonId: l.id, watched: Boolean(p?.watched) };
   }
   return undefined;
 }
@@ -94,11 +101,9 @@ export function nextSteps(input: NextStepInput): NextStep[] {
   }
   if (plan?.status === 'semana_zero')
     steps.push({ kind: 'semana_zero', missing: semanaZeroMissing(plan) });
-  const lesson = nextLesson(lessons);
+  const lesson = nextLesson(lessons, profile.path, plan);
   if (lesson) steps.push({ kind: 'aula', ...lesson });
-  const allWatched = LESSONS.every((l) => lessons.find((p) => p.lessonId === l.id)?.watched);
-  if (allWatched && (!plan || plan.status === 'nao_iniciado'))
-    steps.push({ kind: 'preparar_semana_zero' });
+  else if (!plan || plan.status === 'nao_iniciado') steps.push({ kind: 'preparar_semana_zero' });
   if (status === 'concluido')
     steps.push(
       monthlyReviewDue(profile, plan, today, meta)

@@ -100,6 +100,13 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 - **Medição de desempenho:** o servidor local de teste passou a comprimir os arquivos, como a Netlify faz. Sem isso, a medição contava o app com três vezes o tamanho real.
 - **Publicação:** não tenho acesso à tua conta da Netlify. O passo a passo para publicar está no README.
 
+### Ajuste: o app guia a aluna
+
+- **Assistir à aula não é mais exigido** para o próximo passo andar: ele segue as tarefas. "Já assisti" continua na tela da aula, como opcional. Isso muda o texto da seção 7.12 ("Próxima aula: N" com "Ver a aula" e "Já assisti"), a teu pedido de que o app funcione sem as aulas.
+- **Aulas opcionais para o caso da aluna** ficam fora da sequência do próximo passo (aula 5 para quem não é intestino preso, aula 6 para quem não é intestino solto, aulas 7 e 12 para quem não é gases ou intestino irritável, aula 8 para quem não é refluxo). Com o caminho "indefinido", todas entram.
+- **"Pular esta aula"** substitui "Ir para a próxima aula" no cartão do próximo passo.
+- **Textos de orientação** ("Como fazer" de cada tarefa, "Como usar o app" e "Como usar esta tela") estão em `src/content/guiaApp.ts`. Eles explicam o uso do app e repetem só o que já está no material do curso.
+
 ## O que depende de você
 
 1. **Publicar na Netlify** seguindo o README e **decidir o endereço definitivo** antes de entregar o link às alunas.

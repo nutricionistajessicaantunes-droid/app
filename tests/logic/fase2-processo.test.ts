@@ -273,6 +273,17 @@ describe('teu próximo passo', () => {
       watched: false,
     });
   });
+  it('guia pela tarefa: assistir não é exigido e as aulas opcionais para o caminho ficam de fora', () => {
+    const feitas = (ids: number[]) => ids.map((id) => lesson(id, { status: 'concluida' }, false));
+    expect(nextLesson(feitas([1, 2, 3, 4]))).toEqual({ lessonId: 5, watched: false });
+    // Caminho preso: as aulas 6, 7 e 8 são opcionais e ficam de fora do próximo passo.
+    expect(nextLesson(feitas([1, 2, 3, 4, 5]), 'preso')).toEqual({ lessonId: 9, watched: false });
+    expect(nextLesson(feitas([1, 2, 3, 4, 5]), 'solto')).toEqual({ lessonId: 6, watched: false });
+    // Plano já começado: a semana zero (aula 15) não volta a aparecer.
+    const ate14 = feitas([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+    expect(nextLesson(ate14, 'indefinido')).toEqual({ lessonId: 15, watched: false });
+    expect(nextLesson(ate14, 'indefinido', plan())).toEqual({ lessonId: 16, watched: false });
+  });
   it('tarefa em andamento vem antes da próxima aula', () => {
     const lessons = [lesson(1, { status: 'em_andamento', startDate: D1 })];
     expect(nextSteps({ today: addDays(D1, 1), profile, lessons, readings: [] })[0]).toEqual({

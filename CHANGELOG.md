@@ -2,6 +2,15 @@
 
 Tudo que muda no app fica anotado aqui, por fase.
 
+## Ajuste · O app guia a aluna em cada passo (29/10/2026)
+
+- **"Como usar o app"**: tela nova com o caminho inteiro em seis passos, onde fica cada coisa e os cuidados. Fica no Guia, em Ajustes, no Caminho e no fim da primeira vez.
+- **Cartão "Como o app funciona"** na tela Hoje, nos primeiros dias, até a aluna tocar em "Entendi".
+- **Cada tarefa explica o que fazer**: a tela da aula começa pelo "Como fazer", em passos, e pelo que o app mostra no fim. A aula na Kiwify fica como opcional, para aprofundar.
+- **O próximo passo não depende mais de "Já assisti"**: o cartão mostra a próxima tarefa, com "Ver o passo a passo" e "Pular esta aula".
+- **O próximo passo segue o caso da aluna**: as aulas opcionais para a queixa dela (por exemplo, refluxo para quem tem intestino preso) não entram na sequência sugerida. Elas continuam no Caminho.
+- **"Como usar esta tela"** no registro do dia e em Resultados.
+
 ## Fase 4 · Acabamento e publicação (29/10/2026)
 
 ### O que ficou pronto

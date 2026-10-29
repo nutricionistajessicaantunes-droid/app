@@ -13,6 +13,7 @@ import {
   useReadings,
 } from '../../app/data';
 import { getLesson } from '../../content/curso';
+import { AJUDA } from '../../content/guiaApp';
 import { formatDayCompact } from '../../logic/dates';
 import { nextSteps, type NextStep } from '../../logic/nextStep';
 import { useToday } from '../../app/useToday';
@@ -116,12 +117,14 @@ export function Component() {
       ) : null}
 
       <Card label="Comece por aqui">
-        <ol style={{ margin: 0, paddingLeft: '1.3em' }}>
-          <li>Assista à aula na Kiwify e volte aqui para fazer a tarefa.</li>
-          <li>Registre o teu dia uma vez por dia, de preferência à noite.</li>
-          <li>No dia escolhido, faça a leitura da semana.</li>
-          <li>Siga o próximo passo que aparece na tela Hoje.</li>
-        </ol>
+        <ul style={{ margin: 0, paddingLeft: '1.3em' }}>
+          {AJUDA.caminho.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+        <p style={{ marginTop: 12 }}>
+          <Link to="/como-usar">Ver como o app funciona, passo a passo</Link>
+        </p>
         <p className="secundario" style={{ marginTop: 12 }}>
           Se você gosta de papel, o caderno continua valendo. O app faz as contas por você.
         </p>
@@ -244,9 +247,7 @@ function stepLink(st: NextStep): { to: string; label: string } {
     case 'aula':
       return {
         to: `/aula/${st.lessonId}`,
-        label: st.watched
-          ? `Aula ${st.lessonId}: começar a tarefa`
-          : `Próxima aula: ${st.lessonId}, ${getLesson(st.lessonId)?.title ?? ''}`,
+        label: `Aula ${st.lessonId}: ${getLesson(st.lessonId)?.task.name.toLowerCase() ?? ''}`,
       };
     case 'preparar_semana_zero':
       return { to: '/plano/semana-zero', label: 'Preparar a semana zero' };

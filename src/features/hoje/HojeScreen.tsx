@@ -40,6 +40,7 @@ import {
   AbsenceCard,
   CrisisCard,
   CrisisSuggestionCard,
+  FirstStepsCard,
   NextStepCard,
   NoEvacuationCard,
   ReadingCard,
@@ -130,6 +131,7 @@ export function HojeScreen() {
         key: 'crise',
         node: <CrisisCard crisis={crisis} today={today} record={todayRec} />,
       });
+    if (!dismissed.primeiros_passos) list.push({ key: 'primeiros', node: <FirstStepsCard /> });
     list.push({
       key: 'registro',
       node: (

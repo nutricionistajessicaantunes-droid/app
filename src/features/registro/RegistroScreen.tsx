@@ -3,6 +3,8 @@ import { useRef, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router';
 import { COPOS_POR_DIA, REGISTRO_DIAS_PARA_TRAS } from '../../config';
 import { BRISTOL_TEXTOS } from '../../content/bristol';
+import { AJUDA } from '../../content/guiaApp';
+import { HelpBox } from '../../ui/HelpBox';
 import { NOTA_BRISTOL_ANTES_AULA3 } from '../../content/curso';
 import { FRASES_DEPOIS_DO_REGISTRO } from '../../content/frases';
 import { REGISTRO_TEXTOS, SYMPTOM_LABEL, TAGS } from '../../content/registro';
@@ -150,6 +152,7 @@ function Registro({ date, today }: { date: string; today: string }) {
       </header>
 
       <div className={styles.blocos}>
+        <HelpBox items={AJUDA.registro} />
         <Card label="Intestino">
           <div ref={questionRef}>
             <Choice

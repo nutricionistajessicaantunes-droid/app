@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { FIBRAS } from '../../content/agua-fibras';
 import { MEDIDAS_REFLUXO } from '../../content/cardapios';
 import { AULA14, AULA5_SUGESTOES, KIT_CRISE_ITENS, type Lesson } from '../../content/curso';
+import { ETAPAS } from '../../content/guiaApp';
 import { TABELA_IMPLANTACAO } from '../../content/rotina';
 import { saveProfile } from '../../db/repo';
 import { useDays, useLessons, usePlan, useProfile, useStoredHabits } from '../../app/data';
@@ -150,8 +151,18 @@ export function TaskPanel({ lesson }: { lesson: Lesson }) {
   return (
     <Card label={`Tarefa · ${durationText}`} title={t.name}>
       <div className={styles.pilha}>
+        {ETAPAS[lesson.id] ? (
+          <div className={styles.recado}>
+            <p className={styles.rotulo}>Como fazer</p>
+            <ol style={{ margin: 0, paddingLeft: '1.3em' }}>
+              {ETAPAS[lesson.id]?.passos.map((p) => (
+                <li key={p}>{p}</li>
+              ))}
+            </ol>
+            <p style={{ marginTop: 8, marginBottom: 0 }}>{ETAPAS[lesson.id]?.resultado}</p>
+          </div>
+        ) : null}
         {t.instruction ? <p>{t.instruction}</p> : null}
-        {t.fields ? <p className="secundario">{t.fields}</p> : null}
         {t.notes && t.notes.length > 0 ? <BulletList items={t.notes} /> : null}
         {body}
       </div>

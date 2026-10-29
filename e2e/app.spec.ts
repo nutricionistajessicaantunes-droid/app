@@ -269,6 +269,7 @@ test('acessibilidade: sem violações graves nas telas principais', async ({ pag
   await page.waitForTimeout(1500);
   const telas = [
     '/',
+    '/como-usar',
     '/registro',
     '/caminho',
     '/aula/3',

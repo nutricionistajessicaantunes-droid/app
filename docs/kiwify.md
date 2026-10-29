@@ -18,6 +18,8 @@ Para começar, abra o link abaixo no navegador do celular (Safari no iPhone, Chr
 
 Se você abrir o link pelo Instagram ou pelo WhatsApp, o app pede para abrir no navegador. É só tocar nos três pontinhos e escolher abrir no navegador.
 
+Você não precisa ter assistido à aula para fazer a tarefa no app: cada tarefa tem o passo a passo na própria tela. A aula aprofunda o porquê de cada coisa.
+
 O caderno do curso continua valendo para quem gosta de papel. O app só deixa o processo mais fácil.
 
 ## Uma frase para o fim de cada aula

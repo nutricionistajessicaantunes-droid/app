@@ -113,6 +113,13 @@ export function Component() {
         </div>
       ) : (
         <>
+          <Link to="/como-usar" className={styles.indiceLink} style={{ marginBottom: 16 }}>
+            <span className={styles.indiceTexto}>
+              <span>Como usar o app</span>
+              <span className={styles.indiceDetalhe}>O caminho inteiro, passo a passo</span>
+            </span>
+            <ChevronRight size={20} aria-hidden="true" className="secundario" />
+          </Link>
           <Filete level={2}>
             {path === 'indefinido' ? 'Para começar' : `Para o teu caso · ${PATH_LABEL[path]}`}
           </Filete>
