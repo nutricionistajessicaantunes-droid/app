@@ -38,6 +38,27 @@ const TELAS_DEMO = [
   ['11-ajustes', '/ajustes'],
 ];
 
+// Telas da Fase 2. Com SO_NOVAS=1, só estas (para economizar tempo).
+const TELAS_PLANO = [
+  ['12-plano-de-21-dias', '/plano'],
+  ['13-leitura-da-semana', '/leitura?manual=1'],
+  ['14-tarefa-em-andamento', '/aula/11'],
+  ['15-registro-com-tarefa', '/registro'],
+  ['16-semana-zero', '/plano/semana-zero'],
+];
+const TELAS_COMPLETO = [
+  ['17-reavaliacao', '/plano/reavaliacao'],
+  ['18-fim-do-curso', '/fim'],
+  ['19-plano-minimo', '/plano/minimo'],
+  ['20-hoje-manutencao', '/'],
+];
+const SO_NOVAS = process.env.SO_NOVAS === '1';
+const erros = [];
+const vigiar = (page) => {
+  page.on('pageerror', (e) => erros.push(`${page.url()}: ${e.message}`));
+  page.on('console', (m) => m.type() === 'error' && erros.push(`${page.url()}: ${m.text()}`));
+};
+
 const browser = await chromium.launch();
 try {
   for (const [tema, scheme] of [
@@ -52,9 +73,12 @@ try {
       colorScheme: scheme,
     };
 
+    let ctx;
+    let page;
+    if (!SO_NOVAS) {
     // Primeira vez: código de acesso e guia de instalação no iPhone.
-    let ctx = await browser.newContext({ ...base, userAgent: UA_IPHONE });
-    let page = await ctx.newPage();
+    ctx = await browser.newContext({ ...base, userAgent: UA_IPHONE });
+    page = await ctx.newPage();
     await page.goto(`${BASE}/`);
     await page.waitForTimeout(700);
     await page.screenshot({ path: `${PASTA}/01-codigo-de-acesso-${tema}.png` });
@@ -84,7 +108,47 @@ try {
       await page.screenshot({ path: `${PASTA}/${nome}-${tema}.png` });
     }
     await ctx.close();
+    }
+
+    // Fase 2: plano em andamento.
+    ctx = await browser.newContext({ ...base, userAgent: UA_ANDROID });
+    page = await ctx.newPage();
+    vigiar(page);
+    await page.goto(`${BASE}/?demo=plano`);
+    await page.waitForTimeout(1200);
+    for (const [nome, rota] of TELAS_PLANO) {
+      await page.goto(`${BASE}${rota}`);
+      await page.waitForTimeout(800);
+      await page.screenshot({ path: `${PASTA}/${nome}-${tema}.png` });
+    }
+    // Modo crise ligado.
+    await page.goto(`${BASE}/crise`);
+    await page.waitForTimeout(600);
+    await page.getByRole('button', { name: 'Estou com diarreia agora' }).click();
+    await page.waitForTimeout(500);
+    await page.screenshot({ path: `${PASTA}/21-modo-crise-${tema}.png` });
+    await page.goto(`${BASE}/`);
+    await page.waitForTimeout(800);
+    await page.screenshot({ path: `${PASTA}/22-hoje-com-crise-${tema}.png` });
+    await ctx.close();
+
+    // Fase 2: plano concluído (reavaliação, fim do curso, plano mínimo).
+    ctx = await browser.newContext({ ...base, userAgent: UA_ANDROID });
+    page = await ctx.newPage();
+    vigiar(page);
+    await page.goto(`${BASE}/?demo=1`);
+    await page.waitForTimeout(1200);
+    for (const [nome, rota] of TELAS_COMPLETO) {
+      await page.goto(`${BASE}${rota}`);
+      await page.waitForTimeout(800);
+      await page.screenshot({ path: `${PASTA}/${nome}-${tema}.png` });
+    }
+    await ctx.close();
   }
+  if (erros.length > 0) {
+    console.log('Erros no console:');
+    for (const e of [...new Set(erros)]) console.log(`  ${e}`);
+  } else console.log('Nenhum erro no console.');
   console.log(`Capturas salvas em ${PASTA}`);
 } finally {
   await browser.close();

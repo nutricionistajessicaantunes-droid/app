@@ -60,3 +60,23 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 - **Segurança da página:** a política de conteúdo (`Content-Security-Policy`) ficou só com `'self'`, inclusive para estilos. Testei o app inteiro com essa política e não houve erro.
 - **Modo demonstração:** além de `?demo=1` (24 dias, plano concluído, leituras, tarefa concluída e reavaliação), criei `?demo=plano`, com o plano em andamento na semana 3, para as capturas e para você ver o app no meio do processo.
 - **Busca da lista de FODMAPs:** acrescentei termos de busca que levam à mesma entrada do caderno (por exemplo, "pão francês" e "pão de forma" levam a "pão francês e de forma"; "amêndoa" leva a "amêndoa em quantidade"). A classificação mostrada é sempre o nome da entrada como está no caderno. Não criei nenhuma classificação nova.
+
+### Fase 2
+
+- **Tarefas que dependem da Fase 3:** a ficha para a consulta (aula 9), "Meu dia de fibras" (aula 10) e o planejamento do protocolo (aula 12) chegam na Fase 3. Até lá, a tarefa mostra "Esta ferramenta chega na próxima versão do app. Por enquanto, use o caderno."
+- **Pausar e retomar uma tarefa:** retomar recomeça a contagem no dia, com a mesma configuração.
+- **Hábitos das tarefas 5, 8 e 13:** ficam ativos só no prazo da tarefa. "Escolher mais dois" (aula 13) começa uma semana nova com os dois anteriores e mais dois.
+- **Sair da sugestão de uma tarefa:** a especificação não diz como seguir quando a aluna não quer fazer uma tarefa. No cartão "Teu próximo passo", acrescentei "Ir para a próxima aula". A tarefa continua disponível na tela da aula.
+- **Leitura da semana fora do plano:** aparece no dia da leitura depois que a aluna começa a tarefa da aula 16. Na manutenção, quem faz esse papel é a revisão do mês (e a leitura de cada semana de um novo ciclo).
+- **Leitura da semana no plano:** fica disponível no último dia do bloco (dia 7). Se mais de uma semana ficou sem leitura, só a mais recente fica pendente. As outras podem ser feitas por Resultados.
+- **Novo ciclo:** um bloco de 7 dias com leitura no fim. "Repetir a semana" soma mais uma semana. Os hábitos do ciclo continuam ativos depois.
+- **A volta depois da crise:** o dia da melhora conta como dia 1. Com tipo 6 ou 7 durante a volta, a etapa fica parada por dois dias e depois recomeça do primeiro dia da mesma etapa. O aviso "Se a diarreia não melhora em dois dias, procure atendimento." aparece quando passam dois dias desde que o modo crise foi ligado sem melhora.
+- **"Abrir" na sugestão do modo crise:** liga o modo crise e abre a tela dele.
+- **Avisos automáticos:** depois de "Entendi", o mesmo aviso automático só volta depois de 14 dias.
+- **Recados do plano:** os títulos são "O que esperar desta semana" e "O quarto dia". A nota de cada semana ("Por que esses dois primeiro?", "É normal sentir um pouco mais de gases") fica sempre visível na tela do plano.
+- **Reavaliação:** só os hábitos do plano entram na média. A nota do plano não testado usa a média das três semanas e aparece em qualquer cenário, como diz a seção 7.8.
+- **Plano mínimo:** começa no dia em que é salvo. Os seis hábitos do plano ficam ativos até o dia em que a reavaliação foi concluída.
+- **Revisão do mês:** fica pendente do dia escolhido até o fim do mês. No mês em que o plano acabou depois desse dia, a primeira revisão fica para o mês seguinte.
+- **Destaques da aula 1:** o que se repetiu em pelo menos 2 dos 3 dias (sono abaixo de 6 horas, estresse 7 ou mais, dias sem evacuar, o mesmo tipo de Bristol, um alimento).
+- **Aula 11:** os controles de gases e estufamento aparecem no cartão da tarefa só quando não estão no bloco de sintomas (modo simples ou sintoma não acompanhado).
+- **Capturas da Fase 2:** para economizar, gerei só as telas novas (12 a 22 em `docs/telas/`).

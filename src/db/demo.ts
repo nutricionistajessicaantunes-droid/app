@@ -2,6 +2,7 @@ import { DEFAULT_SYMPTOMS_BY_PATH } from '../content/registro';
 import { allHabits } from '../logic/activeHabits';
 import { addDays, diffDays, toDayKey } from '../logic/dates';
 import { createBlocks, blockEnd } from '../logic/plan';
+import { readingId } from '../logic/readings';
 import { summarizeWeek } from '../logic/week';
 import { waterGoal } from '../logic/water';
 import type {
@@ -237,7 +238,7 @@ export async function seedDemo(
     .map((b, idx) => {
       const computed = summarizeWeek({ records, habits, start: b.start, end: blockEnd(b) });
       return {
-        id: `leitura-${b.start}`,
+        id: readingId({ context: 'plano', start: b.start }),
         start: b.start,
         end: blockEnd(b),
         context: 'plano' as const,
@@ -255,21 +256,25 @@ export async function seedDemo(
       };
     });
 
-  const lessons: LessonProgress[] = Array.from({ length: completo ? 17 : 15 }, (_, k) => {
+  // Aulas: quase todas as tarefas feitas; no cenário do plano, a da aula 11 em andamento.
+  const feitas = new Set([1, 2, 3, 4, 5, 6, 13, 14, 15, 16, ...(completo ? [17] : [])]);
+  const lessons: LessonProgress[] = Array.from({ length: completo ? 17 : 16 }, (_, k) => {
     const id = k + 1;
-    const doneTask = id === 3 || (completo && id === 15);
+    const running = !completo && id === 11;
     return {
       lessonId: id,
       watched: true,
       watchedAt: STAMP(addDays(day1, -14 + k)),
-      task: doneTask
+      task: feitas.has(id)
         ? {
             status: 'concluida' as const,
             startDate: addDays(day1, -14),
-            data: id === 3 ? { commonNotes: 'Dias com sono ruim.' } : {},
+            data: id === 3 ? { resposta: 'Dias com sono ruim.' } : {},
             completedAt: STAMP(addDays(day1, -7)),
           }
-        : { status: 'nao_iniciada' as const, data: {} },
+        : running
+          ? { status: 'em_andamento' as const, startDate: addDays(today, -2), data: {} }
+          : { status: 'nao_iniciada' as const, data: { dispensada: true } },
       updatedAt: now,
     };
   });

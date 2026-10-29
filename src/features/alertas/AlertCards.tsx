@@ -37,10 +37,17 @@ function RedFlagCard({ notice }: { notice: Notice }) {
   const flags = notice.reason.split(',').filter(Boolean) as RedFlagId[];
   return (
     <Card tone="alerta" title="Sinal que pede avaliação médica" role="alert">
-      <p>
-        Você marcou em {formatDayMonth(notice.detectedAt)}:{' '}
-        {flags.map((f) => (RED_FLAG_LABEL[f] ?? f).toLowerCase()).join('; ')}.
-      </p>
+      {notice.id.startsWith('auto-') ? (
+        <p>
+          Teus registros mostram{' '}
+          {flags.map((f) => (RED_FLAG_LABEL[f] ?? f).toLowerCase()).join('; ')}.
+        </p>
+      ) : (
+        <p>
+          Você marcou em {formatDayMonth(notice.detectedAt)}:{' '}
+          {flags.map((f) => (RED_FLAG_LABEL[f] ?? f).toLowerCase()).join('; ')}.
+        </p>
+      )}
       <p>{ALERTA_TEXTOS.cartao}</p>
       <p className="secundario">{ALERTA_TEXTOS.naoSignificaGrave}</p>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
