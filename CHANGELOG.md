@@ -15,7 +15,7 @@ Tudo que muda no app fica anotado aqui, por fase.
 - **Resultados** com os quatro gráficos (Bristol por dia, sintomas e energia, hábitos com a linha da meta, evacuações), padrões encontrados, histórico (leituras, tarefas, reavaliação, protocolo e sinais de acompanhamento) e "Compartilhar resumo".
 - **Tarefas das aulas 9, 10 e 12** ligadas às ferramentas novas.
 - **Modo demonstração completo**: diário de sintomas, protocolo em andamento e tarefa em andamento.
-- **Testes**: 195 testes, incluindo os exemplos do protocolo da especificação.
+- **Testes**: 193 testes, incluindo os exemplos do protocolo da especificação.
 
 ### Próxima fase
 
