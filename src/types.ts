@@ -169,7 +169,8 @@ export interface PlanState {
   concludedOn?: DayKey;
   /** Ids dos hábitos do plano mínimo (tabela habits). */
   minimumPlan?: string[];
-  cycles?: { start: DayKey; habitIds: string[] }[];
+  /** Novos ciclos depois do plano. `weeks` conta os blocos de 7 dias (repetir soma um). */
+  cycles?: { start: DayKey; habitIds: string[]; weeks?: number }[];
   /** Recados já vistos ("Entendi"). */
   seenNotes?: string[];
   updatedAt: string;
@@ -226,6 +227,12 @@ export interface CrisisState {
   startedAt?: DayKey;
   improvedAt?: DayKey;
   holdUntil?: DayKey;
+  /** Último dia em que um tipo 6 ou 7 segurou a volta (para não contar duas vezes). */
+  lastRelapseDay?: DayKey;
+  /** Etapa parada durante a pausa de 2 dias depois de um tipo 6 ou 7. */
+  heldStage?: number;
+  /** Dias descontados da contagem da volta, por causa das pausas. */
+  offsetDays?: number;
   stageDone?: number;
   dehydrationSigns?: string[];
   updatedAt: string;
