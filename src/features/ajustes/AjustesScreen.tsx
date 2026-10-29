@@ -263,6 +263,7 @@ export function Component() {
       </Card>
 
       <ul className={styles.lista}>
+        <Item to="/como-usar" label="Como usar o app" />
         <Item to="/ajustes/restaurar" label="Restaurar uma cópia" />
         <Item to="/ajustes/trocar-celular" label="Trocar de celular" />
         <Item to="/ajustes/circunferencia" label="Circunferência abdominal" detail="Opcional" />

@@ -42,7 +42,13 @@ export function Component() {
       <LessonSeal lessonId={id} path={profile.path} />
       <p className={styles.descricao}>{lesson.description}</p>
 
-      <Card>
+      <TaskPanel lesson={lesson} />
+
+      <Card label="Aula na Kiwify (opcional)">
+        <p className="secundario">
+          A aula aprofunda o porquê desta tarefa. Assistir é opcional: a tarefa funciona com o passo
+          a passo acima.
+        </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {url ? (
             <ExternalLink href={url} variant="primary" block offlineMessage={SEM_INTERNET_AULA}>
@@ -78,8 +84,6 @@ export function Component() {
           </ul>
         </Card>
       ) : null}
-
-      <TaskPanel lesson={lesson} />
     </Screen>
   );
 }

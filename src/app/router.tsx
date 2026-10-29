@@ -28,6 +28,7 @@ export const router = createBrowserRouter([
       { path: 'revisao', lazy: () => import('../features/reavaliacao/RevisaoScreen') },
       { path: 'ciclo', lazy: () => import('../features/reavaliacao/CicloScreen') },
       { path: 'fim', lazy: () => import('../features/reavaliacao/FimScreen') },
+      { path: 'como-usar', lazy: () => import('../features/comoUsar/ComoUsarScreen') },
       { path: 'fodmap', lazy: () => import('../features/fodmap/FodmapScreen') },
       { path: 'ficha', lazy: () => import('../features/ficha/FichaScreen') },
       { path: 'crise', lazy: () => import('../features/crise/CriseScreen') },

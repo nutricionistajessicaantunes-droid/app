@@ -2,8 +2,9 @@ import { useNavigate } from 'react-router';
 import { CRISE_SUGESTAO_TEXTO, SEM_EVACUAR_TEXTO } from '../../content/alertas';
 import { getLesson } from '../../content/curso';
 import { DIARREIA, VOLTA_ETAPAS } from '../../content/diarreia';
+import { ETAPAS, PRIMEIROS_PASSOS } from '../../content/guiaApp';
 import { CAMINHOS, PLANO_TEXTOS, PLAN_THEMES } from '../../content/plano';
-import { saveDay, saveLesson, setDismissed } from '../../db/repo';
+import { saveDay, setDismissed } from '../../db/repo';
 import { crisisNoImprovement, crisisStage } from '../../logic/crisis';
 import { formatDayCompact, formatDayMonth } from '../../logic/dates';
 import type { ActiveHabit } from '../../logic/habits';
@@ -249,36 +250,17 @@ export function NextStepCard({
       );
     case 'aula': {
       const lesson = getLesson(step.lessonId);
-      if (!step.watched) {
-        return (
-          <Card label={label} title={`Próxima aula: ${step.lessonId}, ${lesson?.title ?? ''}`}>
-            <div className={styles.linha}>
-              <ButtonLink to={`/aula/${step.lessonId}`} variant="primary">
-                Ver a aula
-              </ButtonLink>
-              <Button
-                onClick={() =>
-                  void saveLesson(step.lessonId, (c) => ({
-                    ...c,
-                    watched: true,
-                    watchedAt: new Date().toISOString(),
-                  }))
-                }
-              >
-                Já assisti
-              </Button>
-            </div>
-          </Card>
-        );
-      }
       return (
-        <Card label={label} title={`Aula ${step.lessonId}: ${lesson?.task.name ?? ''}`}>
+        <Card label={label} title={`Aula ${step.lessonId}: ${lesson?.title ?? ''}`}>
+          <p>
+            <strong>Tarefa: {lesson?.task.name}.</strong> {ETAPAS[step.lessonId]?.resultado}
+          </p>
           <div className={styles.linha}>
             <ButtonLink to={`/aula/${step.lessonId}`} variant="primary">
-              Começar a tarefa
+              Ver o passo a passo
             </ButtonLink>
             <Button variant="ghost" onClick={() => void skipTaskSuggestion(step.lessonId)}>
-              Ir para a próxima aula
+              Pular esta aula
             </Button>
           </div>
         </Card>
@@ -321,4 +303,25 @@ export function NextStepCard({
     default:
       return null;
   }
+}
+
+export function FirstStepsCard() {
+  return (
+    <Card tone="destaque" label="Como o app funciona">
+      <ol style={{ margin: 0, paddingLeft: '1.3em' }}>
+        {PRIMEIROS_PASSOS.map((p) => (
+          <li key={p}>{p}</li>
+        ))}
+      </ol>
+      <div className={styles.linha} style={{ marginTop: 12 }}>
+        <ButtonLink to="/como-usar">Ver o passo a passo completo</ButtonLink>
+        <Button
+          variant="ghost"
+          onClick={() => void setDismissed('primeiros_passos', new Date().toISOString())}
+        >
+          Entendi
+        </Button>
+      </div>
+    </Card>
+  );
 }

@@ -211,3 +211,18 @@ Textos novos das telas da Fase 2. Os textos que vêm da especificação ou do ca
 | PDF da ficha | Ficha para a consulta · Últimas 3 semanas · Período · Dias · Tipo · Evacuações · Sintomas · Energia · 1 de 2 |
 | Tarefas | Abrir a ficha para a consulta · Ficha salva. · Abrir o planejamento do protocolo · Planejamento salvo. · Monte o teu dia de fibras no Guia. · Abrir Meu dia de fibras |
 | Resultados | Gráficos · Tipo de Bristol por dia · 1 e 2, trânsito lento · 3 a 5, faixa saudável · 6 e 7, trânsito acelerado · Sintomas e energia por semana · Sintomas (círculo) · Energia (quadrado) · Dias de cada hábito por semana · meta 5 · Evacuações por semana · Padrões encontrados · Nenhum padrão apareceu nas últimas 8 semanas. · Possível padrão. · Histórico · As leituras da semana, as tarefas concluídas e a reavaliação aparecem aqui. · Leituras da semana · Mantenho: · Ajusto: · Tarefas concluídas · Sinais que pedem acompanhamento · 3 de novembro: teus registros mostraram estufamento diário. · Compartilhar resumo · Resumo copiado. · Minha semana, de 2 de novembro a 8 de novembro: ... |
+
+## Ajuste · O app guia a aluna
+
+Todos os textos de `src/content/guiaApp.ts` são novos: "Como usar o app" (introdução, os seis passos, onde fica cada coisa e cuidados), o cartão "Como o app funciona", o "Como fazer" e o "No fim" de cada uma das 17 tarefas e o "Como usar esta tela" do registro, de Resultados e do Caminho.
+
+| Onde | Texto |
+|---|---|
+| Hoje | Como o app funciona · Ver o passo a passo completo · Entendi · Aula 1: Intestino, o nosso segundo cérebro · Tarefa: 3 dias de observação. · Ver o passo a passo · Pular esta aula |
+| Tela da aula | Como fazer · Aula na Kiwify (opcional) · A aula aprofunda o porquê desta tarefa. Assistir é opcional: a tarefa funciona com o passo a passo acima. |
+| Caminho | Ver como o app funciona, passo a passo · Aula 4: uma fibra por dia |
+| Guia | Como usar o app · O caminho inteiro, passo a passo |
+| Ajustes | Como usar o app |
+| Primeira vez | Daqui para frente, o app guia você assim: · O passo a passo completo fica no Guia e em Ajustes, em "Como usar o app". |
+| Como usar o app | O caminho, passo a passo · Onde fica cada coisa · Cuidados · Ir para a tela Hoje |
+| Registro e Resultados | Como usar esta tela |

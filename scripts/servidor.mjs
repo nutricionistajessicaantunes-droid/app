@@ -29,8 +29,9 @@ const tipos = {
 const TEXTO = new Set(['.html', '.js', '.css', '.svg', '.webmanifest', '.json']);
 const cache = new Map();
 function comprimido(caminho, corpo, tipo) {
-  const chave = `${tipo}:${caminho}`;
-  if (!cache.has(chave)) cache.set(chave, tipo === 'br' ? brotliCompressSync(corpo) : gzipSync(corpo));
+  const chave = `${tipo}:${caminho}:${statSync(caminho).mtimeMs}`;
+  if (!cache.has(chave))
+    cache.set(chave, tipo === 'br' ? brotliCompressSync(corpo) : gzipSync(corpo));
   return cache.get(chave);
 }
 

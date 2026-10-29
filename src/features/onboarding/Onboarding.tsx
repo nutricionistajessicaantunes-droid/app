@@ -1,3 +1,4 @@
+import { PRIMEIROS_PASSOS } from '../../content/guiaApp';
 import { lazy, Suspense, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useToday } from '../../app/useToday';
@@ -316,6 +317,15 @@ export function Onboarding() {
     >
       <p className={firstRunStyles.texto}>
         O registro leva um minuto. Toque em "Registrar meu dia" na tela Hoje.
+      </p>
+      <p className={firstRunStyles.texto}>Daqui para frente, o app guia você assim:</p>
+      <ol className={firstRunStyles.texto} style={{ paddingLeft: '1.3em' }}>
+        {PRIMEIROS_PASSOS.map((p) => (
+          <li key={p}>{p}</li>
+        ))}
+      </ol>
+      <p className={firstRunStyles.texto}>
+        O passo a passo completo fica no Guia e em Ajustes, em "Como usar o app".
       </p>
     </FirstRun>
   );

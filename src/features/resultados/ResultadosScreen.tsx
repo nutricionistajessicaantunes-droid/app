@@ -6,6 +6,8 @@ import { getLesson } from '../../content/curso';
 import { RESULTADO_LABEL, TABELA_TESTE } from '../../content/fodmap';
 import { PADROES_ORIENTACAO, PADROES_SEM_DADOS } from '../../content/padroes';
 import { CENARIOS } from '../../content/reavaliacao';
+import { AJUDA } from '../../content/guiaApp';
+import { HelpBox } from '../../ui/HelpBox';
 import { addDays } from '../../logic/dates';
 import { bristolByDay, weeklySummaries } from '../../logic/charts';
 import { enoughForPatterns, findPatterns } from '../../logic/patterns';
@@ -84,6 +86,7 @@ export function Component() {
       title="Resultados"
       subtitle="O padrão da semana é o que conta. O dia isolado não diz nada."
     >
+      <HelpBox items={AJUDA.resultados} />
       <Card label="Tua semana">
         <div className={styles.seletor}>
           <button

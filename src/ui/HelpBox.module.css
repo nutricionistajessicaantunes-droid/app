@@ -1,0 +1,54 @@
+.caixa {
+  margin-bottom: var(--e4);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: var(--banda);
+}
+
+.resumo {
+  display: flex;
+  align-items: center;
+  gap: var(--e2);
+  min-height: var(--toque);
+  padding: 0 var(--e3);
+  font-weight: 600;
+  color: var(--texto);
+  cursor: pointer;
+  list-style: none;
+}
+
+.resumo::-webkit-details-marker {
+  display: none;
+}
+
+.resumo svg {
+  color: var(--acento);
+  flex-shrink: 0;
+}
+
+.resumo span {
+  flex: 1;
+}
+
+.seta {
+  transition: transform 0.2s ease;
+}
+
+.caixa[open] .seta {
+  transform: rotate(180deg);
+}
+
+.corpo {
+  padding: 0 var(--e3) var(--e3);
+}
+
+.corpo ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seta {
+    transition: none;
+  }
+}
