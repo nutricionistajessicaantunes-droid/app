@@ -50,6 +50,7 @@ Você só faz isso uma vez. Depois, cada atualização publica sozinha.
 | O quê | Onde |
 |---|---|
 | Textos do curso (aulas, Bristol, plano, cardápios, FODMAPs, alertas) | pasta `src/content` |
+| Receitas e ingredientes de "O que eu tenho em casa" e "Montar o meu dia" | `src/content/refeicoes.ts` |
 | Links da Kiwify (área de membros e cada aula) | `src/config.ts`, em `KIWIFY_AREA_URL` e `KIWIFY_AULA_URLS` |
 | WhatsApp, Instagram e endereços de atendimento | `src/config.ts` |
 | Números de corte dos cálculos (por exemplo, "dia com sintoma" a partir da nota 4) | `src/config.ts`, seção "Números de corte" |

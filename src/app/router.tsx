@@ -32,6 +32,13 @@ export const router = createBrowserRouter([
       { path: 'fodmap', lazy: () => import('../features/fodmap/FodmapScreen') },
       { path: 'ficha', lazy: () => import('../features/ficha/FichaScreen') },
       { path: 'crise', lazy: () => import('../features/crise/CriseScreen') },
+      { path: 'refeicoes', lazy: () => import('../features/refeicoes/RefeicoesScreen') },
+      { path: 'refeicoes/em-casa', lazy: () => import('../features/refeicoes/EmCasaScreen') },
+      { path: 'refeicoes/meu-dia', lazy: () => import('../features/refeicoes/MeuDiaScreen') },
+      {
+        path: 'refeicoes/receita/:id',
+        lazy: () => import('../features/refeicoes/ReceitaScreen'),
+      },
       { path: 'resultados', lazy: () => import('../features/resultados/ResultadosScreen') },
       { path: 'guia', lazy: () => import('../features/guia/GuiaScreen') },
       { path: 'guia/:secao', lazy: () => import('../features/guia/GuiaSecaoScreen') },

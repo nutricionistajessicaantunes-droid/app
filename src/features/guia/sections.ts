@@ -47,6 +47,16 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     detail: 'Os quatro casos, gatilhos e substituições',
   },
   {
+    id: 'refeicoes',
+    title: 'Refeições',
+    detail: 'O que eu tenho em casa, receitas e o meu dia montado',
+  },
+  {
+    id: 'receitas-fodmap',
+    title: 'Receitas baixo FODMAP',
+    detail: 'Receitas para a fase 1 do protocolo',
+  },
+  {
     id: 'diarreia',
     title: 'Diarreia',
     detail: 'Primeiro a água, kit de crise e a volta depois da crise',
@@ -66,11 +76,20 @@ export const GUIDE_SECTIONS: GuideSection[] = [
 
 /** O conteúdo do caminho da aluna aparece primeiro (seção 6.11). */
 export const PATH_PRIORITY: Record<Path, string[]> = {
-  preso: ['bristol', 'fibras', 'agua', 'cardapios', 'plano', 'rotina'],
-  solto: ['bristol', 'diarreia', 'agua', 'cardapios', 'plano'],
-  gases_sii: ['bristol', 'fodmap', 'cardapios', 'rotina', 'prebioticos', 'plano'],
-  refluxo: ['bristol', 'cardapios', 'rotina', 'prato', 'plano'],
-  indefinido: ['bristol', 'plano', 'registro', 'alertas'],
+  preso: ['bristol', 'fibras', 'agua', 'cardapios', 'refeicoes', 'plano', 'rotina'],
+  solto: ['bristol', 'diarreia', 'agua', 'cardapios', 'refeicoes', 'plano'],
+  gases_sii: [
+    'bristol',
+    'fodmap',
+    'receitas-fodmap',
+    'cardapios',
+    'refeicoes',
+    'rotina',
+    'prebioticos',
+    'plano',
+  ],
+  refluxo: ['bristol', 'cardapios', 'refeicoes', 'rotina', 'prato', 'plano'],
+  indefinido: ['bristol', 'plano', 'registro', 'refeicoes', 'alertas'],
 };
 
 /** Cardápio de cada caminho, para abrir direto na parte certa. */

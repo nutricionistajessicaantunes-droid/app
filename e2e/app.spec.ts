@@ -264,6 +264,32 @@ test('8. salvar a cópia e restaurar', async ({ page }) => {
   expect(days[0]).toMatchObject({ date: HOJE, bristol: 4 });
 });
 
+test('9. refeições: o que eu tenho em casa e o meu dia', async ({ page }) => {
+  await seed(page, { meta: [META], profile: [profile({ path: 'preso' })] }, '/refeicoes/em-casa');
+  await page.getByRole('button', { name: 'Tapioca', exact: true }).click();
+  await page.getByRole('button', { name: 'Ovo', exact: true }).click();
+  await page.getByRole('button', { name: 'Queijo minas ou queijo branco' }).click();
+  await expect(page.getByText('3 itens marcados')).toBeVisible();
+  const pronto = page.getByRole('link', { name: /^Tapioca com ovo e queijo minas/ });
+  await expect(pronto).toBeVisible();
+  await expect(page.getByText(/^Falta pouco/)).toBeVisible();
+  await expect(page.getByText(/^Falta: /).first()).toBeVisible();
+  await pronto.click();
+  await expect(page.getByText('Tem: tapioca')).toBeVisible();
+  await page.getByRole('button', { name: 'Café da manhã' }).click();
+  await expect(page.getByRole('status')).toContainText('Salvo no teu dia');
+  await page.getByRole('link', { name: 'Ver o meu dia' }).click();
+  await expect(page.getByRole('link', { name: 'Tapioca com ovo e queijo minas' })).toBeVisible();
+  await expect(page.getByText(/Escolha o almoço ou o jantar para conferir/)).toBeVisible();
+  const meta = (await readStore(page, 'meta')) as {
+    pantry?: string[];
+    myDay?: Record<string, string>;
+  }[];
+  expect(meta[0]?.pantry?.sort()).toEqual(['ovo', 'queijo_minas', 'tapioca']);
+  expect(meta[0]?.myDay?.cafe).toBe('b-tapioca-com-ovo-e-queijo-minas');
+  await expect(page.getByText(/kcal/i)).toHaveCount(0);
+});
+
 test('acessibilidade: sem violações graves nas telas principais', async ({ page }) => {
   await page.goto('/?demo=1');
   await page.waitForTimeout(1500);
@@ -282,6 +308,11 @@ test('acessibilidade: sem violações graves nas telas principais', async ({ pag
     '/ficha',
     '/fodmap',
     '/crise',
+    '/refeicoes',
+    '/refeicoes/em-casa',
+    '/refeicoes/meu-dia',
+    '/refeicoes/receita/b-mingau-de-aveia',
+    '/guia/receitas-fodmap',
   ];
   const graves: string[] = [];
   for (const t of telas) {

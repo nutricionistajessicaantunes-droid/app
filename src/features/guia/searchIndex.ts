@@ -12,6 +12,7 @@ import * as prato from '../../content/prato';
 import * as prebioticos from '../../content/prebioticos';
 import * as reav from '../../content/reavaliacao';
 import * as registro from '../../content/registro';
+import * as refeicoes from '../../content/refeicoes';
 import * as rotina from '../../content/rotina';
 import * as sobre from '../../content/sobre';
 import { normalizeSearch } from '../../logic/text';
@@ -65,6 +66,14 @@ const SOURCES: Record<string, unknown[]> = {
     alertas.ALERTA_TEXTOS,
     alertas.SEGUNDO_GRUPO,
     alertas.ACOMPANHAMENTO_TEXTO,
+  ],
+  refeicoes: [
+    refeicoes.REFEICOES_TEXTOS.intro,
+    refeicoes.RECEITAS.filter((r) => r.fonte !== 'fodmap').map((r) => [r.titulo, r.itens]),
+  ],
+  'receitas-fodmap': [
+    refeicoes.ORIENTACOES_FODMAP,
+    refeicoes.RECEITAS_FODMAP.map((r) => [r.titulo, r.itens, r.preparo]),
   ],
   avisos: [avisos.AVISOS_IMPORTANTES],
   sobre: [sobre.SOBRE_O_APP],

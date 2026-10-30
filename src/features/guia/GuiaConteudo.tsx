@@ -686,6 +686,16 @@ export function CardapiosIndex() {
             <span>Gatilhos e substituições</span>
           </Link>
         </li>
+        <li>
+          <Link to="/refeicoes" className={styles.indiceLink}>
+            <span className={styles.indiceTexto}>
+              <span>Mais opções de refeição</span>
+              <span className={styles.indiceDetalhe}>
+                O que eu tenho em casa, receitas e o meu dia montado
+              </span>
+            </span>
+          </Link>
+        </li>
       </ul>
     </>
   );

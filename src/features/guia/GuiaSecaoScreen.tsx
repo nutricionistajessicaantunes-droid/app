@@ -21,6 +21,7 @@ import {
   RotinaGuia,
   SobreGuia,
 } from './GuiaConteudo';
+import { ReceitasFodmapGuia } from '../refeicoes/ReceitasFodmapGuia';
 import { getSection } from './sections';
 
 function useHashScroll() {
@@ -37,6 +38,7 @@ export function Component() {
   useHashScroll();
   const section = getSection(secao);
   if (!section) return <Navigate to="/guia" replace />;
+  if (secao === 'refeicoes') return <Navigate to="/refeicoes" replace />;
 
   if (secao === 'cardapios') {
     if (sub === 'gatilhos') {
@@ -97,6 +99,8 @@ export function Component() {
         return <AvisosGuia />;
       case 'sobre':
         return <SobreGuia />;
+      case 'receitas-fodmap':
+        return <ReceitasFodmapGuia />;
       default:
         return null;
     }

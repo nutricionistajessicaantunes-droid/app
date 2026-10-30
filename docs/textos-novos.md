@@ -226,3 +226,18 @@ Todos os textos de `src/content/guiaApp.ts` são novos: "Como usar o app" (intro
 | Primeira vez | Daqui para frente, o app guia você assim: · O passo a passo completo fica no Guia e em Ajustes, em "Como usar o app". |
 | Como usar o app | O caminho, passo a passo · Onde fica cada coisa · Cuidados · Ir para a tela Hoje |
 | Registro e Resultados | Como usar esta tela |
+
+## Refeições · O que eu tenho em casa e o meu dia
+
+Os textos de `REFEICOES_TEXTOS`, `BASICOS`, `GRUPOS`, `FONTE_LABEL`, os títulos curtos das opções dos cardápios e as notas de "O que mudou do material" em `src/content/refeicoes.ts` são novos. As receitas vêm da Biblioteca de refeições e das Receitas baixo FODMAP, com as trocas listadas em `docs/PERGUNTAS.md`.
+
+| Onde | Texto |
+|---|---|
+| Refeições | Refeições · N opções para combinar. · O que eu tenho em casa · Marque os ingredientes e veja o que dá para fazer, e o que falta comprar · Montar o meu dia · Uma opção por refeição, conferida pelo prato, pela fibra e pela água · Receitas baixo FODMAP · N receitas para a fase 1 do protocolo · Cardápios modelo · Os quatro casos do curso, com gatilhos e substituições |
+| O que eu tenho em casa | Marque o que você tem em casa · N itens marcados · tocar para mudar · Procurar ingrediente · Ex.: ovo, tapioca, frango · Desmarcar tudo · Refeição · Todas · Filtros · Sem lactose · Sem glúten · Vegetariano · Baixo FODMAP · Dá para fazer agora (N) · Falta pouco (N) · Falta: ... · Lista de compras · ...: completa N receitas · Copiar a lista · Lista copiada · Outras opções (N) · Mostrar todas (N) · Montar o meu dia com estas opções |
+| Receita | Pode ser sem lactose · Pode ser sem glúten · Vegetariano · Baixo FODMAP · Ingredientes · Com o que você tem em casa · Tem: ... · Falta: ... · Modo de preparo · O que mudou do material · Protocolo low FODMAP · Ver as trocas na lista · Usar no meu dia · Salvo no teu dia como ... · Ver o meu dia |
+| Montar o meu dia | O meu dia · Nada escolhido · Escolher · Trocar · Tirar · Como o teu dia ficou · Prato. · Escolha o almoço ou o jantar para conferir. · Leguminosa. · Nenhuma no dia. Na fase 1, a leguminosa volta na reintrodução. · Fibras. · Fontes de fibra no dia: ... · Nenhuma fonte de fibra no dia. · Água. · Tua meta: N ml por dia. · Calcular a meta de água · Low FODMAP. · Para o teu caso. · Para comprar. · Limpar o dia · Marcar o que eu tenho em casa · Escolher ... · Procurar receita · Ex.: tapioca, frango · Só o que dá para fazer com o que tenho · Nenhuma opção com esses filtros. |
+| Guia | Refeições · O que eu tenho em casa, receitas e o meu dia montado · Receitas baixo FODMAP · Receitas para a fase 1 do protocolo · Mais opções de refeição · Receitas com baixo teor de FODMAP, para a fase 1 do protocolo. Toque numa receita para ver o preparo e colocar no teu dia. · Orientações práticas · Receitas |
+| Como usar o app | Guia: O conteúdo do curso para consulta rápida, com busca, e as Refeições: o que dá para fazer com o que você tem em casa. |
+| Aula 14 | Para ter mais opções, abra Refeições no Guia: marque o que você tem em casa e monte o teu dia. |
+

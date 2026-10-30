@@ -46,7 +46,11 @@ export const COMO_USAR = {
       texto: 'As 17 aulas com as tarefas, o plano de 21 dias e o protocolo low FODMAP.',
     },
     { nome: 'Resultados', texto: 'Tua semana, os gráficos, os padrões e a ficha para a consulta.' },
-    { nome: 'Guia', texto: 'O conteúdo do curso para consulta rápida, com busca.' },
+    {
+      nome: 'Guia',
+      texto:
+        'O conteúdo do curso para consulta rápida, com busca, e as Refeições: o que dá para fazer com o que você tem em casa.',
+    },
     {
       nome: 'Ajustes',
       texto:
@@ -191,6 +195,7 @@ export const ETAPAS: Record<number, EtapaGuia> = {
       'Faça a compra pela lista base e marque o que comprou.',
       'Escolha o dia de cada um dos três preparos: a leguminosa cozida, a proteína pronta e os legumes e folhas higienizados.',
       'Monte um prato e anote o que ficou parecido com o modelo e o que faltou.',
+      'Para ter mais opções, abra Refeições no Guia: marque o que você tem em casa e monte o teu dia.',
     ],
     resultado: 'Você marca como feita quando terminar. O app não guarda fotos.',
   },

@@ -107,6 +107,23 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 - **"Pular esta aula"** substitui "Ir para a próxima aula" no cartão do próximo passo.
 - **Textos de orientação** ("Como fazer" de cada tarefa, "Como usar o app" e "Como usar esta tela") estão em `src/content/guiaApp.ts`. Eles explicam o uso do app e repetem só o que já está no material do curso.
 
+### Refeições: o que eu tenho em casa e o meu dia
+
+- **Sem calorias e sem macronutrientes**, como você pediu. Os valores da Biblioteca ficaram de fora; o app confere o dia pelo prato da aula 14, pelas fontes de fibra e pela meta de água.
+- **Fontes**: as 19 receitas baixo FODMAP, as opções dos cardápios modelo de intestino preso, gases e SII e refluxo (45 opções) e a Biblioteca de refeições (108). O cardápio da crise de diarreia ficou fora, porque é só para a crise e já está na tela do modo crise.
+- **Trocas de orçamento e de termo**: o whey saiu de todas as receitas (em algumas entrou leite em pó, ovo ou aveia); o salmão virou peixe branco; o cream cheese virou requeijão; o eritritol e o açúcar de coco viraram açúcar mascavo; o "Rap10" virou tortilha de trigo; a sardinha entrou como opção ao atum; na parte baixo FODMAP, o iogurte de coco virou iogurte sem lactose, a framboesa e o mirtilo viraram morango, o brie e o camembert ganharam o parmesão como opção, e o colágeno e a proteína vegana ficaram opcionais. Cada receita trocada mostra o que mudou.
+- **Nomes em inglês trocados**: Avocado toast virou Torrada com abacate, Chia pudding virou Pudim de chia, Brownie virou Bolinho de chocolate de caneca, Smoothie virou Vitamina, Muffin virou Bolinho, Parfait virou Copo de iogurte, Chips virou Batata-doce crocante assada, Wrap virou Tortilha, Strogonoff virou Estrogonofe, e "airfryer" virou fritadeira sem óleo.
+- **Ficaram de fora** o Shake proteico do jantar e o Brigadeiro duo, que dependiam do whey, e o segundo Iogurte de maracujá e o segundo Pão com pasta de amendoim e ovo, que repetiam receitas do café. O bombom do almoço ficou como "se quiser".
+- **Salada de macarrão com iogurte**: a receita pedia 1 colher de chá de sal (5 g) numa refeição só. Troquei por "sal a gosto". Se preferir o texto original, me avise.
+- **Café e lanche se trocam, almoço e jantar também**: uma receita de café aparece também no lanche, e uma de almoço aparece no jantar.
+- **Verdura e fruta de acompanhamento**: quando a receita fala em "salada à vontade" ou "legumes e verduras", qualquer verdura ou legume marcado resolve. Quando a verdura é o prato (abobrinha recheada, sopa de abóbora, omelete de espinafre), ela precisa estar marcada.
+- **Básicos**: o app considera que todo mundo tem sal, pimenta, ervas secas, canela, azeite ou óleo, açúcar, fermento e café. Eles não entram na lista do que falta.
+- **Filtro baixo FODMAP**: começa ligado na fase 1 do protocolo e no caminho de gases e SII. Vale a lista do curso e a tabela das receitas baixo FODMAP. Alimentos que não aparecem em nenhuma das duas (mussarela, requeijão, queijo minas padrão, mamão, polvilho, linguiça, geleia, molho de tomate pronto) ficam fora do filtro, por segurança. A aveia comum e a linhaça entram com o aviso de porção pequena, e a banana com o aviso de "mais verde", como no cardápio de gases.
+- **Sem glúten**: a aveia comum conta como "com glúten", por causa da contaminação. Só a aveia sem glúten passa no filtro.
+- **Sem lactose**: todo queijo conta como "com lactose", mesmo os curados. O filtro mostra o que fica sem lactose de verdade.
+- **Proteína no prato**: queijo sozinho não conta como a proteína do prato da aula 14, que é ovo, frango, carne, peixe ou combinação vegetal. Arroz com feijão conta como combinação vegetal.
+- **Onde fica**: no Guia, em "Refeições" e "Receitas baixo FODMAP", no índice dos cardápios modelo e no passo a passo da aula 14.
+
 ## O que depende de você
 
 1. **Publicar na Netlify** seguindo o README e **decidir o endereço definitivo** antes de entregar o link às alunas.
@@ -116,3 +133,4 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 5. **Confirmar os pontos da seção 9.17** listados no começo deste arquivo.
 6. **Testar no celular** com o roteiro `docs/teste-no-celular.md`, principalmente os lembretes na "Agenda do iPhone".
 7. **Fazer o merge** do pull request.
+8. **Conferir as refeições**: as trocas de orçamento e os itens que ficaram fora do filtro baixo FODMAP estão listados acima, em "Refeições".

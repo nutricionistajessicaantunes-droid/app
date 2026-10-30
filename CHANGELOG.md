@@ -2,6 +2,15 @@
 
 Tudo que muda no app fica anotado aqui, por fase.
 
+## Refeições · O que eu tenho em casa e o meu dia (30/10/2026)
+
+- **"O que eu tenho em casa"**: a aluna marca os ingredientes que tem e o app mostra o que dá para fazer agora, o que falta pouco (um ou dois itens) e uma lista de compras com os itens que completam mais receitas. Filtros de refeição, sem lactose, sem glúten, vegetariano e baixo FODMAP, que começa ligado na fase 1 do protocolo e no caminho de gases e SII.
+- **"Montar o meu dia"**: uma opção por refeição, e o app confere o dia pelo prato da aula 14 no almoço e no jantar, pela leguminosa, pelas fontes de fibra e pela meta de água. Sem calorias e sem macronutrientes.
+- **172 opções**: as 108 da Biblioteca de refeições, as 19 receitas baixo FODMAP e as 45 opções dos cardápios modelo, com trocas para caber no orçamento (o whey saiu, o salmão virou peixe branco, a sardinha entrou ao lado do atum, entre outras). Cada receita mostra o que mudou.
+- **"Receitas baixo FODMAP"** como seção nova do Guia, com as orientações práticas.
+- **Correção de contraste** no selo das tarefas.
+- **Testes**: 17 testes novos de unidade e um ponta a ponta das refeições; a verificação de acessibilidade passou a cobrir as cinco telas novas.
+
 ## Ajuste · O app guia a aluna em cada passo (29/10/2026)
 
 - **"Como usar o app"**: tela nova com o caminho inteiro em seis passos, onde fica cada coisa e os cuidados. Fica no Guia, em Ajustes, no Caminho e no fim da primeira vez.
