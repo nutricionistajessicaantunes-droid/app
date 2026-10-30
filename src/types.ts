@@ -270,5 +270,16 @@ export interface Meta {
   installPromptDismissedAt?: string;
   persistRequested?: boolean;
   dismissed?: Record<string, string>;
+  /** Refeições: ingredientes que a aluna marcou como "tenho em casa". */
+  pantry?: string[];
+  /** Refeições: o dia montado, uma receita por refeição. */
+  myDay?: Partial<Record<'cafe' | 'lanche_manha' | 'almoco' | 'lanche_tarde' | 'jantar', string>>;
+  /** Refeições: filtros escolhidos. baixoFodmap ausente = segue o caminho e o protocolo. */
+  mealFilters?: {
+    semLactose?: boolean;
+    semGluten?: boolean;
+    vegetariano?: boolean;
+    baixoFodmap?: boolean;
+  };
   updatedAt?: string;
 }

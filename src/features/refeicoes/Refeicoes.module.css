@@ -1,0 +1,136 @@
+.pilha {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e4);
+}
+
+.selos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.selos > li + li {
+  margin: 0;
+}
+
+.selo {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--raio-chip);
+  background: var(--banda);
+  color: var(--acento);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.falta {
+  color: var(--texto);
+  font-size: 0.9375rem;
+}
+
+.ingredientes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ingredientes > li {
+  display: flex;
+  gap: var(--e2);
+  align-items: flex-start;
+  padding: 6px 0;
+}
+
+.ingredientes > li + li {
+  margin: 0;
+  border-top: 1px solid var(--borda-fina);
+}
+
+.subtitulo {
+  font-weight: 600;
+  padding-top: var(--e3);
+}
+
+.marca {
+  flex: none;
+  margin-top: 3px;
+  color: var(--acento);
+}
+
+.passos {
+  margin: 0;
+  padding-left: 1.4em;
+}
+
+.grupo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e2);
+}
+
+.grupoTitulo {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e2);
+  padding: var(--e3) 0;
+  border-bottom: 1px solid var(--borda-fina);
+}
+
+.slot:last-child {
+  border-bottom: none;
+}
+
+.slotTopo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--e3);
+}
+
+.slotNome {
+  font-weight: 600;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e2);
+}
+
+.busca {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resumo {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.conferencia {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e3);
+}
+
+.conferencia > li + li {
+  margin: 0;
+}

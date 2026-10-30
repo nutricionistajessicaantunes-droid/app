@@ -366,6 +366,35 @@ export async function seedDemo(
       installSkipped: true,
       installPromptDismissedAt: now,
       lastBackupAt: STAMP(addDays(today, -2)),
+      pantry: [
+        'ovo',
+        'frango',
+        'carne_moida',
+        'leite',
+        'iogurte',
+        'queijo_minas',
+        'arroz',
+        'pao',
+        'tapioca',
+        'aveia',
+        'batata',
+        'feijao',
+        'alface',
+        'tomate',
+        'cenoura',
+        'banana',
+        'mamao',
+        'linhaca',
+      ],
+      myDay: completo
+        ? {
+            cafe: 'c-preso-0-1',
+            lanche_manha: 'c-preso-1-0',
+            almoco: 'b-almoco-comum',
+            lanche_tarde: 'b-mamao-com-leite-em-po',
+            jantar: 'b-crepioca-de-frango',
+          }
+        : {},
       updatedAt: now,
     });
     await db.plan.put(plan);

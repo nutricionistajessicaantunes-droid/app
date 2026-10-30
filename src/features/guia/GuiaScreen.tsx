@@ -13,6 +13,7 @@ import { GUIDE_SECTIONS, PATH_PRIORITY, PATH_MENU, type GuideSection } from './s
 
 function hrefFor(s: GuideSection, menu?: string): string {
   if (s.id === 'cardapios' && menu) return `/guia/cardapios/${menu}`;
+  if (s.id === 'refeicoes') return '/refeicoes';
   return `/guia/${s.id}`;
 }
 
