@@ -66,7 +66,7 @@ export function Component() {
   };
 
   return (
-    <Screen title="Montar o meu dia" back="/refeicoes">
+    <Screen title="Montar o meu dia">
       <div className={styles.pilha}>
         <HelpBox items={T.ajudaMeuDia} />
 
@@ -187,6 +187,9 @@ export function Component() {
 
         <p>
           <Link to="/refeicoes/em-casa">Marcar o que eu tenho em casa</Link>
+        </p>
+        <p>
+          <Link to="/refeicoes">Receitas baixo FODMAP e cardápios modelo</Link>
         </p>
         <p className="secundario">
           {T.semNumeros} {T.aviso}

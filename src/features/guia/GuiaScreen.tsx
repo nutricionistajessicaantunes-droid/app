@@ -125,22 +125,10 @@ export function Component() {
             {path === 'indefinido' ? 'Para começar' : `Para o teu caso · ${PATH_LABEL[path]}`}
           </Filete>
           <Index items={first} menu={PATH_MENU[path]} />
-          <details>
-            <summary
-              style={{
-                minHeight: 44,
-                display: 'flex',
-                alignItems: 'center',
-                cursor: 'pointer',
-                fontWeight: 600,
-              }}
-            >
-              Outros temas
-            </summary>
-            <div style={{ marginTop: 12 }}>
-              <Index items={rest} />
-            </div>
-          </details>
+          <div style={{ marginTop: 16 }}>
+            <Filete level={2}>Outros temas</Filete>
+            <Index items={rest} />
+          </div>
         </>
       )}
     </Screen>
