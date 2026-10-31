@@ -83,14 +83,41 @@ export function setDbForTests(db: AppDB | null): void {
 }
 
 /** Testa se o IndexedDB funciona neste navegador (no modo privado de alguns, não funciona). */
-export async function checkIndexedDb(): Promise<boolean> {
-  if (typeof indexedDB === 'undefined') return false;
+function withTimeout<T>(p: Promise<T>, ms: number): Promise<T | 'timeout'> {
+  return Promise.race([p, new Promise<'timeout'>((r) => setTimeout(() => r('timeout'), ms))]);
+}
+
+async function tryOpen(): Promise<boolean | 'timeout'> {
   try {
     const db = getDb();
-    await db.open();
-    await db.meta.get('meta');
-    return true;
+    return await withTimeout(
+      db
+        .open()
+        .then(() => db.meta.get('meta'))
+        .then(() => true),
+      4000,
+    );
   } catch {
     return false;
   }
+}
+
+/**
+ * No iPhone, a primeira abertura do banco às vezes não responde (falha conhecida do Safari).
+ * Se passar do tempo, acorda o banco com uma abertura vazia e tenta de novo.
+ */
+export async function checkIndexedDb(): Promise<boolean> {
+  if (typeof indexedDB === 'undefined') return false;
+  for (let tentativa = 0; tentativa < 3; tentativa++) {
+    const r = await tryOpen();
+    if (r !== 'timeout') return r;
+    try {
+      current?.close();
+      current = null;
+      indexedDB.open('acordar').onsuccess = (e) => (e.target as IDBOpenDBRequest).result.close();
+    } catch {
+      /* segue para a próxima tentativa */
+    }
+  }
+  return false;
 }
