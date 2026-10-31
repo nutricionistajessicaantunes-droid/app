@@ -318,8 +318,15 @@ export const TABELA_TESTE: FodmapTestInfo[] = [
   },
 ];
 
-/** Porções dos dias 2 e 3 para alho e cebola não estão definidas (seção 9.17). */
-export const PORCAO_A_DEFINIR = '[TEXTO A DEFINIR]';
+/** Porções do teste de frutanos com alho e cebola: aumento pequeno, até o de um refogado comum. */
+export const PORCOES_TEMPERO: Record<string, [string, string, string]> = {
+  alho: [
+    '1 colher de chá de alho picado',
+    '1 colher de chá e meia',
+    '2 colheres de chá (cerca de 2 dentes)',
+  ],
+  cebola: ['1 colher de chá de cebola picada', '1 colher de sopa', '2 colheres de sopa'],
+};
 
 export const TABELA_TESTE_TEXTOS = {
   leitura:
