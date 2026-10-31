@@ -39,7 +39,7 @@ export const INSTAGRAM_TEXTO = 'Dúvidas sobre o conteúdo do curso, me chame no
 // ---------------------------------------------------------------------------
 
 export const KIWIFY_AREA_URL =
-  'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4?club=22cafd4a-24ea-4981-9c21-1c4cef945b20';
+  'https://members.kiwify.com/?club=22cafd4a-24ea-4981-9c21-1c4cef945b20';
 
 export const KIWIFY_AULA_URLS: Record<number, string> = {
   1: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/1c2fad4b-2dc0-4e61-bcdf-a5090b6ffb0c/2a17e98c-d8a2-4ac3-9db3-cccffcc08c7c?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
