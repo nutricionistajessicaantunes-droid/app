@@ -38,26 +38,27 @@ export const INSTAGRAM_TEXTO = 'Dúvidas sobre o conteúdo do curso, me chame no
 // Sem nenhum link, mostra "Abra esta aula na área de membros da Kiwify".
 // ---------------------------------------------------------------------------
 
-export const KIWIFY_AREA_URL = '';
+export const KIWIFY_AREA_URL =
+  'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4?club=22cafd4a-24ea-4981-9c21-1c4cef945b20';
 
 export const KIWIFY_AULA_URLS: Record<number, string> = {
-  1: '',
-  2: '',
-  3: '',
-  4: '',
-  5: '',
-  6: '',
-  7: '',
-  8: '',
-  9: '',
-  10: '',
-  11: '',
-  12: '',
-  13: '',
-  14: '',
-  15: '',
-  16: '',
-  17: '',
+  1: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/1c2fad4b-2dc0-4e61-bcdf-a5090b6ffb0c/2a17e98c-d8a2-4ac3-9db3-cccffcc08c7c?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  2: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/1c2fad4b-2dc0-4e61-bcdf-a5090b6ffb0c/bbb347b8-55e2-49a9-b8a9-81be40a63378?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  3: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/1c2fad4b-2dc0-4e61-bcdf-a5090b6ffb0c/de625892-ffef-4db3-8c33-224b85373fd7?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  4: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/1c2fad4b-2dc0-4e61-bcdf-a5090b6ffb0c/9ad6bd17-6a75-4918-a365-6ba0d1867969?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  5: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/31bb3e08-33b3-4846-aee8-bea8b6f8d666/bbd02e37-a347-4539-bb8c-0801585e77ac?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  6: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/31bb3e08-33b3-4846-aee8-bea8b6f8d666/519e1c3c-9007-4a15-a325-5be6b6f5143b?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  7: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/31bb3e08-33b3-4846-aee8-bea8b6f8d666/c95d7fb1-48e3-4dcb-934d-708af0c46ed8?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  8: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/31bb3e08-33b3-4846-aee8-bea8b6f8d666/6cb38ea7-62db-40ad-bf41-dd10d55734f8?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  9: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/31bb3e08-33b3-4846-aee8-bea8b6f8d666/16ea4d23-ecbc-4434-ac31-3a1b5d4a8f44?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  10: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/8326dcfa-3839-4857-b10c-a5fd9c126ea7/406b9901-f934-408d-80cc-2da0953b130d?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  11: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/8326dcfa-3839-4857-b10c-a5fd9c126ea7/fb6889e6-36f2-4905-a59b-777f774d3477?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  12: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/8326dcfa-3839-4857-b10c-a5fd9c126ea7/ea37ae28-7d3d-40b3-b487-5e92f1f58723?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  13: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/8326dcfa-3839-4857-b10c-a5fd9c126ea7/4c130401-81fc-4f42-a8f4-1d9ede6b00fd?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  14: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/8326dcfa-3839-4857-b10c-a5fd9c126ea7/c2a942a7-2f3a-422b-ab0b-fe2849117a64?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  15: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/667ff65d-3e6d-4b32-8406-cd97b2dd742c/04f9db96-aafe-4295-bfa3-73d22cce479e?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  16: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/667ff65d-3e6d-4b32-8406-cd97b2dd742c/3b837a2d-c443-4f00-8e40-588a470a8e70?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
+  17: 'https://members.kiwify.com/01945390-d6f7-41b6-97ab-3bced8d784c4/667ff65d-3e6d-4b32-8406-cd97b2dd742c/5d0b8857-c0eb-4f9c-af03-4163cf82dc84?club=22cafd4a-24ea-4981-9c21-1c4cef945b20',
 };
 
 // ---------------------------------------------------------------------------

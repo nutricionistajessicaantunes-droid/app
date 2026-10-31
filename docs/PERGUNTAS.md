@@ -127,8 +127,8 @@ O app já funciona com as escolhas abaixo. Você confirma ou corrige depois.
 ## O que depende de você
 
 1. **Publicar na Netlify** seguindo o README e **decidir o endereço definitivo** antes de entregar o link às alunas.
-2. **Links da Kiwify** em `src/config.ts` (ou peça numa sessão nova, mandando os 17 links).
-3. **Trocar `ENDERECO`** pelo endereço definitivo nos textos de `docs/kiwify.md`, colar na Kiwify e gravar o vídeo de instalação.
+2. ~~Links da Kiwify~~: colocados em `src/config.ts`.
+3. **Colar na Kiwify** os textos de `docs/kiwify.md` (já com o endereço do app) e gravar o vídeo de instalação.
 4. ~~Porções de alho e cebola~~: definidas (1 colher de chá, 1 e meia, 2 de alho; 1 colher de chá, 1 e 2 colheres de sopa de cebola).
 5. **Confirmar os pontos da seção 9.17** listados no começo deste arquivo.
 6. **Testar no celular** com o roteiro `docs/teste-no-celular.md`, principalmente os lembretes na "Agenda do iPhone".
