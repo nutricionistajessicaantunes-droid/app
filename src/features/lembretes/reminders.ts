@@ -99,18 +99,15 @@ export type IcsOutcome = 'aberto' | 'baixado' | 'sem_internet';
 
 /** "Agenda do iPhone": arquivo .ics gerado no aparelho ou, no iPhone com o app instalado, pela função. */
 export function openIcs(ev: CalendarEvent, platform: PlatformInfo): IcsOutcome {
-  const useFunction =
-    ICS_MODO === 'funcao' || (ICS_MODO === 'auto' && platform.os === 'ios' && platform.standalone);
+  // No iPhone, o arquivo vem sempre da função, aberto na mesma tela: o Safari bloqueia
+  // arquivo gerado no aparelho e, no app instalado, uma janela nova abre em branco.
+  const useFunction = ICS_MODO === 'funcao' || (ICS_MODO === 'auto' && platform.os === 'ios');
   if (useFunction) {
     if (navigator.onLine === false) return 'sem_internet';
-    window.open(`${ICS_FUNCAO_URL}?${functionQuery(ev)}`, '_blank', 'noopener');
+    window.location.assign(`${window.location.origin}${ICS_FUNCAO_URL}?${functionQuery(ev)}`);
     return 'aberto';
   }
   const ics = buildIcs([ev]);
-  if (platform.os === 'ios') {
-    window.location.assign(`data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`);
-    return 'aberto';
-  }
   downloadFile(new Blob([ics], { type: 'text/calendar;charset=utf-8' }), icsFileName(ev.uid));
   return 'baixado';
 }

@@ -35,7 +35,7 @@ export function applyTheme(theme: Theme): void {
 
 /** Antes de desenhar a tela, para não piscar. */
 export function applyInitialTheme(): void {
-  let theme: Theme = 'auto';
+  let theme: Theme = 'claro';
   try {
     const t = localStorage.getItem(KEY);
     if (t === 'claro' || t === 'escuro' || t === 'auto') theme = t;
@@ -43,4 +43,20 @@ export function applyInitialTheme(): void {
     /* ignora */
   }
   applyTheme(theme);
+}
+
+const CLARO_PADRAO = 'modulacao:tema-claro-padrao';
+
+/**
+ * O tema claro passou a ser o padrão. Quem ainda estava no automático (o padrão antigo)
+ * passa para o claro uma vez. Quem escolher outro tema depois, fica com a escolha.
+ */
+export function needsLightDefault(theme: Theme): boolean {
+  try {
+    if (localStorage.getItem(CLARO_PADRAO)) return false;
+    localStorage.setItem(CLARO_PADRAO, '1');
+  } catch {
+    return false;
+  }
+  return theme === 'auto';
 }

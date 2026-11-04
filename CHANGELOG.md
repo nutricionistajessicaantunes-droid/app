@@ -2,6 +2,15 @@
 
 Tudo que muda no app fica anotado aqui, por fase.
 
+## Ajustes pedidos pela Jéssica (04/11/2026)
+
+- **Cópia de segurança no iPhone**: quando o celular bloqueia o envio, a cópia fica pronta e o próximo toque em "Salvar uma cópia" envia o arquivo.
+- **Lembretes na agenda**: no iPhone o arquivo da agenda abre na mesma tela, e os dois botões explicam o que tocar em seguida.
+- **Tema claro** como padrão.
+- **Protocolo low FODMAP**: mais alimentos para testar em cada grupo, cada um com as próprias porções.
+- **Tela Hoje**: atalho "Como usar o app" no topo.
+- **Aba Refeições**: cardápios modelo primeiro, depois Montar o meu dia, O que eu tenho em casa e Receitas baixo FODMAP, e a meta de água com a calculadora.
+
 ## Refeições · O que eu tenho em casa e o meu dia (30/10/2026)
 
 - **"O que eu tenho em casa"**: a aluna marca os ingredientes que tem e o app mostra o que dá para fazer agora, o que falta pouco (um ou dois itens) e uma lista de compras com os itens que completam mais receitas. Filtros de refeição, sem lactose, sem glúten, vegetariano e baixo FODMAP, que começa ligado na fase 1 do protocolo e no caminho de gases e SII.

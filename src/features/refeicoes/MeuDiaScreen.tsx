@@ -66,7 +66,7 @@ export function Component() {
   };
 
   return (
-    <Screen title="Montar o meu dia">
+    <Screen title="Montar o meu dia" back="/refeicoes">
       <div className={styles.pilha}>
         <HelpBox items={T.ajudaMeuDia} />
 

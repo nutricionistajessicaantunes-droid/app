@@ -277,55 +277,97 @@ export const TABELA_TESTE: FodmapTestInfo[] = [
   {
     group: 'lactose',
     label: 'Lactose',
-    foodText: 'leite ou iogurte comum',
-    foods: ['leite', 'iogurte comum'],
+    foodText:
+      'leite, iogurte comum, queijo minas frescal, ricota, requeijão light ou creme de leite',
+    foods: [
+      'leite',
+      'iogurte comum',
+      'queijo minas frescal',
+      'ricota',
+      'requeijão light',
+      'creme de leite',
+    ],
     portions: ['meio copo', '1 copo', '1 copo e meio'],
   },
   {
     group: 'frutose',
     label: 'Frutose',
-    foodText: 'mel ou manga',
-    foods: ['mel', 'manga'],
+    foodText: 'mel, manga, figo fresco, aspargo ou xarope de agave',
+    foods: ['mel', 'manga', 'figo fresco', 'aspargo', 'xarope de agave'],
     portions: ['1 colher de chá', '1 colher de sopa', '2 colheres de sopa'],
   },
   {
     group: 'sorbitol',
     label: 'Sorbitol',
-    foodText: 'abacate ou ameixa',
-    foods: ['abacate', 'ameixa'],
+    foodText: 'abacate, ameixa, amora, pêssego, nectarina, damasco ou lichia',
+    foods: ['abacate', 'ameixa', 'amora', 'pêssego', 'nectarina', 'damasco', 'lichia'],
     portions: ['1 fatia fina ou meia ameixa', '1 fatia', '2 fatias ou 2 ameixas'],
   },
   {
     group: 'manitol',
     label: 'Manitol',
-    foodText: 'cogumelo ou couve-flor',
-    foods: ['cogumelo', 'couve-flor'],
+    foodText: 'cogumelo, couve-flor, batata-doce ou salsão',
+    foods: ['cogumelo', 'couve-flor', 'batata-doce', 'salsão'],
     portions: ['2 colheres de sopa', 'meia xícara', '1 xícara'],
   },
   {
     group: 'frutanos',
     label: 'Frutanos',
-    foodText: 'pão de trigo, alho ou cebola',
-    foods: ['pão de trigo', 'alho', 'cebola'],
+    foodText:
+      'pão de trigo, macarrão de trigo, biscoito de trigo, pão de centeio, alho, cebola, alho-poró ou beterraba',
+    foods: [
+      'pão de trigo',
+      'macarrão de trigo',
+      'biscoito de trigo',
+      'pão de centeio',
+      'alho',
+      'cebola',
+      'alho-poró',
+      'beterraba',
+    ],
     portions: ['meia fatia ou 1 colher de chá', '1 fatia', '2 fatias'],
   },
   {
     group: 'galactanos',
     label: 'Galactanos',
-    foodText: 'feijão, lentilha ou grão-de-bico',
-    foods: ['feijão', 'lentilha', 'grão-de-bico'],
+    foodText: 'feijão, lentilha, grão-de-bico, ervilha, soja em grão ou homus',
+    foods: ['feijão', 'lentilha', 'grão-de-bico', 'ervilha', 'soja em grão', 'homus'],
     portions: ['2 colheres de sopa', 'meia concha', '1 concha'],
   },
 ];
 
-/** Porções do teste de frutanos com alho e cebola: aumento pequeno, até o de um refogado comum. */
-export const PORCOES_TEMPERO: Record<string, [string, string, string]> = {
+/**
+ * Porções de cada alimento nos dias 1, 2 e 3, quando a medida da tabela não serve para ele.
+ * Aumento pequeno a cada dia, até uma porção comum de quem come aquele alimento.
+ */
+export const PORCOES_POR_ALIMENTO: Record<string, [string, string, string]> = {
+  'queijo minas frescal': ['1 fatia fina (15 g)', '1 fatia (30 g)', '2 fatias (60 g)'],
+  ricota: ['1 colher de sopa', '2 colheres de sopa', '3 colheres de sopa'],
+  'requeijão light': ['1 colher de chá', '1 colher de sopa', '2 colheres de sopa'],
+  'creme de leite': ['1 colher de chá', '1 colher de sopa', '2 colheres de sopa'],
+  manga: ['meia fatia pequena', '1 fatia', 'meia manga'],
+  'figo fresco': ['meio figo', '1 figo', '2 figos'],
+  aspargo: ['1 aspargo', '3 aspargos', '5 aspargos'],
+  ameixa: ['meia ameixa', '1 ameixa', '2 ameixas'],
+  abacate: ['1 fatia fina', '1 fatia', '2 fatias'],
+  amora: ['5 amoras', '10 amoras', '15 amoras'],
+  pêssego: ['um quarto de pêssego', 'meio pêssego', '1 pêssego'],
+  nectarina: ['um quarto de nectarina', 'meia nectarina', '1 nectarina'],
+  damasco: ['meio damasco', '1 damasco', '2 damascos'],
+  lichia: ['2 lichias', '4 lichias', '6 lichias'],
+  salsão: ['meio talo', '1 talo', '2 talos'],
+  'macarrão de trigo': ['2 colheres de sopa cozido', 'meia xícara cozido', '1 xícara cozido'],
+  'biscoito de trigo': ['1 biscoito', '2 biscoitos', '4 biscoitos'],
+  'pão de centeio': ['meia fatia', '1 fatia', '2 fatias'],
   alho: [
     '1 colher de chá de alho picado',
     '1 colher de chá e meia',
     '2 colheres de chá (cerca de 2 dentes)',
   ],
   cebola: ['1 colher de chá de cebola picada', '1 colher de sopa', '2 colheres de sopa'],
+  'alho-poró': ['1 colher de sopa', '2 colheres de sopa', '3 colheres de sopa'],
+  beterraba: ['2 rodelas', '4 rodelas', 'meia beterraba'],
+  homus: ['1 colher de sopa', '2 colheres de sopa', '4 colheres de sopa'],
 };
 
 export const TABELA_TESTE_TEXTOS = {

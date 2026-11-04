@@ -1,4 +1,4 @@
-import { Check, Settings } from 'lucide-react';
+import { Check, ChevronRight, Settings } from 'lucide-react';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { ASSINATURA, LEMBRETE_COPIA_DIAS, LEMBRETE_COPIA_MIN_DIAS } from '../../config';
@@ -45,7 +45,15 @@ import {
   NoEvacuationCard,
   ReadingCard,
 } from './ProcessCards';
+import guia from '../guia/Guia.module.css';
 import styles from './Hoje.module.css';
+
+const COMO_USAR_LINK = {
+  marginBottom: 16,
+  border: '1px solid var(--borda-fina)',
+  borderRadius: 'var(--raio)',
+  background: 'var(--superficie)',
+};
 
 const MAX_CARTOES = 4;
 
@@ -235,6 +243,14 @@ export function HojeScreen() {
           </Card>
         </div>
       ) : null}
+
+      <Link to="/como-usar" className={guia.indiceLink} style={{ ...COMO_USAR_LINK }}>
+        <span className={guia.indiceTexto}>
+          <span>Como usar o app</span>
+          <span className={guia.indiceDetalhe}>O caminho inteiro, passo a passo</span>
+        </span>
+        <ChevronRight size={20} aria-hidden="true" className="secundario" />
+      </Link>
 
       <div className={styles.cartoes}>
         {visible.map((c) => (

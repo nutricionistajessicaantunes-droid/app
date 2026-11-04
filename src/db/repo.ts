@@ -33,7 +33,7 @@ export function defaultProfile(path: Path = 'indefinido'): Profile {
     simpleMode: false,
     trackedSymptoms: [...DEFAULT_SYMPTOMS_BY_PATH[path]],
     showCycleTags: true,
-    theme: 'auto',
+    theme: 'claro',
     courseStage: 'comecando',
     createdAt: now,
     updatedAt: now,
