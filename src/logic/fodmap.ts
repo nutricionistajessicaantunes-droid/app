@@ -4,7 +4,7 @@ import {
   FODMAP_QUEDA_PONTOS,
   FODMAP_QUEDA_PROPORCAO,
 } from '../config';
-import { PORCOES_TEMPERO, TABELA_TESTE } from '../content/fodmap';
+import { PORCOES_POR_ALIMENTO, TABELA_TESTE } from '../content/fodmap';
 import type {
   DayKey,
   DayRecord,
@@ -80,8 +80,7 @@ export function phase1Day(
 export function planTests(foods: Partial<Record<FodmapGroup, string>>): FodmapTest[] {
   return TABELA_TESTE.map((t) => {
     const food = foods[t.group] ?? t.foods[0] ?? '';
-    // Alho e cebola: aumento pequeno, até a quantidade de um refogado comum (definido pela Jéssica).
-    const portions = PORCOES_TEMPERO[food] ?? t.portions;
+    const portions = PORCOES_POR_ALIMENTO[food] ?? t.portions;
     return {
       group: t.group,
       food,

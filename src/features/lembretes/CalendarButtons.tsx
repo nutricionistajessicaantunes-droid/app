@@ -32,7 +32,7 @@ export function CalendarButtons({
                 ? 'Você está sem internet. Tente de novo quando a conexão voltar.'
                 : r === 'baixado'
                   ? 'Arquivo de agenda salvo. Abra o arquivo para colocar na tua agenda.'
-                  : '',
+                  : 'Na tela que abrir, toque em "Adicionar" ou "Adicionar tudo".',
             );
           }}
         >
@@ -43,7 +43,11 @@ export function CalendarButtons({
           onClick={() => {
             const ok = openGoogle(event);
             if (ok) onAdded?.();
-            setMsg(ok ? '' : 'Você está sem internet. Tente de novo quando a conexão voltar.');
+            setMsg(
+              ok
+                ? 'Na tela do Google Agenda, confira o horário e toque em "Salvar".'
+                : 'Você está sem internet. Tente de novo quando a conexão voltar.',
+            );
           }}
         >
           Google Agenda

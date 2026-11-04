@@ -6,7 +6,7 @@ const ABAS = [
   { to: '/', label: 'Hoje', Icon: Sun, end: true },
   { to: '/caminho', label: 'Caminho', Icon: Route, end: false },
   { to: '/resultados', label: 'Resultados', Icon: ChartLine, end: false },
-  { to: '/refeicoes/meu-dia', label: 'Refeições', Icon: Utensils, end: false },
+  { to: '/refeicoes', label: 'Refeições', Icon: Utensils, end: false },
   { to: '/guia', label: 'Guia', Icon: BookOpen, end: false },
 ];
 

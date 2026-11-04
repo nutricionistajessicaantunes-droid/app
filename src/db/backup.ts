@@ -116,16 +116,19 @@ export function emergencyExport(dbName: string): Promise<BackupFile> {
 // Compartilhar ou baixar
 // ---------------------------------------------------------------------------
 
-export type DeliverResult = 'compartilhado' | 'baixado' | 'cancelado';
+export type DeliverResult = 'compartilhado' | 'baixado' | 'cancelado' | 'bloqueado';
 
 export async function shareOrDownload(file: File, preferShare: boolean): Promise<DeliverResult> {
   const nav = navigator as Navigator & { canShare?: (data: ShareData) => boolean };
-  if (preferShare && typeof nav.share === 'function' && nav.canShare?.({ files: [file] })) {
+  const canFiles = nav.canShare ? nav.canShare({ files: [file] }) : true;
+  if (preferShare && typeof nav.share === 'function' && canFiles) {
     try {
       await nav.share({ files: [file], title: file.name });
       return 'compartilhado';
     } catch (e) {
       if (e instanceof DOMException && e.name === 'AbortError') return 'cancelado';
+      // No iPhone, o compartilhamento precisa vir logo depois do toque.
+      if (e instanceof DOMException && e.name === 'NotAllowedError') return 'bloqueado';
       // Outros erros: cai no download.
     }
   }

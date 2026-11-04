@@ -3,7 +3,8 @@ import { Outlet, useLocation } from 'react-router';
 import { leaveDemo, isDemoDb } from '../db/index';
 import { TabBar } from '../ui/TabBar';
 import { BannerButton, TopBanner } from '../ui/Misc';
-import { applyTheme } from './theme';
+import { saveProfile } from '../db/repo';
+import { applyTheme, needsLightDefault } from './theme';
 import { useProfile } from './data';
 import { UpdateBanner } from './UpdateBanner';
 import styles from './App.module.css';
@@ -19,7 +20,9 @@ export function Shell() {
   );
 
   useEffect(() => {
-    if (profile) applyTheme(profile.theme);
+    if (!profile) return;
+    if (needsLightDefault(profile.theme)) void saveProfile({ theme: 'claro' });
+    else applyTheme(profile.theme);
   }, [profile]);
 
   useEffect(() => {
