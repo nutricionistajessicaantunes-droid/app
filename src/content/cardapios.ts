@@ -1,7 +1,7 @@
 /** Cardápios modelo e gatilhos (seção 9.14). */
 
 export const COMO_LER_CARDAPIO =
-  'Escolha uma opção de cada refeição e monte o teu dia. As três opções valem a mesma coisa. As quantidades são medidas caseiras, como referência. Ajuste ao teu apetite e à tua rotina. Troque o que você não come pelo que aparece na mesma linha. Comida que você não gosta não vira rotina. A meta de água é a mesma em qualquer um dos cardápios.';
+  'Escolha uma opção de cada refeição e monte o teu dia. As opções valem a mesma coisa. Toque em "Usar no meu dia" para colocar a opção no teu dia. As quantidades são medidas caseiras, como referência. Ajuste ao teu apetite e à tua rotina. Troque o que você não come pelo que aparece na mesma linha. Comida que você não gosta não vira rotina. A meta de água é a mesma em qualquer um dos cardápios.';
 
 export const AVISO_CARDAPIO =
   'Nenhum destes é plano alimentar. São modelos educativos, para você ver como um dia bem montado se parece. Plano individual sai de consulta, com a tua história na mesa.';
@@ -21,7 +21,7 @@ export interface Menu {
   regras?: { titulo: string; itens: string[] };
 }
 
-export const CARDAPIOS: Menu[] = [
+const BASE: Menu[] = [
   {
     id: 'preso',
     titulo: 'Intestino preso',
@@ -278,6 +278,129 @@ export const CARDAPIOS: Menu[] = [
     },
   },
 ];
+
+/** Opções a mais de cada refeição, somadas às do curso (pedido da Jéssica). */
+const MAIS_OPCOES: Record<string, string[]> = {
+  'preso.0': [
+    '1 tapioca com 1 ovo e 1 col. de sopa de chia na massa, e 1 fatia de mamão',
+    '1 fatia de pão integral com 1 col. de sopa de pasta de amendoim e 1 banana',
+    '1 pote de iogurte natural com 2 col. de sopa de aveia, 1 col. de sopa de linhaça e mamão picado',
+    'Vitamina de mamão com leite, 1 col. de sopa de aveia e 1 col. de chá de linhaça',
+  ],
+  'preso.1': [
+    '1 laranja com bagaço',
+    '2 kiwis',
+    '1 fatia de mamão com 1 col. de chá de chia',
+    '1 cacho pequeno de uva com casca',
+  ],
+  'preso.2': [
+    'Salada de alface e tomate, 4 col. de sopa de arroz integral, 1 concha de feijão e carne moída com abobrinha e cenoura',
+    'Salada de folhas, 1 pedaço de mandioca cozida, 1 concha de lentilha e frango assado com brócolis',
+    'Salada de pepino e tomate, arroz integral, grão-de-bico refogado e omelete com espinafre',
+    'Couve refogada, arroz integral, 1 concha de feijão e peixe assado com abóbora',
+  ],
+  'preso.3': [
+    '1 pote de iogurte natural com 1 col. de sopa de aveia e 1 banana',
+    '1 fatia de mamão com 1 col. de sopa de linhaça',
+    '1 xícara de cuscuz de milho com 1 ovo e 1 laranja',
+    '1 fatia de pão integral com homus e cenoura ralada',
+  ],
+  'preso.4': [
+    'Sopa de lentilha com cenoura, abóbora e couve',
+    'Batata-doce assada, frango desfiado e salada de folhas com tomate',
+    'Arroz integral, grão-de-bico refogado com legumes e 1 ovo cozido',
+    'Cuscuz de milho com legumes, sardinha e salada crua',
+  ],
+  'crise.1': [
+    '1 tapioca simples com chá morno',
+    '3 biscoitos de arroz com chá morno',
+    '2 torradas com 1 ovo cozido',
+  ],
+  'crise.2': [
+    'Chá morno com 3 biscoitos água e sal',
+    '1 xícara pequena de creme de arroz',
+    '1 copo de água de coco com 3 biscoitos de arroz',
+  ],
+  'crise.3': [
+    'Arroz branco, abobrinha cozida e peixe cozido',
+    'Macarrão sem molho com frango desfiado e cenoura cozida',
+    'Purê de batata feito com a água do cozimento, ovo cozido e cenoura cozida',
+    'Arroz branco com mandioquinha cozida e carne moída magra',
+  ],
+  'crise.4': [
+    '1 maçã cozida sem casca',
+    '2 torradas com chá morno',
+    '1 xícara pequena de creme de arroz com canela',
+  ],
+  'crise.5': [
+    'Sopa de mandioquinha com frango desfiado',
+    'Purê de batata com frango desfiado e cenoura cozida',
+    'Arroz branco com abobrinha cozida e peixe',
+  ],
+  'gases.0': [
+    'Tapioca com queijo parmesão e 1 kiwi',
+    'Ovos mexidos com tomate, 1 fatia de pão sem glúten e morangos',
+    '1 pote de iogurte sem lactose com morangos, 1 col. de sopa de aveia e 1 col. de chá de chia',
+    'Crepioca (tapioca com ovo) e 1 laranja',
+  ],
+  'gases.1': ['1 kiwi', '1 laranja', '10 morangos', '2 biscoitos de arroz com pasta de amendoim'],
+  'gases.2': [
+    'Arroz, carne de panela com cenoura e salada de alface',
+    'Quinoa, frango grelhado e abobrinha refogada no azeite',
+    'Batata-doce, peixe assado e salada de pepino com tomate',
+    'Arroz, omelete com espinafre e cenoura cozida',
+  ],
+  'gases.3': [
+    '3 biscoitos de arroz com parmesão',
+    '1 banana mais verde com 1 col. de sopa de pasta de amendoim',
+    'Vitamina de morango com leite sem lactose',
+    '1 cacho pequeno de uva',
+  ],
+  'gases.4': [
+    'Sopa de abóbora com frango desfiado',
+    'Arroz e carne moída com abobrinha e cenoura',
+    'Batata cozida, ovos mexidos e espinafre refogado',
+    'Macarrão de arroz com frango e tomate',
+  ],
+  'refluxo.0': [
+    '1 xícara de cuscuz de milho com ovo mexido e 1 fatia de mamão',
+    '2 fatias de pão integral com queijo branco e chá de erva-doce',
+    '1 pote de iogurte natural com banana e 1 col. de sopa de aveia',
+    '1 tapioca com queijo branco e 1 fatia de melão',
+  ],
+  'refluxo.1': [
+    '1 fatia de mamão',
+    '1 fatia de melão',
+    '1 pote de iogurte natural',
+    '3 biscoitos de arroz com chá de camomila',
+  ],
+  'refluxo.2': [
+    'Arroz, 1 concha de feijão, frango cozido e abobrinha e cenoura refogadas no azeite',
+    'Purê de batata, peixe cozido e salada de folhas com azeite',
+    'Arroz integral, carne moída magra com abóbora e salada de alface',
+    'Macarrão com frango desfiado e legumes cozidos, sem molho de tomate',
+  ],
+  'refluxo.3': [
+    '1 pote de iogurte natural com mamão picado',
+    '3 biscoitos de arroz com queijo branco',
+    '1 banana com 1 col. de sopa de aveia',
+    '1 fatia de pão integral com ovo cozido',
+  ],
+  'refluxo.4': [
+    'Sopa de mandioquinha com frango desfiado',
+    'Purê de batata-doce com peixe cozido e abobrinha',
+    'Omelete simples com arroz e cenoura cozida',
+    'Caldo de legumes com carne desfiada e arroz',
+  ],
+};
+
+export const CARDAPIOS: Menu[] = BASE.map((m) => ({
+  ...m,
+  refeicoes: m.refeicoes.map((r, i) => ({
+    ...r,
+    opcoes: [...r.opcoes, ...(MAIS_OPCOES[`${m.id}.${i}`] ?? [])],
+  })),
+}));
 
 /** Regras do refluxo, também sugestões de medidas da tarefa da aula 8. */
 export const MEDIDAS_REFLUXO = [

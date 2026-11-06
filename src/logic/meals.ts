@@ -137,6 +137,8 @@ export function matchRecipes(
     : undefined;
   const list = recipes
     .map((recipe, index) => ({ recipe, index }))
+    // O cardápio da crise só aparece para quem está no caminho do intestino solto.
+    .filter(({ recipe }) => recipe.fonte !== 'crise' || o.menu === 'crise')
     .filter(({ recipe }) => !kinds || kinds.includes(recipe.refeicao))
     .filter(({ recipe }) => recipeFits(recipe, f))
     .sort((a, b) => rank(a.recipe, o, f) - rank(b.recipe, o, f) || a.index - b.index)
@@ -183,6 +185,7 @@ export function lowFodmapReason(
 export function menuForPath(path: Profile['path'] | undefined): RecipeSource | undefined {
   if (path === 'preso' || path === 'refluxo') return path;
   if (path === 'gases_sii') return 'gases';
+  if (path === 'solto') return 'crise';
   return undefined;
 }
 

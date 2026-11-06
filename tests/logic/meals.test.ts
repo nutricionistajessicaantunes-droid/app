@@ -51,9 +51,11 @@ describe('conteúdo das refeições', () => {
   });
 
   it('traz todas as opções dos cardápios preso, gases e refluxo', () => {
-    for (const id of ['preso', 'gases', 'refluxo'] as const) {
+    for (const id of ['preso', 'crise', 'gases', 'refluxo'] as const) {
       const menu = CARDAPIOS.find((m) => m.id === id);
-      const esperado = (menu?.refeicoes.slice(0, 5) ?? []).reduce((s, m) => s + m.opcoes.length, 0);
+      const esperado = (menu?.refeicoes ?? [])
+        .filter((m) => /^(Café|Lanche|Almoço|Jantar)/.test(m.refeicao))
+        .reduce((s, m) => s + m.opcoes.length, 0);
       expect(RECEITAS.filter((r) => r.fonte === id)).toHaveLength(esperado);
     }
     expect(RECEITAS_FODMAP).toHaveLength(19);
