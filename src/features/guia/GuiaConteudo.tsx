@@ -100,6 +100,7 @@ import { Card } from '../../ui/Card';
 import { Filete } from '../../ui/Filete';
 import { BulletList, ExternalLink, Note, Quote } from '../../ui/Misc';
 import styles from './Guia.module.css';
+import { MenuOption } from '../refeicoes/MenuOption';
 import { WaterCalculator } from './WaterCalculator';
 
 function Secao({ id, label, children }: { id?: string; label: string; children: ReactNode }) {
@@ -613,11 +614,13 @@ export function MenuView({ menu }: { menu: Menu }) {
   return (
     <>
       <p>{menu.intro}</p>
-      {menu.refeicoes.map((r) => (
+      {menu.refeicoes.map((r, mi) => (
         <Card key={r.refeicao} title={r.refeicao} level={3}>
           <ul className={styles.opcoes}>
             {r.opcoes.map((o, i) => (
-              <li key={i}>{o}</li>
+              <li key={i}>
+                <MenuOption texto={o} refeicao={r.refeicao} recipeId={`c-${menu.id}-${mi}-${i}`} />
+              </li>
             ))}
           </ul>
         </Card>

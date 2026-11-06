@@ -195,12 +195,13 @@ export const QUALQUER_FRUTA = 'qualquer-fruta';
 /** Uma linha da receita: um ingrediente, ou uma lista em que qualquer um resolve. */
 export type Req = string | string[];
 
-export type RecipeSource = 'biblioteca' | 'fodmap' | 'preso' | 'gases' | 'refluxo';
+export type RecipeSource = 'biblioteca' | 'fodmap' | 'preso' | 'crise' | 'gases' | 'refluxo';
 
 export const FONTE_LABEL: Record<RecipeSource, string> = {
   biblioteca: 'Biblioteca de refeições',
   fodmap: 'Receitas baixo FODMAP',
   preso: 'Cardápio modelo · Intestino preso',
+  crise: 'Cardápio modelo · Diarreia, fase de crise',
   gases: 'Cardápio modelo · Gases, estufamento e SII',
   refluxo: 'Cardápio modelo · Refluxo e gastrite',
 };
@@ -1886,23 +1887,237 @@ const CARDAPIO_MAPA: Record<string, { titulo: string; usa: Req[] }> = {
     usa: ['arroz', 'cenoura', 'frango'],
   },
   'refluxo.4.2': {
+    titulo: 'Caldo de legumes com carne e arroz',
+    usa: ['qualquer-vegetal', 'carne', 'arroz'],
+  },
+  'crise.1.0': { titulo: 'Pão branco com azeite e chá', usa: ['pao'] },
+  'crise.1.1': { titulo: 'Creme de arroz', usa: ['arroz'] },
+  'crise.1.2': { titulo: 'Banana amassada com torradas', usa: ['banana', ['torrada', 'pao']] },
+  'crise.2.0': { titulo: 'Maçã cozida ou raspada', usa: ['maca'] },
+  'crise.2.1': { titulo: 'Banana', usa: ['banana'] },
+  'crise.2.2': { titulo: 'Batata cozida com sal', usa: ['batata'] },
+  'crise.3.0': {
+    titulo: 'Arroz branco, cenoura e frango cozido',
+    usa: ['arroz', 'cenoura', 'frango'],
+  },
+  'crise.3.1': {
+    titulo: 'Caldo de legumes com arroz e frango',
+    usa: ['arroz', 'frango', 'qualquer-vegetal'],
+  },
+  'crise.3.2': {
+    titulo: 'Purê de batata com carne desfiada',
+    usa: ['batata', ['carne', 'carne_moida']],
+  },
+  'crise.4.0': { titulo: 'Chá com biscoito água e sal', usa: ['biscoito_agua_sal'] },
+  'crise.4.1': { titulo: 'Banana amassada', usa: ['banana'] },
+  'crise.4.2': { titulo: 'Caldo leve de legumes', usa: ['qualquer-vegetal'] },
+  'crise.5.0': {
+    titulo: 'Canja com arroz, cenoura e frango',
+    usa: ['arroz', 'cenoura', 'frango'],
+  },
+  'crise.5.1': {
+    titulo: 'Sopa de batata e legumes com peixe',
+    usa: ['batata', 'qualquer-vegetal', 'peixe'],
+  },
+  'crise.5.2': { titulo: 'Arroz branco, cenoura e ovo cozido', usa: ['arroz', 'cenoura', 'ovo'] },
+  'preso.0.3': {
+    titulo: 'Tapioca com ovo e chia, e mamão',
+    usa: ['tapioca', 'ovo', 'chia', 'mamao'],
+  },
+  'preso.0.4': {
+    titulo: 'Pão integral com pasta de amendoim e banana',
+    usa: [['pao_integral', 'pao'], 'pasta_amendoim', 'banana'],
+  },
+  'preso.0.5': {
+    titulo: 'Iogurte com aveia, linhaça e mamão',
+    usa: ['iogurte', 'aveia', 'linhaca', 'mamao'],
+  },
+  'preso.0.6': {
+    titulo: 'Vitamina de mamão com aveia',
+    usa: ['mamao', 'leite', 'aveia', 'linhaca'],
+  },
+  'preso.1.3': { titulo: 'Laranja com bagaço', usa: ['laranja'] },
+  'preso.1.4': { titulo: 'Kiwi', usa: ['kiwi'] },
+  'preso.1.5': { titulo: 'Mamão com chia', usa: ['mamao', 'chia'] },
+  'preso.1.6': { titulo: 'Uva com casca', usa: ['uva'] },
+  'preso.2.3': {
+    titulo: 'Arroz integral, feijão e carne moída com legumes',
+    usa: [['arroz_integral', 'arroz'], 'feijao', 'carne_moida', 'qualquer-vegetal'],
+  },
+  'preso.2.4': {
+    titulo: 'Mandioca, lentilha e frango com brócolis',
+    usa: ['mandioca', 'lentilha', 'frango', 'qualquer-vegetal'],
+  },
+  'preso.2.5': {
+    titulo: 'Arroz integral, grão-de-bico e omelete',
+    usa: [['arroz_integral', 'arroz'], 'grao_de_bico', 'ovo', 'qualquer-vegetal'],
+  },
+  'preso.2.6': {
+    titulo: 'Arroz integral, feijão, peixe e abóbora',
+    usa: [['arroz_integral', 'arroz'], 'feijao', 'peixe', 'qualquer-vegetal'],
+  },
+  'preso.3.3': { titulo: 'Iogurte com aveia e banana', usa: ['iogurte', 'aveia', 'banana'] },
+  'preso.3.4': { titulo: 'Mamão com linhaça', usa: ['mamao', 'linhaca'] },
+  'preso.3.5': { titulo: 'Cuscuz com ovo e laranja', usa: ['cuscuz', 'ovo', 'laranja'] },
+  'preso.3.6': {
+    titulo: 'Pão integral com homus e cenoura',
+    usa: [['pao_integral', 'pao'], 'homus', 'cenoura'],
+  },
+  'preso.4.3': { titulo: 'Sopa de lentilha com legumes', usa: ['lentilha', 'qualquer-vegetal'] },
+  'preso.4.4': {
+    titulo: 'Batata-doce, frango e salada',
+    usa: ['batata_doce', 'frango', 'qualquer-vegetal'],
+  },
+  'preso.4.5': {
+    titulo: 'Arroz integral, grão-de-bico, legumes e ovo',
+    usa: [['arroz_integral', 'arroz'], 'grao_de_bico', 'ovo', 'qualquer-vegetal'],
+  },
+  'preso.4.6': {
+    titulo: 'Cuscuz com legumes e sardinha',
+    usa: ['cuscuz', 'sardinha', 'qualquer-vegetal'],
+  },
+  'crise.1.3': { titulo: 'Tapioca simples com chá', usa: ['tapioca'] },
+  'crise.1.4': { titulo: 'Biscoito de arroz com chá', usa: ['biscoito_arroz'] },
+  'crise.1.5': { titulo: 'Torradas com ovo cozido', usa: [['torrada', 'pao'], 'ovo'] },
+  'crise.2.3': { titulo: 'Biscoito água e sal com chá', usa: ['biscoito_agua_sal'] },
+  'crise.2.4': { titulo: 'Creme de arroz', usa: ['arroz'] },
+  'crise.2.5': { titulo: 'Água de coco com biscoito de arroz', usa: ['biscoito_arroz'] },
+  'crise.3.3': {
+    titulo: 'Arroz, abobrinha e peixe cozido',
+    usa: ['arroz', 'abobrinha', 'peixe'],
+  },
+  'crise.3.4': {
+    titulo: 'Macarrão com frango e cenoura',
+    usa: ['macarrao', 'frango', 'cenoura'],
+  },
+  'crise.3.5': { titulo: 'Purê de batata, ovo e cenoura', usa: ['batata', 'ovo', 'cenoura'] },
+  'crise.3.6': {
+    titulo: 'Arroz, mandioquinha e carne moída',
+    usa: ['arroz', 'mandioquinha', 'carne_moida'],
+  },
+  'crise.4.3': { titulo: 'Maçã cozida', usa: ['maca'] },
+  'crise.4.4': { titulo: 'Torradas com chá', usa: [['torrada', 'pao']] },
+  'crise.4.5': { titulo: 'Creme de arroz com canela', usa: ['arroz'] },
+  'crise.5.3': { titulo: 'Sopa de mandioquinha com frango', usa: ['mandioquinha', 'frango'] },
+  'crise.5.4': {
+    titulo: 'Purê de batata com frango e cenoura',
+    usa: ['batata', 'frango', 'cenoura'],
+  },
+  'crise.5.5': { titulo: 'Arroz, abobrinha e peixe', usa: ['arroz', 'abobrinha', 'peixe'] },
+  'gases.0.3': { titulo: 'Tapioca com parmesão e kiwi', usa: ['tapioca', 'parmesao', 'kiwi'] },
+  'gases.0.4': {
+    titulo: 'Ovos com tomate, pão sem glúten e morango',
+    usa: ['ovo', 'tomate', 'pao_sem_gluten', 'morango'],
+  },
+  'gases.0.5': {
+    titulo: 'Iogurte sem lactose com morango, aveia e chia',
+    usa: ['iogurte_sem_lactose', 'morango', 'aveia', 'chia'],
+  },
+  'gases.0.6': { titulo: 'Crepioca e laranja', usa: ['tapioca', 'ovo', 'laranja'] },
+  'gases.1.3': { titulo: 'Kiwi', usa: ['kiwi'] },
+  'gases.1.4': { titulo: 'Laranja', usa: ['laranja'] },
+  'gases.1.5': { titulo: 'Morangos', usa: ['morango'] },
+  'gases.1.6': {
+    titulo: 'Biscoito de arroz com pasta de amendoim',
+    usa: ['biscoito_arroz', 'pasta_amendoim'],
+  },
+  'gases.2.3': {
+    titulo: 'Arroz, carne de panela e cenoura',
+    usa: ['arroz', 'carne', 'qualquer-vegetal'],
+  },
+  'gases.2.4': {
+    titulo: 'Quinoa, frango e abobrinha',
+    usa: ['quinoa', 'frango', 'qualquer-vegetal'],
+  },
+  'gases.2.5': {
+    titulo: 'Batata-doce, peixe e salada',
+    usa: ['batata_doce', 'peixe', 'qualquer-vegetal'],
+  },
+  'gases.2.6': { titulo: 'Arroz, omelete e cenoura', usa: ['arroz', 'ovo', 'qualquer-vegetal'] },
+  'gases.3.3': { titulo: 'Biscoito de arroz com parmesão', usa: ['biscoito_arroz', 'parmesao'] },
+  'gases.3.4': { titulo: 'Banana com pasta de amendoim', usa: ['banana', 'pasta_amendoim'] },
+  'gases.3.5': {
+    titulo: 'Vitamina de morango sem lactose',
+    usa: ['morango', 'leite_sem_lactose'],
+  },
+  'gases.3.6': { titulo: 'Uva', usa: ['uva'] },
+  'gases.4.3': { titulo: 'Sopa de abóbora com frango', usa: ['abobora', 'frango'] },
+  'gases.4.4': {
+    titulo: 'Arroz e carne moída com legumes',
+    usa: ['arroz', 'carne_moida', 'qualquer-vegetal'],
+  },
+  'gases.4.5': { titulo: 'Batata, ovos e espinafre', usa: ['batata', 'ovo', 'espinafre'] },
+  'gases.4.6': {
+    titulo: 'Macarrão de arroz com frango',
+    usa: ['macarrao_arroz', 'frango', 'tomate'],
+  },
+  'refluxo.0.3': { titulo: 'Cuscuz com ovo e mamão', usa: ['cuscuz', 'ovo', 'mamao'] },
+  'refluxo.0.4': {
+    titulo: 'Pão integral com queijo branco',
+    usa: [['pao_integral', 'pao'], 'queijo_minas'],
+  },
+  'refluxo.0.5': { titulo: 'Iogurte com banana e aveia', usa: ['iogurte', 'banana', 'aveia'] },
+  'refluxo.0.6': {
+    titulo: 'Tapioca com queijo branco e melão',
+    usa: ['tapioca', 'queijo_minas', 'melao'],
+  },
+  'refluxo.1.3': { titulo: 'Mamão', usa: ['mamao'] },
+  'refluxo.1.4': { titulo: 'Melão', usa: ['melao'] },
+  'refluxo.1.5': { titulo: 'Iogurte natural', usa: ['iogurte'] },
+  'refluxo.1.6': { titulo: 'Biscoito de arroz com chá', usa: ['biscoito_arroz'] },
+  'refluxo.2.3': {
+    titulo: 'Arroz, feijão, frango e legumes',
+    usa: ['arroz', 'feijao', 'frango', 'qualquer-vegetal'],
+  },
+  'refluxo.2.4': {
+    titulo: 'Purê de batata, peixe e salada',
+    usa: ['batata', 'peixe', 'qualquer-vegetal'],
+  },
+  'refluxo.2.5': {
+    titulo: 'Arroz integral, carne moída e abóbora',
+    usa: [['arroz_integral', 'arroz'], 'carne_moida', 'qualquer-vegetal'],
+  },
+  'refluxo.2.6': {
+    titulo: 'Macarrão com frango e legumes',
+    usa: ['macarrao', 'frango', 'qualquer-vegetal'],
+  },
+  'refluxo.3.3': { titulo: 'Iogurte com mamão', usa: ['iogurte', 'mamao'] },
+  'refluxo.3.4': {
+    titulo: 'Biscoito de arroz com queijo branco',
+    usa: ['biscoito_arroz', 'queijo_minas'],
+  },
+  'refluxo.3.5': { titulo: 'Banana com aveia', usa: ['banana', 'aveia'] },
+  'refluxo.3.6': { titulo: 'Pão integral com ovo', usa: [['pao_integral', 'pao'], 'ovo'] },
+  'refluxo.4.3': { titulo: 'Sopa de mandioquinha com frango', usa: ['mandioquinha', 'frango'] },
+  'refluxo.4.4': {
+    titulo: 'Purê de batata-doce, peixe e abobrinha',
+    usa: ['batata_doce', 'peixe', 'abobrinha'],
+  },
+  'refluxo.4.5': { titulo: 'Omelete, arroz e cenoura', usa: ['ovo', 'arroz', 'cenoura'] },
+  'refluxo.4.6': {
     titulo: 'Arroz integral com legumes e omelete',
     usa: [['arroz_integral', 'arroz'], V_, 'ovo'],
   },
 };
 
-const KIND_POR_POSICAO: MealKind[] = ['cafe', 'lanche', 'almoco', 'lanche', 'jantar'];
+function kindOf(refeicao: string): MealKind | undefined {
+  if (refeicao.startsWith('Café')) return 'cafe';
+  if (refeicao.startsWith('Lanche')) return 'lanche';
+  if (refeicao.startsWith('Almoço')) return 'almoco';
+  if (refeicao.startsWith('Jantar')) return 'jantar';
+  return undefined;
+}
 
 function cardapioRecipes(): Recipe[] {
   const out: Recipe[] = [];
   for (const menu of CARDAPIOS) {
-    if (menu.id !== 'preso' && menu.id !== 'gases' && menu.id !== 'refluxo') continue;
     const fonte = menu.id;
-    menu.refeicoes.slice(0, 5).forEach((meal, mi) => {
+    menu.refeicoes.forEach((meal, mi) => {
+      const refeicao = kindOf(meal.refeicao);
+      if (!refeicao) return;
       meal.opcoes.forEach((texto, oi) => {
         const mapa = CARDAPIO_MAPA[`${menu.id}.${mi}.${oi}`];
-        const refeicao = KIND_POR_POSICAO[mi];
-        if (!mapa || !refeicao) return;
+        if (!mapa) return;
         out.push({
           id: `c-${menu.id}-${mi}-${oi}`,
           titulo: mapa.titulo,
